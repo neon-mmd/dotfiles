@@ -17,7 +17,6 @@ alias ls "exa -lah --icons"
 alias grep rg
 alias cat bat
 alias sudo "doas --"
-alias vim nvim
 
 ###--system-update-aliases--###
 

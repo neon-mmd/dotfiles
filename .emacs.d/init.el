@@ -214,10 +214,10 @@
   )
 
 ;; magit-annex inside magit
-(use-package magit-annex
-  :straight t
-  :commands magit-annex-file-action magit-status
-  )
+;; (use-package magit-annex
+;;   :straight t
+;;   :after dashboard
+;;   )
 
 ;;page-break-lines and dependency for dashboard
 (use-package page-break-lines
