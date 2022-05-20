@@ -2,11 +2,16 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
-ufetch-arch
+ufetch-arch | lolcat
 starship init fish | source
 
-#-------------------------------SUPRESS FISH GREETING MESSAGE-----------------------------
+#-------------------------------FISH GREETING MESSAGE-----------------------------
+
+###--supress-old-fish-message--###
 set fish_greeting ''
+
+###--new-colorful-kitty-message--###
+toilet -f term '***Welcome to the Kitty Terminal***' -d /usr/share/figlet/fonts/ -t -F border --rainbow
 
 #-----------------------------------------ALIASES-----------------------------------------
 
@@ -117,4 +122,4 @@ if [ "$INSIDE_EMACS" = vterm ]
     end
 end
 alias config '/usr/bin/git --git-dir=/home/destruct/.cfg/ --work-tree=/home/destruct'
-alias config '/usr/bin/git --git-dir=/run/media/destruct/1775db1d-a82f-4e0d-9b0b-d04d1dd9a8dd/dotfiles.git/ --work-tree=/home/destruct'
+alias config '/usr/bin/git --git-dir=/run/media/destruct/c45abf85-cf28-40c5-b984-71955f2030d1/dotfiles.git/ --work-tree=/home/destruct'

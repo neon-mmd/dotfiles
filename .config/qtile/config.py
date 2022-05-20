@@ -98,7 +98,7 @@ keys = [
     Key([mod, "control"], "r", lazy.restart(), desc="Restart Qtile"),
     Key([mod, "shift"],
         "q",
-        lazy.spawn("lxsession-logout"),
+        lazy.spawn("xsession-logout"),
         desc="Shutdown Qtile"),
     Key([mod], "v", lazy.spawn("virtualbox"), desc="launch virtualbox"),
     Key([mod], "l", lazy.spawn("common-websites.sh"), desc="common web links"),
@@ -253,8 +253,9 @@ auto_minimize = True
 @hook.subscribe.startup_once
 def autostart():
     processes = [['nitrogen', '--restore'], ['picom'], ['nm-applet'],
-                 ['gnome-keyring'], ['lxsession'], ['optimus-manager-qt'],
-                 ['pcmanfm', '-d'], ['battery-notifier.sh']]
+                 ['gnome-keyring'], ['polkit-dumb-agent'],
+                 ['optimus-manager-qt'], ['pcmanfm', '-d'],
+                 ['battery-notifier.sh']]
 
     for p in processes:
         subprocess.Popen(p)
