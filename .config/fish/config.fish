@@ -2,8 +2,11 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
+#-------------------------------RUN ON LAUNCH------------------------------------
 ufetch-arch | lolcat
 starship init fish | source
+paccache -r -f
+faillock --reset --user $USER
 
 #-------------------------------FISH GREETING MESSAGE-----------------------------
 
