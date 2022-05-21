@@ -100,6 +100,10 @@ alias snaproot "sudo snapper -c root -c"
 ###--reflector-aliases--###
 alias mirrorup "sudo reflector --save /etc/pacman.d/mirrorlist -a 48 -l 20 -f 5 --sort rate"
 
+###--dotfiles-management-aliases--###
+alias config '/usr/bin/git --git-dir=/home/destruct/.cfg/ --work-tree=/home/destruct'
+alias config '/usr/bin/git --git-dir=/run/media/destruct/c45abf85-cf28-40c5-b984-71955f2030d1/dotfiles.git/ --work-tree=/home/destruct'
+
 #--------------------------------------FUNCTIONS--------------------------------------------
 
 ###--vterm-shell-side-config--###
@@ -124,5 +128,3 @@ if [ "$INSIDE_EMACS" = vterm ]
         tput clear
     end
 end
-alias config '/usr/bin/git --git-dir=/home/destruct/.cfg/ --work-tree=/home/destruct'
-alias config '/usr/bin/git --git-dir=/run/media/destruct/c45abf85-cf28-40c5-b984-71955f2030d1/dotfiles.git/ --work-tree=/home/destruct'
