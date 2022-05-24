@@ -4,9 +4,8 @@ end
 
 #-------------------------------RUN ON LAUNCH------------------------------------
 ufetch-arch | lolcat
-starship init fish | source
-paccache -r -f
 faillock --reset --user $USER
+starship init fish | source
 
 #-------------------------------FISH GREETING MESSAGE-----------------------------
 
@@ -38,6 +37,7 @@ alias psync "sudo pacman -Sy"
 alias pinstall "sudo pacman -S"
 alias pinfo "sudo pacman -Si"
 alias psearch "sudo pacman -Ss"
+alias cache "sudo paccache -r -f"
 
 ###--paru-aliases--###
 
