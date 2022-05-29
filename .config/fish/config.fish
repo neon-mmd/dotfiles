@@ -102,7 +102,7 @@ alias mirrorup "sudo reflector --save /etc/pacman.d/mirrorlist -a 48 -l 20 -f 5 
 
 ###--dotfiles-management-aliases--###
 alias config '/usr/bin/git --git-dir=/home/destruct/.cfg/ --work-tree=/home/destruct'
-alias config '/usr/bin/git --git-dir=/run/media/destruct/c45abf85-cf28-40c5-b984-71955f2030d1/dotfiles.git/ --work-tree=/home/destruct'
+alias config '/usr/bin/git --git-dir=/run/media/destruct/39568688-b38c-43ac-a7de-c0f9888ec0c0/git-repos/dotfiles.git/ --work-tree=/home/destruct'
 
 #--------------------------------------FUNCTIONS--------------------------------------------
 

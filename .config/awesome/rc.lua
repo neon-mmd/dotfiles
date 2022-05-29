@@ -104,7 +104,7 @@ local terminal     = "kitty"
 local vi_focus     = false -- vi-like client focus https://github.com/lcpz/awesome-copycats/issues/275
 local cycle_prev   = true  -- cycle with only the previously focused client or all https://github.com/lcpz/awesome-copycats/issues/274
 local editor       = os.getenv("EDITOR") or "nvim"
-local browser      = "librewolf"
+local browser      = "brave"
 
 awful.util.terminal = terminal
 awful.util.tagnames = { "term", "web", "vbox", "vlc", "nextcloud","code","whatsapp","mail","vcapps" }
@@ -230,8 +230,8 @@ globalkeys = mytable.join(
     awful.key({ "Control",           }, "space", function() naughty.destroy_all_notifications() end,
               {description = "destroy all notifications", group = "hotkeys"}),
 
-    -- X screen locker
-    awful.key({ modkey, "Shift" }, "q", function () awful.util.spawn("lxsession-logout") end,
+    -- Neon logout
+    awful.key({ modkey, "Shift" }, "q", function () awful.util.spawn("neon-logout") end,
               {description = "displays logout options", group = "hotkeys"}),
 
     -- Show help
@@ -496,7 +496,8 @@ awful.rules.rules = {
           "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
           "Wpa_gui",
           "veromix",
-          "xtightvncviewer"},
+          "xtightvncviewer",
+	  "neon-logout"},
 
         -- Note that the name property shown in xprop might be set slightly after creation of the client
         -- and the name shown there might not match defined rules here.
@@ -582,6 +583,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 awful.util.spawn_with_shell("picom")
 awful.util.spawn_with_shell("nitrogen --restore")
 awful.util.spawn_with_shell("nm-applet")
-awful.util.spawn_with_shell("lxsession")
 awful.util.spawn_with_shell("gnome-keyring")
 awful.util.spawn_with_shell("pcmanfm -d")
+awful.util.spawn_with_shell("battery-notifier.sh")
+awful.util.spawn_with_shell("polkit-dumb-agent")
