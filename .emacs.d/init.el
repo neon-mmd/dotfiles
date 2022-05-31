@@ -67,6 +67,7 @@
 (auto-save-mode t)
 (setq use-dialog-box nil)
 (setq visible-mode t)
+(global-set-key (kbd "C-x w") 'elfeed)
 
 ;; excluding following modes from showing line numbers
 (dolist (mode '(org-mode-hook
@@ -545,6 +546,32 @@
   :after dashboard
   )
 
+;; elfeed to read rss feeds
+(use-package elfeed
+  :commands elfeed
+  :straight t
+  :init (elfeed-update)
+  )
+
+;; Entries older than 1 weeks are marked as read
+(add-hook 'elfeed-new-entry-hook
+          (elfeed-make-tagger :before "1 weeks ago"
+                              :remove 'unread))
+
+;; elfeed-org to enhance elfeed
+(use-package elfeed-org
+  :hook(elfeed . elfeed-org)
+  :straight t
+  :custom((rmh-elfeed-org-files (list "~/rss-feeds/elfeed.org")))
+  )
+
+;; elfeed-goodies to further enhance elfeed
+(use-package elfeed-goodies
+  :after dashboard
+  :straight t
+  :init (elfeed-goodies/setup)
+  )
+
 ;;org-configuration
 (defun neon/org-config ()
   ;;replacing org-list symbol '.' with arrow 
@@ -640,7 +667,8 @@
   (add-to-list 'org-structure-template-alist '("c++" . "src c++"))
   (add-to-list 'org-structure-template-alist '("lua" . "src lua"))
   (add-to-list 'org-structure-template-alist '("css" . "src css"))
-)
+  )
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
