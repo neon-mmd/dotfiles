@@ -53,14 +53,6 @@ let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
 " tabline
-let g:airline#extensions#tabline#enabled = 1
-
-set expandtab
-set tabstop=4
-set shiftwidth=4
-
-augroup fmt
-  autocmd!
   autocmd BufWritePre * undojoin | Neoformat
 augroup END
 
