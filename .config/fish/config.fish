@@ -49,11 +49,9 @@ alias asearch "paru -Ss"
 alias remove "paru -Qtdq | paru -Rns -"
 
 ###--git-aliases--###
-alias ginit "git annex init"
-alias gsync "git annex sync"
-alias gget "git annex get"
+alias ginit "git init"
 alias gpull "git pull"
-alias gadd "git annex add"
+alias gadd "git add"
 alias gcommit "git commit -m"
 alias gpush "git push"
 alias gstat "git status"
