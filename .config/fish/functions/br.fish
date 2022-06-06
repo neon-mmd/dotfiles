@@ -1,0 +1,1 @@
+/home/destruct/.local/share/broot/launcher/fish/br.fish

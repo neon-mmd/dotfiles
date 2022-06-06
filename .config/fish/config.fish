@@ -20,7 +20,7 @@ toilet -f term '***Welcome to the Alacritty Terminal***' -d /usr/share/figlet/fo
 ###--term-cmd-apps--###
 
 alias find fd
-alias ls "exa -lah --icons"
+alias ls "br -pt"
 alias grep rg
 alias cat bat
 alias sudo "doas --"
