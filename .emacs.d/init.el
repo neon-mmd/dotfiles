@@ -203,9 +203,9 @@
   )
 
 ;; making projectile better
-(use-package counsel-projectile
+(use-package consult-projectile
+  :straight t
   :after projectile
-  :config (counsel-projectile-mode)
   )
 
 ;; which-key
@@ -331,44 +331,76 @@
   )
 
 ;;ivy
-(use-package ivy
-  :after dashboard
-  :straight t
-  :diminish
-  :bind (("C-s" . swiper)
-         :map ivy-minibuffer-map
-         ("TAB" . ivy-alt-done)
-         ("C-f" . ivy-alt-done)
-         ("C-l" . ivy-alt-done)
-         ("C-j" . ivy-next-line)
-         ("C-k" . ivy-previous-line)
-         :map ivy-switch-buffer-map
-         ("C-k" . ivy-previous-line)
-         ("C-d" . ivy-switch-buffer-kill)
-         ("C-l" . ivy-done)
-         :map ivy-reverse-i-search-map
-         ("C-k" . ivy-previous-line)
-         ("C-d" . ivy-reverse-i-search-kill))
-  :init
-  (ivy-mode 1))
+;; (use-package ivy
+;;   :after dashboard
+;;   :straight t
+;;   :diminish
+;;   :bind (("C-s" . swiper)
+;;          :map ivy-minibuffer-map
+;;          ("TAB" . ivy-alt-done)
+;;          ("C-f" . ivy-alt-done)
+;;          ("C-l" . ivy-alt-done)
+;;          ("C-j" . ivy-next-line)
+;;          ("C-k" . ivy-previous-line)
+;;          :map ivy-switch-buffer-map
+;;          ("C-k" . ivy-previous-line)
+;;          ("C-d" . ivy-switch-buffer-kill)
+;;          ("C-l" . ivy-done)
+;;          :map ivy-reverse-i-search-map
+;;          ("C-k" . ivy-previous-line)
+;;          ("C-d" . ivy-reverse-i-search-kill))
+;;   :init
+;;   (ivy-mode 1))
 
-;; counsel
-(use-package counsel
+;; prescient for selectrum
+(use-package selectrum-prescient
+  :straight t
+  :after selectrum
+  :custom
+  (setq selectrum-cycle-movement t)
+  :init
+  (selectrum-prescient-mode +1)
+  (prescient-persist-mode +1)
+  )
+
+;; selectrum -- for minimal use case
+(use-package selectrum
+  :straight t
+  :after dashboard
+  :init(selectrum-mode +1)
+  )
+
+;; get project root
+(defun neon/get-projectile-project-root ()
+   (when (fboundp 'projectile-project-root)
+    (projectile-project-root)) 
+    )
+
+;; consult
+(use-package consult
   :after dashboard
   :straight t
-  :bind(("M-x" . counsel-M-x))
+  :bind(("C-s" . consult-line)
+	([remap switch-to-buffer] . consult-buffer)
+	("C-M-l" . consult-imenu)
+	("C-M-h" . consult-org-heading)
+	("C-M-m" . consult-minor-mode-menu)
+	("C-M-o" . consult-outline))
+  :custom
+  (consult-project-root-function #'neon/get-projectile-project-root)
+  (completion-in-region-function . #'consult-completion-in-region)
   )
 
 ;;helpful
 (use-package helpful
   :commands (helpful-callable helpful-variable helpful-command helpful-key)
-  :custom
-  (counsel-describe-function-function #'helpful-callable)
-  (counsel-describe-variable-function #'helpful-variable)
+  ;; :custom
+  ;; (counsel-describe-function-function #'helpful-callable)
+  ;; (counsel-describe-variable-function #'helpful-variable)
   :bind
-  ([remap describe-function] . counsel-describe-function)
+  ([remap describe-function] . helpful-function)
   ([remap describe-command] . helpful-command)
-  ([remap describe-variable] . counsel-describe-variable)
+  ([remap describe-variable] . helpful-variable)
   ([remap describe-key] . helpful-key)
   )
 
@@ -476,9 +508,10 @@
    )
 
 ;;lsp ivy integration
-(use-package lsp-ivy
+(use-package consult-lsp
   :straight t
   :after lsp
+  :bind(("C-M-d" . consult-lsp-diagnostics))
   )
 
 ;; adding yasnippet as a company backend
@@ -511,6 +544,14 @@
   :straight t
    :hook(company-mode . company-box-mode)
    )
+
+;; make company remember recent and frequently used completion
+(use-package company-prescient
+  :straight t
+  :after company
+  :init
+  (company-prescient-mode +1)
+  )
 
 ;; on the flychecking for errors
 (use-package flycheck
