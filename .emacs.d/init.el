@@ -795,15 +795,15 @@
     0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "➞")))))
 
   ;; Set faces for heading levels
-  (dolist (face '((org-level-1 . 1.7)
-                  (org-level-2 . 1.6)
-                  (org-level-3 . 1.5)
-                  (org-level-4 . 1.4)
-                  (org-level-5 . 1.3)
-                  (org-level-6 . 1.2)
-                  (org-level-7 . 1.1)
-                  (org-level-8 . 1.0)))
-    (set-face-attribute (car face) nil :font "Ubuntu"))
+  ;; (dolist (face '((org-level-1 . 1.7)
+  ;;                 (org-level-2 . 1.6)
+  ;;                 (org-level-3 . 1.5)
+  ;;                 (org-level-4 . 1.4)
+  ;;                 (org-level-5 . 1.3)
+  ;;                 (org-level-6 . 1.2)
+  ;;                 (org-level-7 . 1.1)
+  ;;                 (org-level-8 . 1.0)))
+  ;;   (set-face-attribute (car face) nil :font "Ubuntu"))
 
   ;; Ensure that anything that should be fixed-pitch in Org files appears that way
   (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
