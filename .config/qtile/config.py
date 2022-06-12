@@ -255,7 +255,7 @@ def autostart():
     processes = [['nitrogen', '--restore'], ['picom'], ['nm-applet'],
                  ['gnome-keyring'], ['polkit-dumb-agent'],
                  ['optimus-manager-qt'], ['pcmanfm', '-d'],
-                 ['battery-notifier.sh']]
+                 ['battery-notifier.sh'],['gpg-connect-agent','/bye']]
 
     for p in processes:
         subprocess.Popen(p)
