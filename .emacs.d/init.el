@@ -124,8 +124,6 @@
   (message "setting font-faces and frame")
   (set-frame-parameter (selected-frame) 'alpha neon/frame-transparency)
   (add-to-list 'default-frame-alist `(alpha . ,neon/frame-transparency))
-  ;;(set-frame-parameter (selected-frame) 'fullscreen 'maximized)
-  ;;(add-to-list 'default-frame-alist '(fullscreen . maximized))
 
   ;;setting font and sizes
   (set-face-attribute 'default nil :font "Source Code Pro" :height neon/def-font-size)
@@ -144,14 +142,69 @@
   (neon/frame-n-fonts)
   )
 
-;;doom-themes
-(use-package doom-themes
+;; modus-themes -- for full theme customisation
+(use-package modus-themes
   :straight t
+  :after dashboard
   :config
-  (setq doom-theme 'doom-tomorrow-night)
-  )
+  
+  ;; custom color scheme or pallete
+  (setq modus-themes-vivendi-color-overrides '((bg-main . "#1D1F21")
+					       (bg-dim . "#1D1f21")
+					       (bg-alt . "#1D1F21")
+					       (bg-hl-line . "#F0C674")
+					       (bg-active . "#81A2BE")
+					       (bg-inactive . "#B294BB")
+					       (bg-region . "#8ABEB7")
+					       (bg-header . "#C5C8C6")
+					       (bg-tab-bar . "#969896")
+					       (bg-tab-active . "#CC6666")
+					       (bg-tab-inactive . "#B5BD68")
+					       )
+	)
+  
+  ;; Configuring appearance of small things in emacs using modus themes
+  (setq modus-themes-mode-line '(accented borderless (padding . 1))
+	modus-themes-bold-constructs t
+	modus-themes-italic-constructs t
+	modus-themes-fringes '(subtle)
+	modus-themes-tabs-accented t
+	modus-themes-paren-match '(bold intense)
+	modus-themes-prompts '(bold intense)
+	modus-themes-completions '((t . (extrabold intense)))
+	modus-themes-org-blocks 'tinted-background
+	modus-themes-scale-headings t
+	modus-themes-region '(bg-only)
+	modus-themes-headings '((1 . (rainbow overline bold 1.7))
+				(2 . (rainbow bold 1.6))
+				(3 . (rainbow bold 1.5))
+				(4 . (rainbow bold 1.4))
+				(5 . (rainbow bold 1.3))
+				(6 . (rainbow bold 1.2))
+				(7 . (rainbow bold 1.1))
+				(8 . (rainbow bold 1.0))
+				)
+	modus-themes-syntax '(yellow-comments alt-syntax)
+	modus-themes-subtle-line-numbers t
+	modus-themes-intense-mouseovers nil
+	modus-themes-lang-checkers '(intense)
+	modus-themes-markup '(background italic)
+	modus-themes-hl-line '(underline accented)
+	modus-themes-links '(no-underline bold)
+	modus-themes-box-buttons '(variable-pitch flat faint 0.9)
+	modus-themes-mail-citations nil
+	modus-themes-diffs '(bg-only desaturated)
+	modus-themes-org-agenda '((header-block . (variable-pitch 1.3))
+				  (header-date . (grayscale workaholic bold-today 1.1))
+				  (event . (accented varied))
+				  (scheduled . uniform)
+				  (habit . traffic-light)
+				  )
+	)
 
-(load-theme doom-theme t)
+  ;; Load the custom dark theme
+  (load-theme 'modus-vivendi t)
+  )
 
 ;; evil-mode
 (use-package evil
@@ -193,7 +246,7 @@
   :after dashboard
   :diminish projectile-mode
   :config (projectile-mode)
-  :custom ((projectile-completion-system 'ivy))
+  :custom ((projectile-completion-system 'selectrum))
   :bind-keymap
   ("C-c p" . projectile-command-map)
   :init
@@ -227,21 +280,11 @@
   :custom((magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1)) ;; open in the same window as the project
   )
 
-;; magit-annex inside magit
-;; (use-package magit-annex
-;;   :straight t
-;;   :after dashboard
-;;   )
-
 ;;page-break-lines and dependency for dashboard
 (use-package page-break-lines
   :straight t
   :after dashboard
   )
-
-;;my-name and email-address
-(setq user-full-name "MUSTAFA DHULEB"
-      user-mail-address "mustafadhuleb53@gmail.com")
 
 ;; beacon cursor blinker
 (use-package beacon
@@ -287,19 +330,6 @@
   (async-bytecomp-package-mode 1)
   )
 
-;; subtree expansion using:
-;; (use-package dired-subtree
-;;   :after dired
-;;   :straight t
-;;   )
-;; (dired-subtree-toggle)
-
-;; ivy-rich 
-(use-package ivy-rich
-  :straight nil
-  :hook(ivy-rich-mode-hook . ivy-mode)
-)
-
 ;; improving dired 
 (use-package dired
   :after dashboard
@@ -330,28 +360,6 @@
   :hook (dired-mode . all-the-icons-dired-mode)
   )
 
-;;ivy
-;; (use-package ivy
-;;   :after dashboard
-;;   :straight t
-;;   :diminish
-;;   :bind (("C-s" . swiper)
-;;          :map ivy-minibuffer-map
-;;          ("TAB" . ivy-alt-done)
-;;          ("C-f" . ivy-alt-done)
-;;          ("C-l" . ivy-alt-done)
-;;          ("C-j" . ivy-next-line)
-;;          ("C-k" . ivy-previous-line)
-;;          :map ivy-switch-buffer-map
-;;          ("C-k" . ivy-previous-line)
-;;          ("C-d" . ivy-switch-buffer-kill)
-;;          ("C-l" . ivy-done)
-;;          :map ivy-reverse-i-search-map
-;;          ("C-k" . ivy-previous-line)
-;;          ("C-d" . ivy-reverse-i-search-kill))
-;;   :init
-;;   (ivy-mode 1))
-
 ;; prescient for selectrum
 (use-package selectrum-prescient
   :straight t
@@ -363,7 +371,8 @@
   (prescient-persist-mode +1)
   )
 
-;; selectrum -- for minimal use case
+;; selectrum -- for minimal use case and for completions
+;; like ivy but lightweight
 (use-package selectrum
   :straight t
   :after dashboard
@@ -385,10 +394,40 @@
 	("C-M-l" . consult-imenu)
 	("C-M-h" . consult-org-heading)
 	("C-M-m" . consult-minor-mode-menu)
-	("C-M-o" . consult-outline))
+	("C-M-o" . consult-outline)
+	("C-M-g" . consult-ripgrep))
   :custom
   (consult-project-root-function #'neon/get-projectile-project-root)
   (completion-in-region-function . #'consult-completion-in-region)
+  )
+
+;; marginalia -- to show annotations or information in minibuffers
+(use-package marginalia
+  :straight t
+  :init
+  (marginalia-mode)
+  )
+
+;; 0x0 service for sharing text
+;; similar to pastebin
+(use-package 0x0
+  :straight t
+  )
+
+;; embark to do actions in buffers
+(use-package embark
+  :straight t
+  :bind
+  (("C-." . embark-act)
+   ("M-." . embark-dwim)
+   ("C-h B" . embark-bindings))
+  :init
+  (setq prefix-help-command #'embark-prefix-help-command)
+  )
+
+;; embark for consult
+(use-package embark-consult
+  :straight t
   )
 
 ;;helpful
@@ -425,9 +464,24 @@
 
 ;; indicate incomplete brackets and braces
 (use-package rainbow-delimiters
+    :hook((c-mode          
+         c++-mode        
+         c-or-c++-mode   
+         java-mode       
+         js-mode         
+	 js2-mode        
+         js-jsx-mode     
+         typescript-mode 
+         python-mode     
+         web-mode       
+	 html-mode       
+	 sh-mode         
+	 lua-mode        
+	 rust-mode
+	 emacs-lisp-mode
+         ). rainbow-delimiters-mode)
   :after dashboard
   :straight t
-  :init(rainbow-delimiters-mode 1)
   )
 
 ;; auto-complete parentheses and braces
@@ -691,6 +745,28 @@
   ;; :commands emojify-mode
   )
 
+;; visulise color with rainbow-mode
+(use-package rainbow-mode
+  :hook((c-mode          
+         c++-mode        
+         c-or-c++-mode   
+         java-mode       
+         js-mode         
+	 js2-mode        
+         js-jsx-mode     
+         typescript-mode 
+         python-mode     
+         web-mode       
+	 html-mode       
+	 sh-mode         
+	 lua-mode        
+	 rust-mode
+	 emacs-lisp-mode
+         ). rainbow-mode)
+  :straight t
+  :after dashboard
+  )
+
 ;; password management with pass
 (use-package pass
   :straight t 
@@ -710,7 +786,7 @@
 ;; integrating emacs with pass
 (setq auth-sources '(password-store))
 
-;;org-configuration
+;; org-configuration
 (defun neon/org-config ()
   ;;replacing org-list symbol '.' with arrow 
   (font-lock-add-keywords
@@ -727,7 +803,7 @@
                   (org-level-6 . 1.2)
                   (org-level-7 . 1.1)
                   (org-level-8 . 1.0)))
-    (set-face-attribute (car face) nil :font "Ubuntu" :weight 'regular :height (cdr face)))
+    (set-face-attribute (car face) nil :font "Ubuntu"))
 
   ;; Ensure that anything that should be fixed-pitch in Org files appears that way
   (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
