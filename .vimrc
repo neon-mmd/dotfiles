@@ -1,8 +1,22 @@
-:set relativenumber
-:set nocompatible 
-:set autoindent
-:set syntax=on
-:set encoding=utf8
+set relativenumber
+set nocompatible 
+set autoindent
+syntax on
+set encoding=utf8
+filetype on
+filetype plugin on
+filetype indent on
+set cursorline
+set tabstop=4
+set nobackup 
+set incsearch
+set ignorecase
+set smartcase
+set showmatch
+set hlsearch
+set history=1000
+set wildmenu
+set wildmode=list:longest
 
 call plug#begin()
 

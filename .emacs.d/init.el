@@ -67,6 +67,7 @@
 (auto-save-mode t)
 (setq use-dialog-box nil)
 (setq visible-mode t)
+(setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
 
 ;; function to connect to erc automatically
 (defun neon/connect-irc ()
@@ -152,14 +153,20 @@
   (setq modus-themes-vivendi-color-overrides '((bg-main . "#1D1F21")
 					       (bg-dim . "#1D1f21")
 					       (bg-alt . "#1D1F21")
+					       (bg-active-accent . "#1D1F21") ; for accents
 					       (bg-hl-line . "#F0C674")
-					       (bg-active . "#81A2BE")
-					       (bg-inactive . "#B294BB")
+					       (bg-active . "#CC6666")  ; for completions
+					       (bg-inactive . "#C5C8C6") ; for inactive modeline background color
 					       (bg-region . "#8ABEB7")
 					       (bg-header . "#C5C8C6")
 					       (bg-tab-bar . "#969896")
 					       (bg-tab-active . "#CC6666")
 					       (bg-tab-inactive . "#B5BD68")
+					       (fg-main . "#F0C674")
+					       (fg-dim . "#F0C674")
+					       (fg-alt . "#F0C674")
+					       (fg-active . "#F0C674")
+					       (fg-inactive . "#1D1F21") ; for inactive modeline font color
 					       )
 	)
   
