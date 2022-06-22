@@ -1,4 +1,4 @@
-;;straight.el configuration 
+;; straight.el configuration 
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
@@ -12,13 +12,14 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
+;; integrating use-package to straight
 (straight-use-package 'use-package)
 (setq package-enable-at-startup nil)
 (setq straight-use-package-by-default t)
 
-;;no-littering configuration
+;; no-littering configuration
 (defvar no-littering-etc-directory
-      (expand-file-name "~/.config/emacs/")) 
+  (expand-file-name "~/.config/emacs/")) 
 (defvar no-littering-var-directory
       (expand-file-name "~/.config/emacs/")) 
 (defvar auto-save-file-name-transforms
@@ -42,7 +43,12 @@
 ;; do garbage collection automatically in minor mode 
 (use-package gcmh
   :straight t
-  :custom((setq gcmh-high-cons-threshold 1000000000))
+  :custom(
+	  (setq gcmh-high-cons-threshold 500000000)
+	  (setq gcmh-idle-delay 0.3)
+	  )
+  :config
+  (add-hook 'focus-out-hook 'garbage-collect)
   :init(gcmh-mode 1)
   )
 
@@ -55,33 +61,123 @@
 (defvar neon/variable-pitch-font-size 120)
 (defvar neon/frame-transparency '(90 . 90))
 
-;;general ui & general configuration
-(scroll-bar-mode -1)
-(menu-bar-mode -1)
-(tooltip-mode 0)
-(tool-bar-mode 0)
-(fringe-mode 0)
-(column-number-mode t)
-(save-place-mode t)
-(global-auto-revert-mode 1)
-(auto-save-mode t)
-(setq use-dialog-box nil)
-(setq visible-mode t)
-(setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
+;; general ui & general configuration.
+(scroll-bar-mode -1) ; disable scroll bars.
+(menu-bar-mode -1) ; disable menu bars.
+(tooltip-mode 0) ; disable tooltips.
+(tool-bar-mode 0) ; disable toolbars.
+(fringe-mode 0) ; don't show fringes.
+(column-number-mode t) ; show column numbers.
+(save-place-mode t) ; remember the place of last cursor position in buffers.
+(global-auto-revert-mode) ; to automatically show changes in buffers.
+(auto-save-mode t) ; automatically save files.
+(setq tab-width 4) ; set tab-width to 4.
+(setq use-dialog-box nil) ; don't show dialog boxes.
+(setq visible-mode t) 
+(setq initial-buffer-choice (lambda () (get-buffer "*dashboard*"))) ; set the initial buffer to dashboard
+(setq native-comp-async-report-warnings-errors nil) ; disable compiler warnings as they are disruptive.
 
-;; function to connect to erc automatically
+;; eww settings
+(use-package eww
+  :straight nil
+  :after dashboard
+  :hook(eww-mode . visual-fill-column-mode)    ; make eww content centered
+  :config
+  (setq
+   browse-url-browser-function 'eww-browse-url ; Use eww as the default browser
+   shr-use-fonts  t                            ; No special fonts
+   shr-use-colors t                            ; No colours
+   shr-indentation 4                           ; Left-side margin
+   shr-width 70                                ; Fold text to 70 columns
+   eww-search-prefix "https://searx.be/?q=")   ; Use another engine for searching
+  )
+
+;; function to connect to erc automatically on keybinding.
 (defun neon/connect-irc ()
+  "function to connect to erc automatically on keybinding."
   (interactive)
   (erc-tls
-      :server "irc.libera.chat"
-      :port 6697
-      :nick "slenderHacker"
-      :password (password-store-get "erc/irc")) ;; using pass to retrieve password
+   :server "irc.libera.chat"
+   :port 6697
+   :nick "slenderHacker"
+   :password (password-store-get "erc/irc")) ;; using pass to retrieve password
   ) 
 
 ;; keybindings 
-(global-set-key (kbd "C-x w") 'elfeed) ;; for elfeed
-(global-set-key (kbd "C-c c c") 'neon/connect-irc) ;; for erc
+(use-package general
+  :straight t
+  :config
+  (general-evil-setup t)
+
+  ;; defining a new keymap prefix
+  (define-prefix-command 'ring-map)
+  (global-set-key (kbd "C-a") 'ring-map)
+  
+  (general-create-definer neon/ctrl-a-keys
+    :prefix "C-a"
+    )
+
+  (neon/ctrl-a-keys
+    "a" 'org-agenda
+    "v" 'vterm-other-window
+    "e" 'elfeed
+    "c" 'neon/connect-irc
+    "f" 'lsp-ui-peek-find-references
+    "s" 'treemacs
+    "l" 'consult-imenu
+    "o" 'consult-outline
+    "h" 'consult-org-heading
+    "m" 'consult-minor-mode-menu
+    "g" 'consult-ripgrep
+    "b" 'eww
+    "p" 'check-parens
+    "d" 'consult-lsp-diagnostics
+    "E" 'emojify-insert-emoji
+    "A" 'all-the-icons-insert
+    )
+
+  (general-def 'normal 'dired-mode-map
+    "h" 'dired-single-up-directory
+    "l" 'dired-single-buffer 
+    "R" 'dired-async-do-rename
+    "S" 'dired-async-do-symlink
+    "C" 'dired-async-do-copy
+    "H" 'dired-async-do-hardlink
+    )
+  
+  (general-def 'normal 'company-active-map
+    "<tab>" 'company-complete-selection
+    )
+
+  (general-def 'normal 'lsp-mode-map
+    "<tab>" 'company-indent-or-complete-common
+     )
+  
+  (general-create-definer neon/ctrl-x-keys
+    :prefix "C-x"
+    )
+
+  (neon/ctrl-x-keys
+    "C-j" 'dired-jump
+    "p" 'projectile-command-map
+    )
+
+  (general-define-key
+   [remap switch-to-buffer] 'consult-buffer
+   [remap describe-function]  'helpful-function
+   [remap describe-command]  'helpful-command
+   [remap describe-variable]  'helpful-variable
+   [remap describe-key]  'helpful-key
+   )
+
+  (general-def 'normal
+    "C-s" 'consult-line
+    "C-." 'embark-act
+    "M-." 'embark-dwim
+    "C-h B" 'embark-bindings
+    "M-/" 'evilnc-comment-or-uncomment-lines
+    )
+  )
 
 ;; excluding following modes from showing line numbers
 (dolist (mode '(org-mode-hook
@@ -89,7 +185,8 @@
 		eshell-mode-hook
 		term-mode-hook
                 treemacs-mode-hook
-		vterm-mode-hook))
+		vterm-mode-hook
+		eww-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 ;;display startup-time 
@@ -126,7 +223,7 @@
   (set-frame-parameter (selected-frame) 'alpha neon/frame-transparency)
   (add-to-list 'default-frame-alist `(alpha . ,neon/frame-transparency))
 
-  ;;setting font and sizes
+  ;; setting font and sizes
   (set-face-attribute 'default nil :font "Source Code Pro" :height neon/def-font-size)
   (set-face-attribute 'variable-pitch nil :font "Ubuntu" :height neon/variable-pitch-font-size :weight 'regular)
   (set-face-attribute 'fixed-pitch nil :font "Source Code Pro" :height neon/def-font-size)
@@ -137,80 +234,24 @@
 (if (daemonp)
     (add-hook 'after-make-frame-functions
               (lambda (frame)
-                (setq doom-modeline-icon t)
+                (setq doom-modeline-icon t) ; set doom-modeline icons in daemon mode
                 (with-selected-frame frame
-                  (neon/frame-n-fonts))))
+                  (neon/frame-n-fonts)))) ; set transparency and font settings in daemon mode
   (neon/frame-n-fonts)
   )
 
-;; modus-themes -- for full theme customisation
-(use-package modus-themes
+;; doom-themes
+(use-package doom-themes
   :straight t
-  :after dashboard
   :config
-  
-  ;; custom color scheme or pallete
-  (setq modus-themes-vivendi-color-overrides '((bg-main . "#1D1F21")
-					       (bg-dim . "#1D1f21")
-					       (bg-alt . "#1D1F21")
-					       (bg-active-accent . "#1D1F21") ; for accents
-					       (bg-hl-line . "#F0C674")
-					       (bg-active . "#CC6666")  ; for completions
-					       (bg-inactive . "#C5C8C6") ; for inactive modeline background color
-					       (bg-region . "#8ABEB7")
-					       (bg-header . "#C5C8C6")
-					       (bg-tab-bar . "#969896")
-					       (bg-tab-active . "#CC6666")
-					       (bg-tab-inactive . "#B5BD68")
-					       (fg-main . "#F0C674")
-					       (fg-dim . "#F0C674")
-					       (fg-alt . "#F0C674")
-					       (fg-active . "#F0C674")
-					       (fg-inactive . "#1D1F21") ; for inactive modeline font color
-					       )
-	)
-  
-  ;; Configuring appearance of small things in emacs using modus themes
-  (setq modus-themes-mode-line '(accented borderless (padding . 1))
-	modus-themes-bold-constructs t
-	modus-themes-italic-constructs t
-	modus-themes-fringes '(subtle)
-	modus-themes-tabs-accented t
-	modus-themes-paren-match '(bold intense)
-	modus-themes-prompts '(bold intense)
-	modus-themes-completions '((t . (extrabold intense)))
-	modus-themes-org-blocks 'tinted-background
-	modus-themes-scale-headings t
-	modus-themes-region '(bg-only)
-	modus-themes-headings '((1 . (rainbow overline bold 1.7))
-				(2 . (rainbow bold 1.6))
-				(3 . (rainbow bold 1.5))
-				(4 . (rainbow bold 1.4))
-				(5 . (rainbow bold 1.3))
-				(6 . (rainbow bold 1.2))
-				(7 . (rainbow bold 1.1))
-				(8 . (rainbow bold 1.0))
-				)
-	modus-themes-syntax '(yellow-comments alt-syntax)
-	modus-themes-subtle-line-numbers t
-	modus-themes-intense-mouseovers nil
-	modus-themes-lang-checkers '(intense)
-	modus-themes-markup '(background italic)
-	modus-themes-hl-line '(underline accented)
-	modus-themes-links '(no-underline bold)
-	modus-themes-box-buttons '(variable-pitch flat faint 0.9)
-	modus-themes-mail-citations nil
-	modus-themes-diffs '(bg-only desaturated)
-	modus-themes-org-agenda '((header-block . (variable-pitch 1.3))
-				  (header-date . (grayscale workaholic bold-today 1.1))
-				  (event . (accented varied))
-				  (scheduled . uniform)
-				  (habit . traffic-light)
-				  )
-	)
-
-  ;; Load the custom dark theme
-  (load-theme 'modus-vivendi t)
+  (setq doom-themes-enable-bold t    
+        doom-themes-enable-italic t)
+  (load-theme 'doom-dracula t)
+  (doom-themes-visual-bell-config)
+  (doom-themes-neotree-config)
+  (setq doom-themes-treemacs-theme "doom-tomorrow-night") 
+  (doom-themes-treemacs-config)
+  (doom-themes-org-config)
   )
 
 ;; evil-mode
@@ -245,6 +286,23 @@
   (setq dashboard-set-heading-icons t)
   (setq dashboard-set-file-icons t)
   (setq dashboard-week-agenda t)
+)
+
+;; show notifications within emacs
+(use-package alert
+  :after dashboard
+  :straight t
+  :custom
+  (alert-default-style 'mode-line)
+  )
+
+;; don't show all minor modes in modeline
+;; instead show it as a menu
+(use-package minions
+  :after dashboard
+  :straight t
+  :init
+  (minions-mode 1)
   )
 
 ;;projectile and dependency for dashboard
@@ -253,12 +311,12 @@
   :after dashboard
   :diminish projectile-mode
   :config (projectile-mode)
-  :custom ((projectile-completion-system 'selectrum))
-  :bind-keymap
-  ("C-c p" . projectile-command-map)
+  :custom ((projectile-completion-system 'auto))
+  ;; :bind-keymap
+  ;; ("C-c p" . projectile-command-map)
   :init
-  (when (file-directory-p "/run/media/destruct/39568688-b38c-43ac-a7de-c0f9888ec0c0/MUSTAFA MOHAMMED HUSSAIN'S PROJECT FILES")
-    (setq projectile-project-search-path '("/run/media/destruct/39568688-b38c-43ac-a7de-c0f9888ec0c0/MUSTAFA MOHAMMED HUSSAIN'S PROJECT FILES")))
+  (when (file-directory-p "/run/media/destruct/39568688-b38c-43ac-a7de-c0f9888ec0c0/git-repos/")
+    (setq projectile-project-search-path '("/run/media/destruct/39568688-b38c-43ac-a7de-c0f9888ec0c0/git-repos/")))
   (setq projectile-switch-project-action #'projectile-dired)
   )
 
@@ -310,13 +368,16 @@
   :init
   (dimmer-mode 1))
 
-;; emojify-mode 
+;; emojify-mode
+;; to show and insert emojis.
 (use-package emojify
- :straight t
- :init(emojify-mode 1)
+  :straight t
+  :after dashboard
+  :init(emojify-mode 1)
  )
 
 ;; rainbow-mode
+;; to show hex colors.
 (use-package rainbow-mode
   :after dashboard
   :straight t
@@ -342,17 +403,7 @@
   :after dashboard
   :straight nil
   :commands (dired dired-jump)
-  :bind (("C-x C-j" . dired-jump))
   :custom ((dired-listing-switches "-agh --group-directories-first"))
-  :config
-  (evil-collection-define-key 'normal 'dired-mode-map
-    "h" 'dired-single-up-directory
-    "l" 'dired-single-buffer 
-    "R" 'dired-async-do-rename
-    "S" 'dired-async-do-symlink
-    "C" 'dired-async-do-copy
-    "H" 'dired-async-do-hardlink
-    )
   )
   
 ;; open only single dired buffer
@@ -396,21 +447,15 @@
 (use-package consult
   :after dashboard
   :straight t
-  :bind(("C-s" . consult-line)
-	([remap switch-to-buffer] . consult-buffer)
-	("C-M-l" . consult-imenu)
-	("C-M-h" . consult-org-heading)
-	("C-M-m" . consult-minor-mode-menu)
-	("C-M-o" . consult-outline)
-	("C-M-g" . consult-ripgrep))
   :custom
   (consult-project-root-function #'neon/get-projectile-project-root)
-  (completion-in-region-function . #'consult-completion-in-region)
+  ;; (completion-in-region-function . #'consult-completion-in-region)
   )
 
 ;; marginalia -- to show annotations or information in minibuffers
 (use-package marginalia
   :straight t
+  :after dashboard
   :init
   (marginalia-mode)
   )
@@ -419,21 +464,20 @@
 ;; similar to pastebin
 (use-package 0x0
   :straight t
+  :after dashboard
   )
 
 ;; embark to do actions in buffers
 (use-package embark
   :straight t
-  :bind
-  (("C-." . embark-act)
-   ("M-." . embark-dwim)
-   ("C-h B" . embark-bindings))
+  :after dashboard
   :init
   (setq prefix-help-command #'embark-prefix-help-command)
   )
 
 ;; embark for consult
 (use-package embark-consult
+  :after dashboard
   :straight t
   )
 
@@ -443,11 +487,6 @@
   ;; :custom
   ;; (counsel-describe-function-function #'helpful-callable)
   ;; (counsel-describe-variable-function #'helpful-variable)
-  :bind
-  ([remap describe-function] . helpful-function)
-  ([remap describe-command] . helpful-command)
-  ([remap describe-variable] . helpful-variable)
-  ([remap describe-key] . helpful-key)
   )
 
 ;;doom-modeline bar
@@ -463,11 +502,12 @@
   (doom-modeline-lsp t)
   (doom-modeline-github nil)
   (doom-modeline-mu4e nil)
-  (doom-modeline-irc nil)
-  (doom-modeline-minor-modes nil)
+  (doom-modeline-irc t)
+  (doom-modeline-minor-modes t)
   (doom-modeline-persp-name nil)
   (doom-modeline-buffer-file-name-style 'truncate-except-project)
-  (doom-modeline-major-mode-icon t))
+  (doom-modeline-major-mode-icon t)
+  )
 
 ;; indicate incomplete brackets and braces
 (use-package rainbow-delimiters
@@ -502,7 +542,6 @@
 (use-package vterm
   :after dashboard 
   :straight t
-  :bind("C-c v" . vterm-other-window)
   :config
   (setq-local vterm-max-scrollback 5000)
  )
@@ -549,30 +588,26 @@
 ;; lsp-ui
 (use-package lsp-ui
   :straight t
-   :hook(lsp-mode . lsp-ui-mode)
-   :bind(("C-c f" . lsp-ui-peek-find-references))
-   :config
-   (setq lsp-ui-doc-mode 0)
-   (setq lsp-ui-doc-enable nil)
-   (setq lsp-ui-sideline-mode 1)
-   (setq lsp-ui-sideline-show-hover nil)
-   (setq lsp-ui-sideline-show-diagnostics t)
-   (setq lsp-ui-sideline-show-code-actions nil)
-   )
+  :hook(lsp-mode . lsp-ui-mode)
+  :config
+  (setq lsp-ui-doc-mode 0)
+  (setq lsp-ui-doc-enable nil)
+  (setq lsp-ui-sideline-mode 1)
+  (setq lsp-ui-sideline-show-hover nil)
+  (setq lsp-ui-sideline-show-diagnostics t)
+  (setq lsp-ui-sideline-show-code-actions nil)
+  )
 
 ;;treemacs
 (use-package lsp-treemacs
   :straight t
    :hook(lsp-mode . lsp-treemacs-sync-mode)
-   :bind(("C-c s-s" . lsp-treemacs-symbols)
-         ("C-c t-t" . treemacs))
    )
 
 ;;lsp ivy integration
 (use-package consult-lsp
   :straight t
   :after lsp
-  :bind(("C-M-d" . consult-lsp-diagnostics))
   )
 
 ;; adding yasnippet as a company backend
@@ -589,16 +624,12 @@
 (use-package company-lsp
   :straight t
   :after lsp
-   :hook (lsp-mode . company-mode)
-   :bind(:map company-active-map
-         ("<tab>" . company-complete-selection)
-         :map lsp-mode-map
-         ("<tab>" . company-indent-or-complete-common))
-   :custom(
-   (company-minimum-prefix-length 1)
-   (company--idle-delay 0.0)
-   (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends)))
-   )
+  :hook (lsp-mode . company-mode)
+  :custom(
+	  (company-minimum-prefix-length 1)
+	  (company--idle-delay 0.0)
+	  (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends)))
+  )
 
 ;; make company-ui better
 (use-package company-box
@@ -638,7 +669,6 @@
 ;; comment out lines using M-/
 (use-package evil-nerd-commenter
   :after evil
-  :bind("M-/" . evilnc-comment-or-uncomment-lines)
   )
 
 ;; emacs-lisp-mode and company
@@ -776,9 +806,11 @@
 
 ;; password management with pass
 (use-package pass
-  :straight t 
+  :straight t
+  :after dashboard
   )
 
+;; to enable acessing of password from pass.
 (use-package auth-source-pass
   :straight t
   :after dashboard
@@ -786,6 +818,7 @@
   (auth-source-pass-enable)
   )
 
+;; setting required settings for pass
 (require 'epa-file)
 (epa-file-enable)
 (setq epa-pinentry-mode 'loopback)
@@ -795,25 +828,33 @@
 
 ;; org-configuration
 (defun neon/org-config ()
-  ;;replacing org-list symbol '.' with arrow 
+  ;; replacing org-list symbol '.' with arrows 
   (font-lock-add-keywords
  'org-mode
  '(("^[[:space:]]*\\(-\\) "
     0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "➞")))))
 
-  ;; Set faces for heading levels
-  ;; commented as it has been set through modus themes
-  ;; (dolist (face '((org-level-1 . 1.7)
-  ;;                 (org-level-2 . 1.6)
-  ;;                 (org-level-3 . 1.5)
-  ;;                 (org-level-4 . 1.4)
-  ;;                 (org-level-5 . 1.3)
-  ;;                 (org-level-6 . 1.2)
-  ;;                 (org-level-7 . 1.1)
-  ;;                 (org-level-8 . 1.0)))
-  ;;   (set-face-attribute (car face) nil :font "Ubuntu" :weight Regular :height (cdr face)))
+  ;; Set faces for heading levels.
+  ;; rainbow colored headings with different colored heading
+  ;; and font weights
+  ;; to make them visually distinguishable.
+  ;; colors referenced from rainbow-delimiters.el.
+  (dolist
+      (face
+       '(
+	 (org-level-1 1.7 "#707183" ultra-bold)
+         (org-level-2 1.6 "#7388d6" extra-bold)
+         (org-level-3 1.5 "#909183" bold)
+         (org-level-4 1.4 "#709870" semi-bold)
+         (org-level-5 1.3 "#907373" normal)
+         (org-level-6 1.2 "#6276ba" normal)
+         (org-level-7 1.1 "#858580" normal)
+         (org-level-8 1.0 "#80a880" normal)
+	 ))
+    (set-face-attribute (nth 0 face) nil :font "Ubuntu" :weight (nth 3 face) :height (nth 1 face) :foreground (nth 2 face))
+    )
 
-  ;; Ensure that anything that should be fixed-pitch in Org files appears that way
+  ;; Ensuring that anything that should be fixed-pitch in Org files appears that way
   (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
   (set-face-attribute 'org-table nil    :inherit 'fixed-pitch)
   (set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
@@ -827,9 +868,10 @@
   (set-face-attribute 'line-number-current-line nil :inherit 'fixed-pitch)
   )
 
+;; org
 (use-package org
   :after dashboard
-  :straight t
+  :straight t  ; required to update the package 
   :hook
   (org-mode . visual-line-mode)
   (org-mode . org-indent-mode)
@@ -842,15 +884,15 @@
   (org-agenda-files '("~/sheduledTasks/tasks.org"))
 )
 
-;; making heading look fancier and elegant using:
+;; making heading look fancier and elegant using org-bullets.
 (use-package org-bullets
   :straight t
   :hook(org-mode . org-bullets-mode)
   :custom
-  (org-bullets-bullet-list '("⬤" "⨀" "⨂" "⦾" "⦿" "○" "•" "∙"))
+  (org-bullets-bullet-list '("❂" "☢" "⊗" "✪" "⦾" "⦿" "•" "∙"))
   )
 
-;; making org content centered to give document style
+;; making org content centered to give document style look.
 (use-package visual-fill-column
   :straight t
   :hook (org-mode . visual-fill-column-mode)
@@ -858,9 +900,11 @@
   (visual-fill-column-width 100)
   (visual-fill-column-center-text t)
   :init
-  (visual-fill-column-mode 1))
+  (visual-fill-column-mode 1)
+  )
 
 ;; adding completion templates in org for productivity
+;; and efficiency.
 (with-eval-after-load 'org
   (org-babel-do-load-languages
       'org-babel-load-languages
@@ -870,7 +914,8 @@
         (shell . t)
         (css . t)
         (js . t)
-        (lua . t)))
+        (lua . t)
+	))
 
   (push '("conf-unix" . conf-unix) org-src-lang-modes))
 
@@ -878,51 +923,16 @@
   ;; This is needed as of Org 9.2
   (require 'org-tempo)
 
-  (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
-  (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
-  (add-to-list 'org-structure-template-alist '("py" . "src python"))
-  (add-to-list 'org-structure-template-alist '("txt" . "src text"))
-  (add-to-list 'org-structure-template-alist '("java" . "src java"))
-  (add-to-list 'org-structure-template-alist '("html" . "src html"))
-  (add-to-list 'org-structure-template-alist '("js" . "src javascript"))
-  (add-to-list 'org-structure-template-alist '("rs" . "src rust"))
-  (add-to-list 'org-structure-template-alist '("c++" . "src c++"))
-  (add-to-list 'org-structure-template-alist '("lua" . "src lua"))
-  (add-to-list 'org-structure-template-alist '("css" . "src css"))
+  (add-to-list 'org-structure-template-alist '("sh" . "src shell"))        ; bash template
+  (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))   ; elisp template
+  (add-to-list 'org-structure-template-alist '("py" . "src python"))       ; python template
+  (add-to-list 'org-structure-template-alist '("txt" . "src text"))        ; text template
+  (add-to-list 'org-structure-template-alist '("java" . "src java"))       ; java template
+  (add-to-list 'org-structure-template-alist '("html" . "src html"))       ; html template
+  (add-to-list 'org-structure-template-alist '("js" . "src javascript"))   ; javascript template
+  (add-to-list 'org-structure-template-alist '("rs" . "src rust"))         ; rust template
+  (add-to-list 'org-structure-template-alist '("c++" . "src c++"))         ; c++ template
+  (add-to-list 'org-structure-template-alist '("lua" . "src lua"))         ; lua template
+  (add-to-list 'org-structure-template-alist '("css" . "src css"))         ; css template
+  (add-to-list 'org-structure-template-alist '("c" . "src c"))             ; c template
   )
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(warning-suppress-log-types
-   '((comp)
-     (comp)
-     (comp)
-     (comp)
-     (comp)
-     (comp)
-     (comp)
-     (comp)
-     (comp)
-     (comp)
-     (use-package)))
- '(warning-suppress-types
-   '((comp)
-     (comp)
-     (comp)
-     (comp)
-     (comp)
-     (comp)
-     (comp)
-     (comp)
-     (comp)
-     (use-package))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(mode-line ((t (:height 0.85))))
- '(mode-line-inactive ((t (:height 0.85)))))

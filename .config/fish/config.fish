@@ -24,6 +24,7 @@ alias ls "br -pt"
 alias grep rg
 alias cat bat
 alias sudo "doas --"
+alias vim "nvim"
 
 ###--system-update-aliases--###
 
@@ -126,3 +127,6 @@ if [ "$INSIDE_EMACS" = vterm ]
         tput clear
     end
 end
+
+#--------------------------------------Vim-mode----------------------------------------------
+fish_vi_key_bindings

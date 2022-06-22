@@ -34,18 +34,39 @@ from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
-colors = [
-    ["#1d1f21", "#1d1f21"],  # panel background
-    ["#ae7b00", "#ae7b00"],  # background for current screen tab
-    ["#c5c8c6", "#c5c8c6"],  # font color for group names
-    ["#912226", "#912226"],  # border line color for current tab
-    ["#682a9b", "#682a9b"
-     ],  # border line color for 'other tabs' and color for 'odd widgets'
-    ["#1d1f21", "#1d1f21"],  # color for the 'even widgets'
-    ["#1d1f21", "#1d1f21"],  # window name
-    ["#682a9b", "#682a9b"]
-]  # backbround for inactive screens
+#-----------------------------------------Custom-functions----------------------------------
+def color_picker(n):
+    color_collection = [
+        [  # tomorrow night
+            ["#1d1f21", "#1d1f21"],  # panel background
+            ["#ae7b00", "#ae7b00"],  # background for current screen tab
+            ["#c5c8c6", "#c5c8c6"],  # font color for group names
+            ["#912226", "#912226"],  # border line color for current tab
+            ["#682a9b", "#682a9b"],  # border line color for 'other tabs' and color for 'odd widgets'
+            ["#1d1f21", "#1d1f21"],  # color for the 'even widgets'
+            ["#1d1f21", "#1d1f21"],  # window name
+            ["#682a9b", "#682a9b"]
+        ],
+        [  # dracula
+            ["#282a36", "#282a36"],  # panel background
+            ["#44475a", "#44475a"],  # background for current screen tab
+            ["#f8f8f2", "#f8f8f2"],  # font color for group names
+            ["#bd93f9", "#bd93f9"],  # border line color for current tab
+            ["#ff5555", "#ff5555"],  # border line color for 'other tabs' and color for 'odd widgets'
+            ["#282a36", "#282a36"],  # color for the 'even widgets'
+            ["#282a36", "#282a36"],  # window name
+            ["#ffb86c", "#ffb86c"]
+        ]
+    ]
 
+    return color_collection[n]
+
+colors = color_picker(1)
+
+def dmenu_select_according_to_theme():
+    return "dmenu_run -i -fn 'Nerd Fonts' -nb " + colors[0][0] + " -nf " + colors[2][0] + " -sb " + colors[3][0] + " -sf " + colors[7][0]
+
+#-----------------------------------------------groups---------------------------------------------
 my_groups = [
     "term", "web", "vbox", "vlc", "nextcloud", "code", "whatsapp", "mail",
     "vcapps"
@@ -66,66 +87,134 @@ groups = [
 mod = "mod4"
 terminal = guess_terminal()
 
+#---------------------------------------------keybindings--------------------------------------------
 keys = [
     # Switch between windows
-    Key([mod], "j", lazy.layout.up(), desc="Move focus up"),
-    Key([mod], "k", lazy.layout.down(), desc="Move focus down"),
+    Key([mod],
+        "j",
+        lazy.layout.up(),
+        desc="Move focus up"),
+    Key([mod],
+        "k",
+        lazy.layout.down(),
+        desc="Move focus down"),
 
-    # Moving out of range in Columns layout will create new column.
-    Key([mod, "shift"], "j", lazy.layout.shuffle_up(), desc="Move window up"),
+    # Swap windows  
+    Key([mod, "shift"],
+        "j",
+        lazy.layout.shuffle_up(),
+        desc="Move window up"),
     Key([mod, "shift"],
         "k",
         lazy.layout.shuffle_down(),
         desc="Move window down"),
 
-    # Grow windows. If current window is on the edge of screen and direction
-    # will be to screen edge - window would shrink.
-    Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
+    # make window normal
+    Key([mod],
+        "n",
+        lazy.layout.normalize(),
+        desc="Reset all window sizes"),
 
-    # Toggle between split and unsplit sides of stack.
-    # Split = all windows displayed
-    # Unsplit = 1 window displayed, like Max layout, but still with
-    # multiple stack panes
-    Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
+    # launch the default terminal
+    Key([mod],
+        "Return",
+        lazy.spawn(terminal),
+        desc="Launch terminal"),
 
-    # allow mod3+1 through mod3+0 to bind to groups; if you bind your groups
-    # by hand in your config, you don't need to do this.
-    # Toggle between different layouts as defined below
-    Key([mod], "space", lazy.next_layout(), desc="Toggle between layouts"),
-    Key([mod, "shift"], "c", lazy.window.kill(), desc="Kill focused window"),
-    Key([mod], "b", lazy.spawn("brave"), desc="launch brave"),
+    # toggle between different layouts
+    Key([mod],
+        "space",
+        lazy.next_layout(),
+        desc="Toggle between layouts"),
+
+    # close the current application
+    Key([mod, "shift"],
+        "c",
+        lazy.window.kill(),
+        desc="Kill focused window"),
+
+    # launch the web browser
+    Key([mod],
+        "b",
+        lazy.spawn("brave"),
+        desc="launch brave"),
+
+    # launch gnu emacs using emacsclient if available otherwise
+    # launch default emacs
     Key([mod],
         "d",
         lazy.spawn("emacsclient -c -n -a 'emacs'"),
         desc="launch emacs"),
-    Key([mod, "control"], "r", lazy.restart(), desc="Restart Qtile"),
-    Key([mod, "shift"], "q", lazy.spawn("neon-logout"), desc="Shutdown Qtile"),
-    Key([mod], "v", lazy.spawn("virtualbox"), desc="launch virtualbox"),
-    Key([mod], "l", lazy.spawn("common-websites.sh"), desc="common web links"),
+
+    # restart qtile session
+    Key([mod, "control"],
+        "r",
+        lazy.restart(),
+        desc="Restart Qtile"),
+
+    # launch the logout application
+    Key([mod, "shift"],
+        "q",
+        lazy.spawn("neon-logout"),
+        desc="Shutdown Qtile"),
+
+    # launch virt-manager to manage virtual machines
+    Key([mod],
+        "v",
+        lazy.spawn("virt-manager"),
+        desc="launch virt-manager"),
+
+    # launch common-websites.sh script for opening my common websites
+    # which I use on day to day basis
+    Key([mod],
+        "l",
+        lazy.spawn("common-websites.sh"),
+        desc="common web links"),
+
+    # launch article-viewer-convertor.sh script to download an article
+    # in readable format for later viewing
     Key([mod],
         "i",
         lazy.spawn("article-viewer-convertor.sh"),
-        desc="download any file using wget"),
+        desc="download any file using aria2"),
+
+    # launch search-engines.py script to search through different search
+    # engines and open it in the browser
     Key([mod],
         "w",
         lazy.spawn("search-engines.py"),
         desc="search the web through dmenu"),
-    Key([mod], "p", lazy.spawn("pcmanfm"), desc="launch file manager"),
+
+    # launch the file manager
+    Key([mod], 
+            "p", 
+            lazy.spawn("pcmanfm"), 
+            desc="launch file manager"),
+
+    # Launch the office suite application
     Key([mod],
         "o",
         lazy.spawn("onlyoffice-desktopeditors"),
         desc="launch office app"),
-    Key([mod], "a", lazy.spawn("phrack.py"), desc="download phrack articles"),
+
+    # article viewer
+    Key([mod], 
+            "a", 
+            lazy.spawn("phrack.py"), 
+            desc="download phrack articles"),
+
+    # Launch dmenu 
     Key([mod],
         'r',
         lazy.spawn(
-            "dmenu_run -i -fn 'Nerd Fonts' -nb #231F20 -nf #D9D8D8 -sb #98005D -sf #FFD204"
+            dmenu_select_according_to_theme()
         ),
         desc="run prompt")
 ]
 
 dgroups_key_binder = simple_key_binder(mod)
 
+#--------------------------------------------layouts-----------------------------------------
 layouts = [
     # layout.Columns(border_focus_stack=['#d75f5f', '#8f3d3d'], border_width=4),
     layout.MonadTall(margin=5,
@@ -144,74 +233,78 @@ layouts = [
     # layout.VerticalTile(),#   # layout.Zoomy(),
 ]
 
+#-----------------------------------------------------widgets-------------------------------------
 widget_defaults = dict(font='Nerd Fonts', fontsize=12, padding=3)
 extension_defaults = widget_defaults.copy()
 
 screens = [
-    Screen(top=bar.Bar([
-        widget.GroupBox(active=colors[2],
-                        background=colors[0],
-                        font="Nerd Fonts",
-                        highlight_color=colors[5],
-                        highlight_method='line',
-                        inactive=colors[4]),
-        widget.WindowName(background=colors[0],
-                          font="Nerd Fonts",
-                          foreground=colors[2],
-                          padding=1),
-        widget.Systray(icon_size=20, padding=5, background=colors[0]),
-        widget.TextBox(text="",
-                       padding=0,
-                       fontsize=50,
-                       background=colors[0],
-                       foreground=colors[1],
-                       font="Nerd Fonts"),
-        widget.Clock(background=colors[1],
-                     foreground=colors[2],
-                     update_interval=1.0,
-                     format=' %Y-%m-%d %a   %I:%M %p'),
-        widget.TextBox(text="",
-                       padding=0,
-                       fontsize=50,
-                       background=colors[1],
-                       foreground=colors[3],
-                       font="Nerd Fonts"),
-        widget.Battery(charge_char='',
-                       discharge_char='',
-                       notify_below=86,
-                       update_interval=60,
-                       background=colors[3],
-                       foreground=colors[2],
-                       format='{char}  {percent:2.0%}'),
-        widget.TextBox(text="",
-                       padding=0,
-                       fontsize=50,
-                       background=colors[3],
-                       foreground=colors[6],
-                       font="Nerd Fonts"),
-        widget.CheckUpdates(update_interval=60,
-                            distro="Arch",
-                            display_format="{updates}  Updates",
-                            no_update_string="Nothing To Update",
-                            colour_no_updates=colors[2],
-                            colour_have_updates=colors[2],
-                            background=colors[6],
-                            fontsize=12,
-                            font="Nerd Fonts"),
-        widget.TextBox(text="",
-                       padding=0,
-                       fontsize=50,
-                       background=colors[6],
-                       foreground=colors[7],
-                       font="Nerd Fonts"),
-        widget.CurrentLayout(foreground=colors[2],
-                             background=colors[7],
-                             font="Nerd Fonts",
-                             fmt="",
-                             fontsize=20),
-    ],
-                       24,
-                       opacity=0.90), ),
+    Screen(
+        top=bar.Bar(
+            [
+                widget.GroupBox(active=colors[2],
+                                background=colors[0],
+                                font="Nerd Fonts",
+                                highlight_color=colors[5],
+                                highlight_method='line',
+                                inactive=colors[4]),
+                widget.WindowName(background=colors[0],
+                                  font="Nerd Fonts",
+                                  foreground=colors[2],
+                                  padding=1),
+                widget.Systray(icon_size=20, padding=5, background=colors[0]),
+                widget.TextBox(text="",
+                               padding=0,
+                               fontsize=50,
+                               background=colors[0],
+                               foreground=colors[1],
+                               font="Nerd Fonts"),
+                widget.Clock(background=colors[1],
+                             foreground=colors[2],
+                             update_interval=1.0,
+                             format=' %Y-%m-%d %a   %I:%M %p'),
+                widget.TextBox(text="",
+                               padding=0,
+                               fontsize=50,
+                               background=colors[1],
+                               foreground=colors[3],
+                               font="Nerd Fonts"),
+                widget.Battery(charge_char='',
+                               discharge_char='',
+                               notify_below=86,
+                               update_interval=60,
+                               background=colors[3],
+                               foreground=colors[2],
+                               format='{char}  {percent:2.0%}'),
+                widget.TextBox(text="",
+                               padding=0,
+                               fontsize=50,
+                               background=colors[3],
+                               foreground=colors[6],
+                               font="Nerd Fonts"),
+                widget.CheckUpdates(
+                    update_interval=60,
+                    distro="Arch",
+                    display_format="{updates}  Updates",
+                    no_update_string="Nothing To Update",
+                    colour_no_updates=colors[2],
+                    colour_have_updates=colors[2],
+                    background=colors[6],
+                    fontsize=12,
+                    font="Nerd Fonts"),
+                widget.TextBox(text="",
+                               padding=0,
+                               fontsize=50,
+                               background=colors[6],
+                               foreground=colors[7],
+                               font="Nerd Fonts"),
+                widget.CurrentLayout(foreground=colors[2],
+                                     background=colors[7],
+                                     font="Nerd Fonts",
+                                     fmt="",
+                                     fontsize=20),
+            ],
+            24,
+            opacity=0.90), ),
 ]
 
 # Drag floating layouts.
@@ -249,13 +342,13 @@ reconfigure_screens = True
 # focus, should we respect this or not?
 auto_minimize = True
 
-
+#-------------------------------------------autostart---------------------------------------
 @hook.subscribe.startup_once
 def autostart():
     processes = [['nitrogen', '--restore'], ['picom'], ['nm-applet'],
                  ['gnome-keyring'], ['polkit-dumb-agent'],
                  ['optimus-manager-qt'], ['pcmanfm', '-d'],
-                 ['battery-notifier.sh'],['gpg-connect-agent','/bye']]
+                 ['battery-notifier.sh'], ['gpg-connect-agent', '/bye']]
 
     for p in processes:
         subprocess.Popen(p)
