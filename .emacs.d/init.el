@@ -199,14 +199,29 @@
 
 (add-hook 'emacs-startup-hook #'neon/display-startup-time-n-garbage)
 
+;; don't prompt in daemon for updates
+(defun neon/update-in-daemon ()
+  (message "updating in daemon")
+  (auto-package-update-prompt-before-update nil)
+  )
+
+;; prompt in regular session for updates
+(defun neon/update-in-regular()
+  (message "updating in regular session")
+  (auto-package-update-prompt-before-update t)
+  )
+
 ;;auto-package-update configuration
 (use-package auto-package-update
   :after dashboard
   :straight t
   :custom
-  (auto-package-update-interval 1)
-  (auto-package-update-prompt-before-update t)
   (auto-package-update-hide-results t)
+  (auto-package-update-interval 1)
+  (if (daemonp)
+      neon/update-in-daemon
+    neon/update-in-regular
+    )
   :config
   (auto-package-update-maybe)
   (auto-package-update-at-time "17:00")
@@ -934,5 +949,4 @@
   (add-to-list 'org-structure-template-alist '("c++" . "src c++"))         ; c++ template
   (add-to-list 'org-structure-template-alist '("lua" . "src lua"))         ; lua template
   (add-to-list 'org-structure-template-alist '("css" . "src css"))         ; css template
-  (add-to-list 'org-structure-template-alist '("c" . "src c"))             ; c template
   )
