@@ -1,6 +1,6 @@
 local set = vim.opt
 
--- set.shell = "/bin/sh"
+set.shell = "/usr/bin/fish"
 
 set.expandtab = true
 set.smarttab = true

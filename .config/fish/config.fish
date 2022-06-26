@@ -20,7 +20,7 @@ toilet -f term '***Welcome to the Alacritty Terminal***' -d /usr/share/figlet/fo
 ###--term-cmd-apps--###
 
 alias find fd
-alias ls "br -pt"
+alias ls "exa -alh --group-directories-first --icons --git"
 alias grep rg
 alias cat bat
 alias sudo "doas --"
@@ -102,6 +102,9 @@ alias mirrorup "sudo reflector --save /etc/pacman.d/mirrorlist -a 48 -l 20 -f 5 
 ###--dotfiles-management-aliases--###
 alias config '/usr/bin/git --git-dir=/home/destruct/.cfg/ --work-tree=/home/destruct'
 alias config '/usr/bin/git --git-dir=/run/media/destruct/39568688-b38c-43ac-a7de-c0f9888ec0c0/git-repos/dotfiles.git/ --work-tree=/home/destruct'
+
+###--kitty-kittens-aliases--###
+alias img="kitty +kitten icat"
 
 #--------------------------------------FUNCTIONS--------------------------------------------
 

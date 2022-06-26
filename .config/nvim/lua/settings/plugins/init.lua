@@ -5,7 +5,7 @@ vim.cmd([[
   augroup end
 ]])
 
-local status,_ = pcall(require,'packer')
+local status, _ = pcall(require, 'packer')
 
 if not status then
     vim.notify("ERROR: packer.nvim not found!")
@@ -13,9 +13,10 @@ if not status then
 end
 
 local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-    packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    packer_bootstrap = fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim',
+        install_path })
 end
 
 return require('packer').startup(function(use)
@@ -25,7 +26,7 @@ return require('packer').startup(function(use)
     use "nvim-lua/plenary.nvim" -- required
     use 'kyazdani42/nvim-web-devicons' -- for icons
     use 'kyazdani42/nvim-tree.lua' -- tree like nerd tree in neovim
-    
+
     -- lsp
     use 'neovim/nvim-lspconfig'
     use 'onsails/lspkind.nvim'
@@ -41,9 +42,10 @@ return require('packer').startup(function(use)
     use 'rcarriga/nvim-notify'
     use 'nvim-lualine/lualine.nvim'
     use 'romgrk/barbar.nvim'
+    use 'norcalli/nvim-colorizer.lua'
 
     -- beautify code
-    use {'nvim-treesitter/nvim-treesitter',run = ':TSUpdate'}
+    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
     use 'nvim-treesitter/nvim-treesitter-refactor'
     use 'p00f/nvim-ts-rainbow'
 
@@ -53,7 +55,7 @@ return require('packer').startup(function(use)
     -- snippets for autocompletions
     use "rafamadriz/friendly-snippets"
 
-    -- which-key 
+    -- which-key
     use 'folke/which-key.nvim'
 
     -- fancy dashboard for neovim
@@ -62,7 +64,15 @@ return require('packer').startup(function(use)
     -- automatically close brackets
     use "windwp/nvim-autopairs"
 
+    -- productivity
+    use 'sunjon/shade.nvim'
+    use 'nvim-telescope/telescope.nvim'
+    use 'jose-elias-alvarez/null-ls.nvim'
+
+    -- terminal in neovim
+    use "akinsho/toggleterm.nvim"
+
     if packer_bootstrap then
         require('packer').sync()
-    end   
+    end
 end)
