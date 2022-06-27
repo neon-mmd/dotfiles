@@ -21,11 +21,13 @@ def groups(my_groups):
         ),
         Group(
             my_groups[3],
-            layout='monadtall'
+            layout='monadtall',
+            matches=[Match(wm_class=["mpv"])]
         ),
         Group(
             my_groups[4],
-            layout='monadtall'
+            layout='monadtall',
+            matches=[Match(wm_class=["nextcloud"])]
         ),
         Group(
             my_groups[5],
@@ -34,11 +36,13 @@ def groups(my_groups):
         ),
         Group(
             my_groups[6],
-            layout='monadtall'
+            layout='monadtall',
+            matches=[Match(wm_class=["telegram-desktop"])]
         ),
         Group(
             my_groups[7],
-            layout='monadtall'
+            layout='monadtall',
+            matches=[Match(wm_class=["mailspring"])]
         ),
         Group(
             my_groups[8],

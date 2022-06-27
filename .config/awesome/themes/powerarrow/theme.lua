@@ -1,10 +1,3 @@
---[[
-
-     Powerarrow Awesome WM theme
-     github.com/lcpz
-
---]]
-
 local gears = require("gears")
 local lain  = require("lain")
 local awful = require("awful")
@@ -16,7 +9,7 @@ local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 
 local theme                                     = {}
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/powerarrow"
-theme.font                                      = "Nerd Fonts 8"
+theme.font                                      = "FiraCode Nerd Font 12"
 theme.fg_normal                                 = "#ababab"
 theme.fg_focus                                  = "#000000"
 theme.fg_urgent                                 = "#000000"
@@ -37,7 +30,7 @@ theme.titlebar_bg_normal                        = "#3F3F3F"
 theme.titlebar_bg_focus                         = theme.bg_focus
 theme.titlebar_bg_normal                        = theme.bg_normal
 theme.titlebar_fg_focus                         = theme.fg_focus
-theme.menu_height                               = 18    --dpi(20)
+theme.menu_height                               = dpi(20)
 theme.menu_width                                = dpi(140)
 theme.menu_submenu_icon                         = theme.dir .. "/icons/submenu.png"
 theme.awesome_icon                              = theme.dir .. "/icons/awesome.png"
@@ -79,7 +72,7 @@ theme.widget_task                               = theme.dir .. "/icons/task.png"
 theme.widget_scissors                           = theme.dir .. "/icons/scissors.png"
 theme.tasklist_plain_task_name                  = true
 theme.tasklist_disable_icon                     = true
-theme.useless_gap                               = 5
+theme.useless_gap                               = dpi(5)
 theme.titlebar_close_button_focus               = theme.dir .. "/icons/titlebar/close_focus.png"
 theme.titlebar_close_button_normal              = theme.dir .. "/icons/titlebar/close_normal.png"
 theme.titlebar_ontop_button_focus_active        = theme.dir .. "/icons/titlebar/ontop_focus_active.png"
@@ -98,6 +91,8 @@ theme.titlebar_maximized_button_focus_active    = theme.dir .. "/icons/titlebar/
 theme.titlebar_maximized_button_normal_active   = theme.dir .. "/icons/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_inactive  = theme.dir .. "/icons/titlebar/maximized_focus_inactive.png"
 theme.titlebar_maximized_button_normal_inactive = theme.dir .. "/icons/titlebar/maximized_normal_inactive.png"
+theme.bg_systray = "#ffffff"
+theme.systray_icon_spacing = dpi(5)
 
 local markup = lain.util.markup
 local separators = lain.util.separators
@@ -284,7 +279,8 @@ local net = lain.widget.net({
 --end)
 
 -- Separators
-local arrow = separators.arrow_left
+local arrow_left = separators.arrow_left
+local arrow_right = separators.arrow_right
 
 function theme.powerline_rl(cr, width, height)
     local arrow_depth, offset = height/2, 0
@@ -328,13 +324,13 @@ function theme.at_screen_connect(s)
                            awful.button({}, 4, function () awful.layout.inc( 1) end),
                            awful.button({}, 5, function () awful.layout.inc(-1) end)))
     -- Create a taglist widget
-    s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, awful.util.taglist_buttons)
+    s.mytaglist = wibox.container.background(wibox.container.margin(awful.widget.taglist(s, awful.widget.taglist.filter.all, awful.util.taglist_buttons),dpi(3),dpi(3)),"#ffffff")
 
     -- Create a tasklist widget
-    s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, awful.util.tasklist_buttons)
+    s.mytasklist = wibox.container.margin(awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, awful.util.tasklist_buttons),dpi(3),dpi(3))
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(16), bg = theme.bg_normal, fg = theme.fg_normal })
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(20), bg = theme.bg_normal, fg = theme.fg_normal })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -343,14 +339,15 @@ function theme.at_screen_connect(s)
             layout = wibox.layout.fixed.horizontal,
             --spr,
             s.mytaglist,
+            arrow_right("#ffffff", "#000000"),
             s.mypromptbox,
             spr,
         },
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            wibox.widget.systray(),
-            wibox.container.margin(scissors, dpi(4), dpi(8)),
+            arrow_left("#000000", "#ffffff"),
+            wibox.container.background(wibox.container.margin(wibox.widget.systray(),dpi(3),dpi(3)),"#ffffff"),
             --[[ using shapes
             --pl(wibox.widget { mpdicon, theme.mpd.widget, layout = wibox.layout.align.horizontal }, "#343434"),
             --pl(task, "#343434"),
@@ -373,13 +370,13 @@ function theme.at_screen_connect(s)
             --arrow("#343434", "#7CB755Bground(wibox.container.margin(wibox.widget { tempicon, temp.widget, layout = wibox.layout.align.horizontal }, dpi(4), dpi(4)), "#4B3B51"),
             --arrow("#4B3B51", "#CB755B"),
             --wibox.container.background(wibox.container.margin(wibox.widget { fsicon, theme.fs and theme.fs.widget, layout = wibox.layout.align.horizontal }, dpi(3), dpi(3)), "#CB755B"),
-            arrow("#000000", "#e92f2f"),
+            arrow_left("#ffffff", "#e92f2f"),
             wibox.container.background(wibox.container.margin(wibox.widget { baticon, bat.widget, layout = wibox.layout.align.horizontal }, dpi(3), dpi(3)), "#e92f2f"),
-            arrow("#e92f2f", "#343434"),
+            arrow_left("#e92f2f", "#343434"),
             wibox.container.background(wibox.container.margin(wibox.widget { nil, neticon, net.widget, layout = wibox.layout.align.horizontal }, dpi(3), dpi(3)), "#343434"),
             --arrow("#C0C0A2", "#777E76"),
             --wibox.container.background(wibox.container.margin(binclock.widget, dpi(4), dpi(8)), "#777E76"),
-            arrow("#343434", "alpha"),
+            arrow_left("#343434", "alpha"),
             --]]
             s.mylayoutbox,
         },

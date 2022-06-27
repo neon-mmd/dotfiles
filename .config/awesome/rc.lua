@@ -580,10 +580,4 @@ client.connect_signal("focus", function(c) c.border_color = beautiful.border_foc
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
 -- autostart programs
-awful.util.spawn_with_shell("picom")
-awful.util.spawn_with_shell("nitrogen --restore")
-awful.util.spawn_with_shell("nm-applet")
-awful.util.spawn_with_shell("gnome-keyring")
-awful.util.spawn_with_shell("pcmanfm -d")
-awful.util.spawn_with_shell("battery-notifier.sh")
-awful.util.spawn_with_shell("polkit-dumb-agent")
+awful.util.spawn_with_shell("$HOME/.config/autostart-apps-wm/autostart.sh")
