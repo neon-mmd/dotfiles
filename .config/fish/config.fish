@@ -25,6 +25,7 @@ alias grep rg
 alias cat bat
 alias sudo "doas --"
 alias vim "nvim"
+alias tree "exa -a --tree --icons --group-directories-first"
 
 ###--system-update-aliases--###
 

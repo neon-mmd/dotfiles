@@ -238,7 +238,7 @@ filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
         \ {View in cacaview}
         \ cacaview %c &,
 fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.xpm
-        \ img %f
+        \ exiftool %f
 
 " OpenRaster
 filextype *.ora
