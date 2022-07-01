@@ -13,7 +13,7 @@ from modules.functions import dmenu_select_according_to_theme
 # 'C': 'control',
 # }
 
-def define_keybindings(terminal, colors):
+def define_keybindings(terminal, colors, font):
     return [
         # Switch between windows
         Key("M-j",
@@ -113,7 +113,7 @@ def define_keybindings(terminal, colors):
         # Launch dmenu
         Key("M-r",
             lazy.spawn(
-                dmenu_select_according_to_theme(colors)
+                dmenu_select_according_to_theme(colors, font)
             ),
             desc="run prompt")
     ]

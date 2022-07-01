@@ -12,7 +12,7 @@ def groups(my_groups):
         Group(
             my_groups[1],
             layout='monadtall',
-            matches=[Match(wm_class=["brave"])]
+            matches=[Match(wm_class=["brave-browser"])]
         ),
         Group(
             my_groups[2],

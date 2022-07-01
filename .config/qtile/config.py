@@ -30,16 +30,17 @@ colors = color_picker("dracula")
 groups = groups(my_groups)
 mod = "mod4"
 terminal = guess_terminal()
+font = "FiraCode Nerd Font"
 
 # ---------------------------------------------keybindings--------------------------------------------
-keys = define_keybindings(terminal, colors)
+keys = define_keybindings(terminal, colors, font)
 dgroups_key_binder = simple_key_binder(mod)
 
 # --------------------------------------------layouts-----------------------------------------
 layouts = layout_creation(colors)
 
 # -----------------------------------------------------widgets-------------------------------------
-widget_defaults = dict(font='FiraCode Nerd Font', fontsize=15, padding=10)
+widget_defaults = dict(font=font, fontsize=15, padding=10)
 extension_defaults = widget_defaults.copy()
 screens = [Screen(top=widget_creation(colors))]
 mouse = mouse_behavior(mod)

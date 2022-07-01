@@ -35,8 +35,8 @@ def color_picker(colorscheme_name):
     return color_collection[colorscheme_name]
 
 
-def dmenu_select_according_to_theme(colors):
-    return "dmenu_run -i -fn 'Nerd Fonts' -nb " + colors["bg"] + " -nf " + colors["fg"] + " -sb " + colors["2"] + " -sf " + colors["4"]
+def dmenu_select_according_to_theme(colors, font):
+    return "dmenu_run -i -fn '" + font + "' -nb " + colors["bg"] + " -nf " + colors["fg"] + " -sb " + colors["2"] + " -sf " + colors["4"]
 
 
 def group_selector(group_type):

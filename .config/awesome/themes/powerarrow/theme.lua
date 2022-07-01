@@ -1,35 +1,33 @@
-local gears = require("gears")
-local lain  = require("lain")
-local awful = require("awful")
-local wibox = require("wibox")
-local dpi   = require("beautiful.xresources").apply_dpi
+local gears  = require("gears")
+local lain   = require("lain")
+local awful  = require("awful")
+local wibox  = require("wibox")
+local dpi    = require("beautiful.xresources").apply_dpi
+local themes = require("modules.themes")
 
 local math, string, os = math, string, os
 local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 
+local colors = themes.pick_a_theme("dracula");
+
 local theme                                     = {}
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/powerarrow"
 theme.font                                      = "FiraCode Nerd Font 12"
-theme.fg_normal                                 = "#ababab"
-theme.fg_focus                                  = "#000000"
-theme.fg_urgent                                 = "#000000"
+theme.fg_normal                                 = colors["bg"]
+theme.fg_focus                                  = colors["bg"]
+theme.fg_urgent                                 = colors["bg"]
 theme.fg_minimize                               = "#ababab"
-theme.bg_normal                                 = "#000000"
-theme.bg_focus                                  = "#ababab"
-theme.bg_urgent                                 = "#ababab"
-theme.bg_minimize                               = "#000000"
-theme.taglist_fg_focus                          = "#000000"
-theme.tasklist_bg_focus                         = "#ababab"
-theme.tasklist_fg_focus                         = "#000000"
+theme.bg_normal                                 = colors["bg"]
+theme.bg_focus                                  = colors["bg"]
+theme.bg_urgent                                 = colors["bg"]
+theme.bg_minimize                               = colors["bg"]
+theme.taglist_fg_focus                          = colors["fg"]
+theme.tasklist_bg_focus                         = colors["bg"]
+theme.tasklist_fg_focus                         = colors["fg"]
 theme.border_width                              = dpi(5)
-theme.border_normal                             = "#000000"
-theme.border_focus                              = "#ababab"
+theme.border_normal                             = colors["bg"]
+theme.border_focus                              = colors["fg"]
 theme.border_marked                             = "#91231c"
-theme.titlebar_bg_focus                         = "#3F3F3F"
-theme.titlebar_bg_normal                        = "#3F3F3F"
-theme.titlebar_bg_focus                         = theme.bg_focus
-theme.titlebar_bg_normal                        = theme.bg_normal
-theme.titlebar_fg_focus                         = theme.fg_focus
 theme.menu_height                               = dpi(20)
 theme.menu_width                                = dpi(140)
 theme.menu_submenu_icon                         = theme.dir .. "/icons/submenu.png"
@@ -91,35 +89,39 @@ theme.titlebar_maximized_button_focus_active    = theme.dir .. "/icons/titlebar/
 theme.titlebar_maximized_button_normal_active   = theme.dir .. "/icons/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_inactive  = theme.dir .. "/icons/titlebar/maximized_focus_inactive.png"
 theme.titlebar_maximized_button_normal_inactive = theme.dir .. "/icons/titlebar/maximized_normal_inactive.png"
-theme.bg_systray = "#ffffff"
-theme.systray_icon_spacing = dpi(5)
+theme.bg_systray                                = colors["3"]
+theme.systray_icon_spacing                      = dpi(5)
+theme.taglist_spacing                           = dpi(10)
+theme.taglist_squares_resize                    = true
+theme.squares_resize                            = true
+theme.fg_occupied                               = colors["4"]
 
 local markup = lain.util.markup
 local separators = lain.util.separators
 
 -- Binary clock
 --local binclock = require("themes.powerarrow.binclock"){
-  --  height = dpi(32),
-    --show_seconds = true,
-    --color_active = theme.fg_normal,
-    --color_inactive = theme.bg_focus
+--  height = dpi(32),
+--show_seconds = true,
+--color_active = theme.fg_normal,
+--color_inactive = theme.bg_focus
 --}
 
 -- Calendar
 --theme.cal = lain.widget.cal({
-    --cal = "cal --color=always",
-  --  attach_to = { binclock.widget },
-    --notification_preset = {
-      --  font = "Terminus 10",
-        --fg   = theme.fg_normal,
-        --bg   = theme.bg_normal
-    --}
+--cal = "cal --color=always",
+--  attach_to = { binclock.widget },
+--notification_preset = {
+--  font = "Terminus 10",
+--fg   = theme.fg_normal,
+--bg   = theme.bg_normal
+--}
 --})
 
 -- Taskwarrior
 --local task = wibox.widget.imagebox(theme.widget_task)
 --lain.widget.contrib.task.attach(task, {
-    -- do not colorize output
+-- do not colorize output
 --    show_cmd = "task | sed -r 's/\\x1B\\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g'"
 --})
 --task:buttons(my_table.join(awful.button({}, 1, lain.widget.contrib.task.prompt)))
@@ -151,7 +153,7 @@ theme.mail = lain.widget.imap({
 
 -- ALSA volume
 --theme.volume = lain.widget.alsabar({
-    --togglechannel = "IEC958,3",
+--togglechannel = "IEC958,3",
 --    notification_preset = { font = "Nerd Fonts 10", fg = theme.fg_normal },
 --})
 
@@ -264,7 +266,8 @@ local bat = lain.widget.bat({
 local neticon = wibox.widget.imagebox(theme.widget_net)
 local net = lain.widget.net({
     settings = function()
-        widget:set_markup(markup.fontfg(theme.font, "#FEFEFE", " " .. net_now.received .. " ↓↑ " .. net_now.sent .. " "))
+        widget:set_markup(markup.fontfg(theme.font, colors["bg"], " " .. net_now.received .. " ↓↑ " ..
+            net_now.sent .. " "))
     end
 })
 
@@ -283,20 +286,20 @@ local arrow_left = separators.arrow_left
 local arrow_right = separators.arrow_right
 
 function theme.powerline_rl(cr, width, height)
-    local arrow_depth, offset = height/2, 0
+    local arrow_depth, offset = height / 2, 0
 
     -- Avoid going out of the (potential) clip area
     if arrow_depth < 0 then
-        width  =  width + 2*arrow_depth
+        width  = width + 2 * arrow_depth
         offset = -arrow_depth
     end
 
-    cr:move_to(offset + arrow_depth         , 0        )
-    cr:line_to(offset + width               , 0        )
-    cr:line_to(offset + width - arrow_depth , height/2 )
-    cr:line_to(offset + width               , height   )
-    cr:line_to(offset + arrow_depth         , height   )
-    cr:line_to(offset                       , height/2 )
+    cr:move_to(offset + arrow_depth, 0)
+    cr:line_to(offset + width, 0)
+    cr:line_to(offset + width - arrow_depth, height / 2)
+    cr:line_to(offset + width, height)
+    cr:line_to(offset + arrow_depth, height)
+    cr:line_to(offset, height / 2)
 
     cr:close_path()
 end
@@ -318,36 +321,37 @@ function theme.at_screen_connect(s)
     -- We need one layoutbox per screen.
     s.mylayoutbox = awful.widget.layoutbox(s)
     s.mylayoutbox:buttons(my_table.join(
-                           awful.button({}, 1, function () awful.layout.inc( 1) end),
-                           awful.button({}, 2, function () awful.layout.set( awful.layout.layouts[1] ) end),
-                           awful.button({}, 3, function () awful.layout.inc(-1) end),
-                           awful.button({}, 4, function () awful.layout.inc( 1) end),
-                           awful.button({}, 5, function () awful.layout.inc(-1) end)))
+        awful.button({}, 1, function() awful.layout.inc(1) end),
+        awful.button({}, 2, function() awful.layout.set(awful.layout.layouts[1]) end),
+        awful.button({}, 3, function() awful.layout.inc(-1) end),
+        awful.button({}, 4, function() awful.layout.inc(1) end),
+        awful.button({}, 5, function() awful.layout.inc(-1) end)))
     -- Create a taglist widget
-    s.mytaglist = wibox.container.background(wibox.container.margin(awful.widget.taglist(s, awful.widget.taglist.filter.all, awful.util.taglist_buttons),dpi(3),dpi(3)),"#ffffff")
+    s.mytaglist = wibox.container.background(wibox.container.margin(awful.widget.taglist(s,
+        awful.widget.taglist.filter.all, awful.util.taglist_buttons), dpi(5), dpi(5)), colors["2"])
 
     -- Create a tasklist widget
-    s.mytasklist = wibox.container.margin(awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, awful.util.tasklist_buttons),dpi(3),dpi(3))
+    s.mytasklist = wibox.container.margin(awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags,
+        awful.util.tasklist_buttons), dpi(3), dpi(3))
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(20), bg = theme.bg_normal, fg = theme.fg_normal })
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(22), bg = theme.bg_normal, fg = theme.fg_normal })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            --spr,
+            spacing = 0,
             s.mytaglist,
-            arrow_right("#ffffff", "#000000"),
+            arrow_right(colors["2"], colors["bg"]),
             s.mypromptbox,
-            spr,
         },
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            arrow_left("#000000", "#ffffff"),
-            wibox.container.background(wibox.container.margin(wibox.widget.systray(),dpi(3),dpi(3)),"#ffffff"),
+            arrow_left(colors["bg"], colors["3"]),
+            wibox.container.background(wibox.container.margin(wibox.widget.systray(), dpi(3), dpi(3)), colors["3"]),
             --[[ using shapes
             --pl(wibox.widget { mpdicon, theme.mpd.widget, layout = wibox.layout.align.horizontal }, "#343434"),
             --pl(task, "#343434"),
@@ -370,13 +374,15 @@ function theme.at_screen_connect(s)
             --arrow("#343434", "#7CB755Bground(wibox.container.margin(wibox.widget { tempicon, temp.widget, layout = wibox.layout.align.horizontal }, dpi(4), dpi(4)), "#4B3B51"),
             --arrow("#4B3B51", "#CB755B"),
             --wibox.container.background(wibox.container.margin(wibox.widget { fsicon, theme.fs and theme.fs.widget, layout = wibox.layout.align.horizontal }, dpi(3), dpi(3)), "#CB755B"),
-            arrow_left("#ffffff", "#e92f2f"),
-            wibox.container.background(wibox.container.margin(wibox.widget { baticon, bat.widget, layout = wibox.layout.align.horizontal }, dpi(3), dpi(3)), "#e92f2f"),
-            arrow_left("#e92f2f", "#343434"),
-            wibox.container.background(wibox.container.margin(wibox.widget { nil, neticon, net.widget, layout = wibox.layout.align.horizontal }, dpi(3), dpi(3)), "#343434"),
+            arrow_left(colors["3"], colors["4"]),
+            wibox.container.background(wibox.container.margin(wibox.widget { baticon, bat.widget,
+                layout = wibox.layout.align.horizontal }, dpi(3), dpi(3)), colors["4"]),
+            arrow_left(colors["4"], colors["2"]),
+            wibox.container.background(wibox.container.margin(wibox.widget { nil, neticon, net.widget,
+                layout = wibox.layout.align.horizontal }, dpi(3), dpi(3)), colors["2"]),
             --arrow("#C0C0A2", "#777E76"),
             --wibox.container.background(wibox.container.margin(binclock.widget, dpi(4), dpi(8)), "#777E76"),
-            arrow_left("#343434", "alpha"),
+            arrow_left(colors["2"], "alpha"),
             --]]
             s.mylayoutbox,
         },
