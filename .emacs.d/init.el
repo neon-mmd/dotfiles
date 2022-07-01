@@ -692,6 +692,7 @@
   :hook(emacs-lisp-mode . company-mode)
   )
 
+;; lsp language servers
 (use-package lsp-pyright
   :hook (python-mode . (lambda () (require 'lsp-pyright)))
   :init (when (executable-find "python3")
@@ -701,7 +702,13 @@
   :straight t
    :hook(java-mode-hook . lsp))
 
+;; extra language modes in emacs
 (use-package rust-mode
+  :straight t
+  :after dashboard
+  )
+
+(use-package lua-mode
   :straight t
   :after dashboard
   )
