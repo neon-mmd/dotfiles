@@ -13,7 +13,7 @@ starship init fish | source
 set fish_greeting ''
 
 ###--new-colorful-kitty-message--###
-toilet -f term '***Welcome to the Alacritty Terminal***' -d /usr/share/figlet/fonts/ -t -F border --rainbow
+toilet -f term '***Welcome to the Kitty Terminal***' -d /usr/share/figlet/fonts/ -t -F border --rainbow
 
 #-----------------------------------------ALIASES-----------------------------------------
 
