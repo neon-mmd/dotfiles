@@ -29,4 +29,6 @@ def program_behaviour():
         Match(title='branchdialog'),  # gitk
         Match(title='pinentry'),  # GPG key password entry
         Match(title='brave'),  # web browser
+        Match(title='pinentry-gtk-2'),
+        Match(title='Pinentry-gtk-2'),
     ]
