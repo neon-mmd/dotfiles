@@ -162,6 +162,20 @@
     "p" 'projectile-command-map
     )
 
+  (general-create-definer neon/ctrl-c-keys
+    :prefix "C-c"
+    )
+
+  (neon/ctrl-c-keys
+    "l" 'org-roam-buffer-toggle
+    "f" 'org-roam-node-find
+    "i" 'org-roam-node-insert
+    )
+
+  (general-def 'normal 'org-mode-map
+    "C-M-i" 'completion-at-point
+    )
+
   (general-define-key
    [remap switch-to-buffer] 'consult-buffer
    [remap describe-function]  'helpful-function
@@ -848,6 +862,12 @@
 ;; integrating emacs with pass
 (setq auth-sources '(password-store))
 
+;; prettify symbols to replace words with pretty icons in org mode
+(setq prettify-symbols-alist '(
+			       ("#+Author" . "")
+			       )
+      )
+
 ;; org-configuration
 (defun neon/org-config ()
   ;; replacing org-list symbol '.' with arrows 
@@ -899,6 +919,7 @@
   (org-mode . org-indent-mode)
   (org-mode . variable-pitch-mode)
   (org-mode . neon/org-config)
+  (org-mode . prettify-symbols-mode-hook)
   :custom
   (org-ellipsis " ▾")
   (org-startup-with-inline-images t)
@@ -956,4 +977,29 @@
   (add-to-list 'org-structure-template-alist '("c++" . "src c++"))         ; c++ template
   (add-to-list 'org-structure-template-alist '("lua" . "src lua"))         ; lua template
   (add-to-list 'org-structure-template-alist '("css" . "src css"))         ; css template
+  )
+
+;; org roam to manage project notes
+(use-package org-roam
+  :straight t
+  :demand t ; to ensure it is loaded by default
+  :init
+  (setq org-roam-v2-ack t)
+  :custom
+  (org-roam-directory "~/OrgRoamNotes")
+  (org-roam-completion-everywhere t)
+  (org-roam-capture-templates
+   '(
+     ("d" "default" plain
+      "%?"
+      :if-new (file+head "${slug}-%<%Y%m%d%H%M%S>.org" "#+title: ${title}\n#+Author: destruct\n#+category: ${title}\n#+date: %U\n")
+      :unnarrowed t)
+
+     ("p" "project" plain "* Goals\n\n%?\n\n* Tasks\n\n** TODO Task List\n\n* Dates\n\n"
+      :if-new (file+head "${slug}-%<%Y%m%d%H%M%S>.org" "#+title: ${title}\n#+filetags: Project\n#+category: ${title}\n#+Author: destruct\n#+date: %U\n")
+      :unnarrowed t)
+     )
+   )
+  :config
+  (org-roam-setup)
   )
