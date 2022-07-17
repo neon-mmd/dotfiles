@@ -862,12 +862,6 @@
 ;; integrating emacs with pass
 (setq auth-sources '(password-store))
 
-;; prettify symbols to replace words with pretty icons in org mode
-(setq prettify-symbols-alist '(
-			       ("#+Author" . "")
-			       )
-      )
-
 ;; org-configuration
 (defun neon/org-config ()
   ;; replacing org-list symbol '.' with arrows 
@@ -919,7 +913,6 @@
   (org-mode . org-indent-mode)
   (org-mode . variable-pitch-mode)
   (org-mode . neon/org-config)
-  (org-mode . prettify-symbols-mode-hook)
   :custom
   (org-ellipsis " ▾")
   (org-startup-with-inline-images t)
