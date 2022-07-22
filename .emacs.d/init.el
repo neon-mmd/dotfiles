@@ -182,6 +182,8 @@
    [remap describe-command]  'helpful-command
    [remap describe-variable]  'helpful-variable
    [remap describe-key]  'helpful-key
+   [remap dired-up-directory] 'dired-single-up-directory
+   [remap dired-buffers] 'dired-single-buffer
    )
 
   (general-def 'normal
