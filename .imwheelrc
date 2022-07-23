@@ -1,0 +1,8 @@
+# Speed up scrolling for web viewing
+"^qutebrowser$"
+    None, Up, Button4, 4
+    None, Down, Button5, 4
+
+"^kitty$"
+    None, Up, Button4, 4
+    None, Down, Button5, 4
