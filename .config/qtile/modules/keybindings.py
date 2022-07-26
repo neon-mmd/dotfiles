@@ -53,8 +53,8 @@ def define_keybindings(terminal, colors, font):
 
         # launch the web browser
         Key("M-b",
-            lazy.spawn("brave"),
-            desc="launch brave"),
+            lazy.spawn("qutebrowser"),
+            desc="launch qutebrowser"),
 
         # launch gnu emacs using emacsclient if available otherwise
         # launch default emacs

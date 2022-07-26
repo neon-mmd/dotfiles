@@ -10,9 +10,12 @@ c.scrolling.smooth = True
 c.search.ignore_case = 'always'
 c.downloads.location.directory = os.path.expanduser("~/Downloads")
 
+mySearchEngine = "https://a6de-94-29-226-97.ngrok.io" #---> change this :).
+searchQuery = mySearchEngine + "/?q={}"
+
 ## search engine list
 c.url.searchengines = {
-    'DEFAULT': 'https://search.disroot.org/?q={}',
+    'DEFAULT': searchQuery,
     'yt': 'https://www.youtube.com/results?search_query={}',
     'aw': 'https://wiki.archlinux.org/title/{}'
 }
@@ -23,7 +26,7 @@ c.statusbar.show = 'never'
 ## startup page
 startpage = "file://" + os.path.expanduser("~/.config/qutebrowser/index.html")
 c.url.start_pages = [startpage]
-c.url.default_page = "https://search.disroot.org"
+c.url.default_page = mySearchEngine
 
 # privacy
 c.content.webrtc_ip_handling_policy = 'disable-non-proxied-udp'
