@@ -523,7 +523,7 @@
 ;;doom-modeline bar
 (use-package doom-modeline
   :straight t
-  :hook (after-init . doom-modeline-init)
+  :hook (after-init . doom-modeline-mode)
   :custom-face
   (mode-line ((t (:height 0.85))))
   (mode-line-inactive ((t (:height 0.85))))

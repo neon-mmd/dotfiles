@@ -26,7 +26,7 @@ default.txt
 0
 
 [Initial dir for file/archive browser]
-/run/media/destruct/39568688-b38c-43ac-a7de-c0f9888ec0c0
+/home/destruct/
 
 [default archiving format]
 18
@@ -215,7 +215,7 @@ Deflate
 1
 
 [last output path]
-/home/destruct/
+
 
 [height of the navigation's splitter]
 220
@@ -287,7 +287,7 @@ PeaZip
 180
 
 [status of navigation groups]
-1
+0
 0
 1
 0
@@ -409,8 +409,8 @@ PeaZip
 0
 
 [save history of recent directories]
-/run/media/destruct/39568688-b38c-43ac-a7de-c0f9888ec0c0/
 /home/destruct/
+
 
 
 
