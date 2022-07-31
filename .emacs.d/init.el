@@ -219,12 +219,14 @@
 (defun neon/update-in-daemon ()
   (message "updating in daemon")
   (auto-package-update-prompt-before-update nil)
+  (auto-package-update-now-async)
   )
 
 ;; prompt in regular session for updates
 (defun neon/update-in-regular()
   (message "updating in regular session")
   (auto-package-update-prompt-before-update t)
+  (auto-package-update-now-async)
   )
 
 ;;auto-package-update configuration
@@ -632,8 +634,8 @@
 ;;treemacs
 (use-package lsp-treemacs
   :straight t
-   :hook(lsp-mode . lsp-treemacs-sync-mode)
-   )
+  :hook(lsp-mode . lsp-treemacs-sync-mode)
+  )
 
 ;;lsp ivy integration
 (use-package consult-lsp
