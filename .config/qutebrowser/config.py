@@ -22,6 +22,7 @@ c.url.searchengines = {
 
 # aesthetics
 c.statusbar.show = 'never'
+c.content.user_stylesheets = os.path.expanduser("~/.config/qutebrowser/css/stylesheet.css")
 
 ## startup page
 startpage = "file://" + os.path.expanduser("~/.config/qutebrowser/index.html")
