@@ -590,7 +590,7 @@
           js-jsx-mode     ; ts-ls (tsserver wrapper)
           typescript-mode ; ts-ls (tsserver wrapper)
           python-mode     ; pyright
-          web-mode        ; ts-ls/HTML/CSS
+          css-mode        ; ts-ls/HTML/CSS
 	  html-mode       ; hbs/html+
 	  sh-mode         ; shell
 	  lua-mode        ; lua-lang-server

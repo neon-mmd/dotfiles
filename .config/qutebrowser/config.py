@@ -5,6 +5,7 @@ import os
 config.load_autoconfig(False)
 
 # productivity
+c.content.autoplay = False
 c.colors.webpage.darkmode.enabled = True
 c.scrolling.smooth = True
 c.search.ignore_case = 'always'
@@ -22,7 +23,6 @@ c.url.searchengines = {
 
 # aesthetics
 c.statusbar.show = 'never'
-c.content.user_stylesheets = os.path.expanduser("~/.config/qutebrowser/css/stylesheet.css")
 
 ## startup page
 startpage = "file://" + os.path.expanduser("~/.config/qutebrowser/index.html")
@@ -40,6 +40,11 @@ c.content.cookies.accept = 'no-3rdparty'
 
 ## Tor
 # c.content.proxy = 'socks://localhost:9050/'
+
+# adblock
+c.content.blocking.method = 'hosts'
+c.content.blocking.enabled = True
+c.content.blocking.hosts.lists = ["https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/gambling-porn/hosts"]
 
 # performance
 c.content.dns_prefetch = True
