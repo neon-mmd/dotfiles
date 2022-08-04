@@ -42,15 +42,12 @@ c.content.cookies.accept = 'no-3rdparty'
 # c.content.proxy = 'socks://localhost:9050/'
 
 # adblock
-c.content.blocking.method = 'hosts'
+c.content.blocking.method = 'both'
 c.content.blocking.enabled = True
 c.content.blocking.hosts.lists = ["https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/gambling-porn/hosts"]
 
 # performance
 c.content.dns_prefetch = True
-
-## adblock
-c.content.blocking.enabled = False
 
 # Bindings for normal mode
 config.bind('M', 'hint links spawn mpv {hint-url}')
