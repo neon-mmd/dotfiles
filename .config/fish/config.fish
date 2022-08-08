@@ -29,7 +29,7 @@ alias tree "exa -a --tree --icons --group-directories-first"
 
 ###--system-update-aliases--###
 
-alias update "mirrorup & pupd & aupd"
+alias update "mirrorup && pupd && aupd && sudo paccache -rf"
 alias onlyupd "aupd & pupd"
 
 ###--pacman-aliases--###
@@ -78,12 +78,14 @@ alias rkchk "sudo rkhunter -c --sk"
 alias rklog "sudo cat /var/log/rkhunter.log"
 alias rkupd "sudo rkhunter --update"
 
-###--systemctl-aliases--###
+###--systemd-aliases--###
 alias renable "sudo systemctl enable"
+alias renable "sudo systemctl disable"
 alias rstart "sudo systemctl start"
 alias rstatus "sudo systemctl status"
 alias rstop "sudo systemctl stop"
 alias uenable "systemctl enable --user"
+alias uenable "systemctl disable --user"
 alias ustatus "systemctl status --user"
 alias ustart "systemctl start --user"
 alias ustop "systemctl stop --user"
@@ -130,6 +132,35 @@ if [ "$INSIDE_EMACS" = vterm ]
         vterm_printf "51;Evterm-clear-scrollback"
         tput clear
     end
+end
+
+function __history_previous_command
+  switch (commandline -t)
+  case "!"
+    commandline -t $history[1]; commandline -f repaint
+  case "*"
+    commandline -i !
+  end
+end
+
+function __history_previous_command_arguments
+  switch (commandline -t)
+  case "!"
+    commandline -t ""
+    commandline -f history-token-search-backward
+  case "*"
+    commandline -i '$'
+  end
+end
+
+#--------------------------------------custom-fish-bindings----------------------------------
+bind ! __history_previous_command
+bind '$' __history_previous_command_arguments
+
+# set up the same key bindings for insert mode if using fish_vi_key_bindings
+if test "$fish_key_bindings" = 'fish_vi_key_bindings'
+    bind --mode insert ! __history_previous_command
+    bind --mode insert '$' __history_previous_command_arguments
 end
 
 #--------------------------------------Vim-mode----------------------------------------------
