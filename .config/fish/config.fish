@@ -34,7 +34,7 @@ alias onlyupd "aupd & pupd"
 
 ###--pacman-aliases--###
 
-alias pupd "sudo pacman -Syu --overwrite=\*"
+alias pupd "sudo pacman -Syu --overwrite=\* --noconfirm --needed"
 alias psync "sudo pacman -Sy"
 alias pinstall "sudo pacman -S"
 alias pinfo "sudo pacman -Si"
@@ -43,7 +43,7 @@ alias cache "sudo paccache -r -f"
 
 ###--paru-aliases--###
 
-alias aupd "paru -Syu --overwrite=\*"
+alias aupd "paru -Syu --overwrite=\* --noconfirm --needed"
 alias async "paru -Sy"
 alias ainstall "paru -S"
 alias ainfo "paru -Si"
