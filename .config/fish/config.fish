@@ -29,8 +29,8 @@ alias tree "exa -a --tree --icons --group-directories-first"
 
 ###--system-update-aliases--###
 
-alias update "mirrorup && pupd && aupd && sudo paccache -rf"
-alias onlyupd "aupd & pupd"
+alias update "mirrorup && pupd && aupd && cache"
+alias onlyupd "aupd && pupd"
 
 ###--pacman-aliases--###
 
