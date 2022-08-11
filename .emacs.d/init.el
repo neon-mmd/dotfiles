@@ -401,28 +401,6 @@
   :init
   (dimmer-mode 1))
 
-;; emojify-mode
-;; to show and insert emojis.
-(use-package emojify
-  :straight t
-  :after dashboard
-  :init(emojify-mode 1)
- )
-
-;; rainbow-mode
-;; to show hex colors.
-(use-package rainbow-mode
-  :after dashboard
-  :straight t
-  :init(rainbow-mode 1)
-  )
-
-;; yasnippet code completion
-(use-package yasnippet
-  :after lsp
-  :straight t
-  )
-
 ;; dired async
 (use-package async
   :straight t
