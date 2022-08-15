@@ -26,13 +26,13 @@ default.txt
 0
 
 [Initial dir for file/archive browser]
-/home/destruct/
+/home/destruct/rest/United Kingdom/
 
 [default archiving format]
 18
 
 [last used archiving format]
-15
+0
 
 [default PEA compression level]
 1
@@ -44,7 +44,7 @@ default.txt
 4
 
 [default PEA stream level control algorithm]
-0
+3
 
 [default integrity check algorithm for file split]
 13
@@ -53,7 +53,7 @@ default.txt
 1
 
 [show password field in clear]
-0
+1
 
 [ask for password on extract/list/test operations from system's menus]
 3
@@ -71,7 +71,7 @@ default.txt
 0
 
 [archive browser speed optimization: 0 no optimization 1..4 slower to faster optimization (3 default) 5 do not pre-parse archives, may non correctly list some out of standard archives]
-1
+4
 
 [(obsolete) don't pre-parse archives over this in-memory size]
 192
@@ -84,7 +84,7 @@ default.txt
 
 [save history of recent archives]
 1
-
+/home/destruct/rest/United Kingdom/United Kingdom.7z
 
 
 
@@ -114,16 +114,16 @@ default.txt
 0
 
 [left]
-0
+683
 
 [top]
 24
 
 [width]
-1346
+1366
 
 [height]
-724
+744
 
 [archive formats to show in favourite popup menu]
 1
@@ -142,7 +142,7 @@ default.txt
 0
 
 [default 7z compression level]
-2
+5
 
 [default 7z compression method]
 LZMA2
@@ -215,7 +215,7 @@ Deflate
 1
 
 [last output path]
-
+/home/destruct/rest/United Kingdom/
 
 [height of the navigation's splitter]
 220
@@ -235,7 +235,7 @@ PeaZip
 [browser's style and settings]
 0
 12
-1
+0
 240
 80
 80
@@ -287,7 +287,7 @@ PeaZip
 180
 
 [status of navigation groups]
-0
+1
 0
 1
 0
@@ -315,7 +315,7 @@ PeaZip
 0
 
 [last successful extraction path]
-
+/run/user/1000/gvfs/ftp:host=19.21.23.11,port=2121,user=someguy/United Kingdom/
 
 [encrypt also filenames, if the feature is supported by the format]
 0
@@ -409,9 +409,9 @@ PeaZip
 0
 
 [save history of recent directories]
+/home/destruct/rest/United Kingdom/
+/run/user/1000/gvfs/ftp:host=19.21.23.11,port=2121,user=someguy/United Kingdom/
 /home/destruct/
-
-
 
 
 
@@ -459,7 +459,7 @@ PeaZip
 
 
 [delete originals after archival, extraction: 0 no (default) 1 yes - anyway user will be asked for confirmation]
-0
+1
 0
 
 [add timestamp suffix when creating archives: 0 no (default) 1 yes]
@@ -472,7 +472,7 @@ PeaZip
 0
 
 [privacy_mode directive 0 = none 1 = ask for password or keyfile when application starts, skippable 2 = non skippable]
-0
+1
 
 [manage NT security information]
 0
@@ -511,10 +511,10 @@ PeaZip
 92
 
 [launcher width]
-640
+1366
 
 [launcher height]
-320
+744
 
 [automatically sync archives if previewed files are updated]
 1
@@ -541,10 +541,10 @@ PeaZip
 2
 
 [advanced 7z/p7zip compression settings]
-0
-4
-0
-8
+12
+6
+-1
+15
 
 [auto close PeaZip when task completes]
 0
@@ -632,7 +632,7 @@ PeaZip
 2
 
 [use system 7z on Linux]
-0
+1
 
 [interactive extraction, two steps: first extract to a fresh folder, then move to relative path in destination directory]
 1

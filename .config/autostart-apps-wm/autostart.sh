@@ -7,5 +7,5 @@ gnome-keyring &
 polkit-dumb-agent &
 optimus-manager-qt &
 pcmanfm -d &
-battery-notifier.sh & 
+battery-notifier & 
 gpg-connect-agent /bye &

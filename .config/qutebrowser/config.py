@@ -11,7 +11,7 @@ c.scrolling.smooth = True
 c.search.ignore_case = 'always'
 c.downloads.location.directory = os.path.expanduser("~/Downloads")
 
-mySearchEngine = "https://530a-94-129-207-115.eu.ngrok.io/" # --> change this :) 
+mySearchEngine = "https://4aeb-94-29-227-225.in.ngrok.io/" # --> change this :) 
 searchQuery = mySearchEngine + "/?q={}"
 
 ## search engine list

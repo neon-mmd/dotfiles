@@ -21,7 +21,7 @@ end
 
 return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim' -- package manager for neovim
-    use 'dracula/vim' -- dracula color scheme for neovim
+    use 'GustavoPrietoP/doom-themes.nvim' -- doom themes for neovim
     use "nvim-lua/popup.nvim" -- required
     use "nvim-lua/plenary.nvim" -- required
     use 'kyazdani42/nvim-web-devicons' -- for icons
