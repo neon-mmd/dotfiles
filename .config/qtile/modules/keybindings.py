@@ -77,22 +77,22 @@ def define_keybindings(terminal, colors, font):
             lazy.spawn("virt-manager"),
             desc="launch virt-manager"),
 
-        # launch common-websites.sh script for opening my common websites
+        # launch common-websites script for opening my common websites
         # which I use on day to day basis
         Key("M-l",
-            lazy.spawn("common-websites.sh"),
+            lazy.spawn("common-websites"),
             desc="common web links"),
 
-        # launch article-viewer-convertor.sh script to download an article
+        # launch article-viewer-convertor script to download an article
         # in readable format for later viewing
         Key("M-i",
-            lazy.spawn("article-viewer-convertor.sh"),
+            lazy.spawn("article-viewer-convertor"),
             desc="download any file using aria2"),
 
-        # launch search-engines.py script to search through different search
+        # launch search-engines script to search through different search
         # engines and open it in the browser
         Key("M-w",
-            lazy.spawn("search-engines.py"),
+            lazy.spawn("search-engines"),
             desc="search the web through dmenu"),
 
         # launch the file manager
@@ -107,7 +107,7 @@ def define_keybindings(terminal, colors, font):
 
         # article viewer
         Key("M-a",
-            lazy.spawn("phrack.py"),
+            lazy.spawn("phrack"),
             desc="download phrack articles"),
 
         # Launch dmenu
