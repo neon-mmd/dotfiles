@@ -22,8 +22,8 @@ function tagnames.pick_a_tagnames_style(style)
             "",
             "",
             "",
-            "",
             "",
+            "",
             "",
             ""
         }

@@ -14,16 +14,41 @@ local colors = themes.pick_a_theme("dracula")
 function keybindings.define_global_keybindings(terminal, browser, editor,font)
     return mytable.join(
     -- Destroy all notifications
-        easykey.EzKey("C-space", function() naughty.destroy_all_notifications() end, "destroy all notifications",
+        easykey.EzKey("C-S-space", function() naughty.destroy_all_notifications() end, "destroy all notifications",
             "hotkeys"),
 
         -- Neon logout
-        easykey.EzKey("M-S-q", function() awful.util.spawn("neon-logout") end, "displays logout options", "hotkeys"),
+        easykey.EzKey("M-S-q", function() awful.util.spawn("neon-logout") end, "Displays logout options", "Apps/Scripts"),
 
-        -- Show help
+	-- QuteBrowser
+        easykey.EzKey("M-b", function() awful.util.spawn(browser) end, "Launch QuteBrowser", "Apps/Scripts"),
+
+	-- Emacs server
+        easykey.EzKey("M-d", function() awful.util.spawn(editor) end, "Launch the emacsclient frame", "Apps/Scripts"),
+
+	-- VirtManager
+        easykey.EzKey("M-v", function() awful.util.spawn("virt-manager") end, "Launch VirtManager", "Apps/Scripts"),
+
+	-- Common websites script
+        easykey.EzKey("M-l", function() awful.util.spawn("common-websites") end, "Launch custom web links bookmark", "Apps/Scripts"),
+
+	-- Article viewer and convertor script
+        easykey.EzKey("M-i", function() awful.util.spawn("article-viewer-convertor") end, "Download any article locally", "Apps/Scripts"),
+
+	-- Search engine list script
+        easykey.EzKey("M-w", function() awful.util.spawn("search-engines") end, "Launch custom script to search form a specific search engine", "Apps/Scripts"),
+
+	-- Pcmanfm
+        easykey.EzKey("M-p", function() awful.util.spawn("pcmanfm") end, "Launch Pcmanfm", "Apps/Scripts"),
+
+	-- Onlyoffice
+        easykey.EzKey("M-o", function() awful.util.spawn("onlyoffice-desktopeditors") end, "Launch onlyoffice.", "Apps/Scripts"),
+	
+	-- Article viewer
+        easykey.EzKey("M-a", function() awful.util.spawn("phrack") end, "Displays articles.", "Apps/Scripts"),
+
+	-- Show help
         easykey.EzKey("M-s", hotkeys_popup.show_help, "show help", "awesome"),
-
-        easykey.EzKey("M-a", function() awful.util.spawn(browser) end, "browser", "apps"),
 
         -- Tag browsing
         easykey.EzKey("M-Left", awful.tag.viewprev, "view previous", "tag"),
@@ -58,7 +83,7 @@ function keybindings.define_global_keybindings(terminal, browser, editor,font)
             "cycle with previous/go back", "client"),
 
         -- Show/hide wibox
-        easykey.EzKey("M-b", function()
+        easykey.EzKey("M-S-b", function()
             for s in screen do
                 s.mywibox.visible = not s.mywibox.visible
                 if s.mybottomwibox then

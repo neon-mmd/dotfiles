@@ -58,11 +58,11 @@ function rules.program_behaviour(clientkeys,clientbuttons)
     },
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
-    { rule = { class = "Brave" },
-        properties = { screen = 1, tag = "web" } },
+    { rule = { class = "qutebrowser" },
+        properties = { screen = 1, tag = awful.util.tagnames[0] } },
 
-    { rule = { class = "VirtualBox" },
-        properties = { screen = 1, tag = "vbox" } },
+    { rule = { class = "virt-manager" },
+      properties = { screen = 1, tag = tagnames} },
 
     { rule = { class = "vlc" },
         properties = { screen = 1, tag = "vlc" } },
