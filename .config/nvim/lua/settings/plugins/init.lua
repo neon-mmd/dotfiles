@@ -17,9 +17,12 @@ local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
     packer_bootstrap = fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim',
         install_path })
+    vim.cmd [[packadd packer.nvim]]
 end
 
 return require('packer').startup(function(use)
+
+    -- general
     use 'wbthomason/packer.nvim' -- package manager for neovim
     use 'GustavoPrietoP/doom-themes.nvim' -- doom themes for neovim
     use "nvim-lua/popup.nvim" -- required
@@ -36,7 +39,6 @@ return require('packer').startup(function(use)
     use 'hrsh7th/nvim-cmp'
     use 'hrsh7th/cmp-nvim-lsp'
     use 'saadparwaiz1/cmp_luasnip'
-    use 'L3MON4D3/LuaSnip'
 
     -- asthetics
     use 'rcarriga/nvim-notify'
@@ -53,6 +55,7 @@ return require('packer').startup(function(use)
     use 'terrortylor/nvim-comment'
 
     -- snippets for autocompletions
+    use "L3MON4D3/LuaSnip"
     use "rafamadriz/friendly-snippets"
 
     -- which-key

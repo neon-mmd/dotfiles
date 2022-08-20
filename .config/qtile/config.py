@@ -24,6 +24,12 @@ my_groups = group_selector("iconic")
 # [
 #   dracula
 #   tomorrow-night
+#   nord
+#   gruvbox-dark
+#   monokai
+#   oceanic-next
+#   solarized-dark
+#   solarized-light
 # ]
 
 colors = color_picker("dracula")

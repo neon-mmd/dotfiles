@@ -8,6 +8,17 @@ local themes = require("modules.themes")
 local math, string, os = math, string, os
 local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 
+-- {
+--  dracula
+--  tomorrow-night
+--  nord
+--  gruvbox-dark
+--  monokai
+--  oceanic-next
+--  solarized-dark
+--  solarized-light
+-- }
+
 local colors = themes.pick_a_theme("dracula");
 
 local theme                                     = {}

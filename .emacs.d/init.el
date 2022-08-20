@@ -725,7 +725,7 @@
 (use-package elfeed-org
   :hook(elfeed . elfeed-org)
   :straight t
-  :custom((rmh-elfeed-org-files (list "~/rss-feeds/elfeed.org")))
+  :custom((rmh-elfeed-org-files (list "~/rest/rss-feeds/elfeed.org")))
   )
 
 ;; elfeed-goodies to further enhance elfeed
@@ -899,7 +899,7 @@
   (org-ellipsis " ▾")
   (org-startup-with-inline-images t)
   (org-hide-emphasis-markers t)
-  (org-agenda-files '("~/sheduledTasks/tasks.org"))
+  (org-agenda-files '("~/rest/sheduledTasks/tasks.org"))
 )
 
 ;; making heading look fancier and elegant using org-bullets.
@@ -961,7 +961,7 @@
   :init
   (setq org-roam-v2-ack t)
   :custom
-  (org-roam-directory "~/OrgRoamNotes")
+  (org-roam-directory "~/rest/OrgRoamNotes")
   (org-roam-completion-everywhere t)
   (org-roam-capture-templates
    '(

@@ -58,6 +58,12 @@ local browser    = "qutebrowser";
 local font       = "FiraCode Nerd Font"
 
 awful.util.terminal                    = terminal
+
+-- {
+--   iconic
+--   named
+-- }
+
 awful.util.tagnames                    = tagnames.pick_a_tagnames_style("iconic")
 awful.layout.layouts                   = layouts.define_layouts();
 lain.layout.termfair.nmaster           = 3
