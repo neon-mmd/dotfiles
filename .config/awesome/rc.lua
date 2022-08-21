@@ -137,4 +137,5 @@ client.connect_signal("focus", function(c) c.border_color = beautiful.border_foc
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
 -- autostart programs
-awful.util.spawn_with_shell("$HOME/.config/autostart-apps-wm/autostart.sh")
+local home = os.getenv("HOME")
+awful.spawn.once(home .. "/.config/autostart-apps-wm/autostart.sh")

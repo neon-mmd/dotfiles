@@ -1,6 +1,6 @@
 #!/bin/sh
 
-nitrogen --restore & 
+nitrogen --restore --set-scaled ~/Pictures/wallpapers/ & 
 picom -b & 
 nm-applet &
 gnome-keyring & 
