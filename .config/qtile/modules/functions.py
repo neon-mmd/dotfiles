@@ -140,10 +140,60 @@ def group_selector(group_type):
     }
     return my_groups[group_type]
 
+def theme_style(direction, Type):
+    face_direction = {
+        "left" : 0,
+        "right" : 1
+    }
+    styles = {
+        "arrow" : ["\uE0B2", "\uE0B0"],
+        "semi-circle" : ["\ue0b6", "\ue0b4"],
+        "bottom-right-triangle" : ["\ue0ba", "\ue0b8"],
+        "top-right-triangle" : ["\ue0be", "\ue0bc"],
+        "vertical" : [" ", ""]
+    }
 
-def unicode(unicodeChar, color1, color2):
-    return TextBox(text=unicodeChar,
-                   padding=0,
+    if Type == "arrow":
+        return styles["arrow"][face_direction[direction]]
+    elif Type == "semi-circle":
+        return styles["semi-circle"][face_direction[direction]]
+    elif Type == "bottom-right-triangle":
+        return styles["bottom-right-triangle"][face_direction[direction]]
+    elif Type == "top-right-triangle":
+        return styles["top-right-triangle"][face_direction[direction]]
+    else:
+        return styles["vertical"][face_direction[direction]]
+
+
+def unicode(color1, color2, direction, Type):
+
+    padding_amount = 0
+    
+    if direction == "left":
+        if Type == "arrow":
+            padding_amount = 0
+        elif Type == "semi-circle":
+            padding_amount = 0
+        elif Type == "bottom-right-triangle":
+            padding_amount = 12
+        elif Type == "top-right-triangle":
+            padding_amount = 12
+        else:
+            padding_amount = 0
+    else:
+        if Type == "arrow":
+            padding_amount = 0
+        elif Type == "semi-circle":
+            padding_amount = 0
+        elif Type == "bottom-right-triangle":
+            padding_amount = 0
+        elif Type == "top-right-triangle":
+            padding_amount = 0
+        else:
+            padding_amount = 0
+
+    return TextBox(text=theme_style(direction, Type),
+                   padding=padding_amount,
                    fontsize=23,
                    background=color1,
                    foreground=color2

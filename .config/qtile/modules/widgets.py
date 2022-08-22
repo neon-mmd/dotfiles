@@ -5,6 +5,9 @@ from modules.functions import unicode
 
 
 # -----------------------------------------------------widgets-------------------------------------
+
+face_style = "arrow"
+
 def widget_creation(colors):
     return Bar(
         [
@@ -15,23 +18,23 @@ def widget_creation(colors):
                      disable_drag=True,
                      inactive=colors["bg"]
                      ),
-            unicode("\uE0B0", colors["bg"], colors["2"]),
+            unicode(colors["bg"], colors["2"],"right",face_style),
             WindowName(background=colors["bg"],
                        foreground=colors["fg"],
                        padding=10
                        ),
-            unicode("\uE0B2", colors["bg"], colors["3"]),
+            unicode(colors["bg"], colors["3"],"left",face_style),
             Systray(icon_size=20,
                     padding=5,
                     background=colors["3"]
                     ),
-            unicode("\uE0B2", colors["3"], colors["5"]),
+            unicode(colors["3"], colors["5"],"left",face_style),
             Clock(background=colors["5"],
                   foreground=colors["bg"],
                   update_interval=1.0,
                   format=' %Y-%m-%d %a  %I:%M %p'
                   ),
-            unicode("\uE0B2", colors["5"], colors["2"]),
+            unicode(colors["5"], colors["2"],"left",face_style),
             Battery(charge_char='',
                     discharge_char='',
                     notify_below=86,
@@ -40,7 +43,7 @@ def widget_creation(colors):
                     foreground=colors["bg"],
                     format='{char}  {percent:2.0%}'
                     ),
-            unicode("\uE0B2", colors["2"], colors["1"]),
+            unicode(colors["2"], colors["1"],"left",face_style),
             CheckUpdates(
                 update_interval=60,
                 distro="Arch",
@@ -50,7 +53,7 @@ def widget_creation(colors):
                 colour_have_updates=colors["bg"],
                 background=colors["1"]
             ),
-            unicode("\uE0B2", colors["1"], colors["6"]),
+            unicode(colors["1"], colors["6"],"left",face_style),
             CurrentLayout(foreground=colors["bg"],
                           background=colors["6"],
                           fmt="",
