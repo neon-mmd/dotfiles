@@ -7,5 +7,6 @@ gnome-keyring &
 polkit-dumb-agent &
 optimus-manager-qt &
 pcmanfm -d &
-battery-notifier & 
+battery-notifier &
+volumeicon &
 gpg-connect-agent /bye &
