@@ -95,6 +95,11 @@ def define_keybindings(terminal, colors, font):
             lazy.spawn("search-engines"),
             desc="search the web through dmenu"),
 
+        # launch themes-changer script to change the theme 
+        Key("M-S-t",
+            lazy.spawn("themes-changer"),
+            desc="theme changing script"),
+        
         # launch the file manager
         Key("M-p",
             lazy.spawn("pcmanfm"),

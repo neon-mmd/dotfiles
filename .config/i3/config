@@ -8,11 +8,11 @@ font pango:FiraCode Nerd Font 12
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+include settings/colorschemes/dracula.conf
 include settings/keybindings.conf
 include settings/workspaces.conf
 include settings/i3-gaps.conf
 include settings/rules.conf
-include settings/colorschemes/dracula.conf
 
 # focus do not follow my mouse
 focus_follows_mouse no

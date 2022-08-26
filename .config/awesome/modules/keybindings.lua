@@ -38,6 +38,9 @@ function keybindings.define_global_keybindings(terminal, browser, editor,font)
 	-- Search engine list script
         easykey.EzKey("M-w", function() awful.util.spawn("search-engines") end, "Launch custom script to search form a specific search engine", "Apps/Scripts"),
 
+	-- Themes-changer script
+	easykey.EzKey("M-S-t", function() awful.util.spawn("themes-changer") end, "Launch custom script to change themes easily", "Apps/Scripts"),
+
 	-- Pcmanfm
         easykey.EzKey("M-p", function() awful.util.spawn("pcmanfm") end, "Launch Pcmanfm", "Apps/Scripts"),
 
