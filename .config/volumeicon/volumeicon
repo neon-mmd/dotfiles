@@ -7,9 +7,9 @@ notification_type=0
 
 [StatusIcon]
 stepsize=5
-onclick=xterm -e 'ncpamixer'
+onclick=kitty -e 'ncpamixer'
 theme=Default
-use_panel_specific_icons=false
+use_panel_specific_icons=true
 lmb_slider=true
 mmb_mute=false
 use_horizontal_slider=false
