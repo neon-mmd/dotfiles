@@ -1,7 +1,7 @@
 # -----------------------------------------------------imports-------------------------------------
 from libqtile.bar import Bar
-from libqtile.widget import GroupBox, WindowName, Systray, Clock, Battery, CheckUpdates, CurrentLayout
-from modules.functions import unicode
+from libqtile.widget import GroupBox, WindowName, Systray, Clock, CheckUpdates, CurrentLayout
+from modules.functions import unicode, check_battery
 
 
 # -----------------------------------------------------widgets-------------------------------------
@@ -35,14 +35,7 @@ def widget_creation(colors):
                   format=' %Y-%m-%d %a  %I:%M %p'
                   ),
             unicode(colors["5"], colors["2"],"left",face_style),
-            Battery(charge_char='',
-                    discharge_char='',
-                    notify_below=86,
-                    update_interval=60,
-                    background=colors["2"],
-                    foreground=colors["bg"],
-                    format='{char}  {percent:2.0%}'
-                    ),
+            check_battery(colors["bg"],colors["2"]),
             unicode(colors["2"], colors["1"],"left",face_style),
             CheckUpdates(
                 update_interval=60,

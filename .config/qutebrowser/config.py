@@ -10,6 +10,8 @@ c.colors.webpage.darkmode.enabled = True
 c.scrolling.smooth = True
 c.search.ignore_case = 'always'
 c.downloads.location.directory = os.path.expanduser("~/Downloads")
+c.auto_save.session = False
+c.tabs.mousewheel_switching = False
 
 mySearchEngine = "https://4aeb-94-29-227-225.in.ngrok.io/" # --> change this :) 
 searchQuery = mySearchEngine + "/?q={}"
@@ -23,6 +25,7 @@ c.url.searchengines = {
 
 # aesthetics
 c.statusbar.show = 'never'
+c.fonts.default_family = "FiraCode Nerd Font"
 
 ## startup page
 startpage = "file://" + os.path.expanduser("~/.config/qutebrowser/index.html")
@@ -37,6 +40,12 @@ c.content.images = True
 c.content.geolocation = False
 c.qt.chromium.sandboxing = 'enable-all'
 c.content.cookies.accept = 'no-3rdparty'
+c.content.canvas_reading = False
+c.content.headers.do_not_track = True
+c.content.headers.user_agent = "Mozilla/5.0 (Windows NT 10.0; rv:68.0) Gecko/20100101 Firefox/100.0"
+c.content.headers.accept_language = "en-US,en;q=0.5"
+c.content.headers.custom = {"accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"}
+# c.content.private_browsing = True
 
 ## Tor
 # c.content.proxy = 'socks://localhost:9050/'
@@ -48,6 +57,8 @@ c.content.blocking.hosts.lists = ["https://raw.githubusercontent.com/StevenBlack
 
 # performance
 c.content.dns_prefetch = True
+c.content.notifications.enabled = False
+c.scrolling.smooth = True
 
 # Bindings for normal mode
 config.bind('M', 'hint links spawn mpv {hint-url}')

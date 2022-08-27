@@ -1,5 +1,6 @@
 # ------------------------------------------imports-------------------------------------------
-from libqtile.widget import TextBox
+from libqtile.widget import TextBox, Battery
+from subprocess import getoutput
 
 # -----------------------------------------Custom-functions----------------------------------
 
@@ -164,7 +165,6 @@ def theme_style(direction, Type):
     else:
         return styles["vertical"][face_direction[direction]]
 
-
 def unicode(color1, color2, direction, Type):
 
     padding_amount = 0
@@ -198,3 +198,20 @@ def unicode(color1, color2, direction, Type):
                    background=color1,
                    foreground=color2
                    )
+
+def check_battery(colorbg, color2):
+    if getoutput("acpi | grep 'Battery'") != '':
+        return Battery(charge_char='',
+                       discharge_char='',
+                       notify_below=86,
+                       update_interval=60,
+                       background=color2,
+                       foreground=colorbg,
+                       format='{char} {percent:2.0%}'
+                       )
+    else:
+        return TextBox(text='  ',
+                       fontsize=20,
+                       background=color2,
+                       foreground=colorbg
+                       ) 
