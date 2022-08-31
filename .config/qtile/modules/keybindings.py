@@ -110,11 +110,6 @@ def define_keybindings(terminal, colors, font):
             lazy.spawn("onlyoffice-desktopeditors"),
             desc="launch office app"),
 
-        # article viewer
-        Key("M-a",
-            lazy.spawn("phrack"),
-            desc="download phrack articles"),
-
         # Launch dmenu
         Key("M-r",
             lazy.spawn(

@@ -47,9 +47,6 @@ function keybindings.define_global_keybindings(terminal, browser, editor,font)
 	-- Onlyoffice
         easykey.EzKey("M-o", function() awful.util.spawn("onlyoffice-desktopeditors") end, "Launch onlyoffice.", "Apps/Scripts"),
 	
-	-- Article viewer
-        easykey.EzKey("M-a", function() awful.util.spawn("phrack") end, "Displays articles.", "Apps/Scripts"),
-
 	-- Show help
         easykey.EzKey("M-s", hotkeys_popup.show_help, "show help", "awesome"),
 
