@@ -29,26 +29,26 @@ alias tree "exa -a --tree --icons --group-directories-first"
 
 ###--system-update-aliases--###
 
-alias update "mirrorup && pupd && aupd && cache"
+alias update "mirrorup && pupd && aupd && cache && rmbackup"
 alias onlyupd "aupd && pupd"
 
-###--pacman-aliases--###
+###--aura-aliases--###
 
-alias pupd "sudo pacman -Syu --overwrite=\* --noconfirm --needed"
-alias psync "sudo pacman -Sy"
-alias pinstall "sudo pacman -S"
-alias pinfo "sudo pacman -Si"
-alias psearch "sudo pacman -Ss"
-alias cache "sudo paccache -r -f"
-
-###--paru-aliases--###
-
-alias aupd "paru -Syu --overwrite=\* --noconfirm --needed"
-alias async "paru -Sy"
-alias ainstall "paru -S"
-alias ainfo "paru -Si"
-alias asearch "paru -Ss"
-alias remove "paru -Qtdq | paru -Rns -"
+alias pupd "/usr/bin/sudo aura -Syu --overwrite=\* --ask 4"
+alias psync "/usr/bin/sudo aura -Sy"
+alias pinstall "/usr/bin/sudo aura -S"
+alias pinfo "aura -Si"
+alias psearch "aura --abc -Ss"
+alias cache "/usr/bin/sudo aura -Scc"
+alias aupd "/usr/bin/sudo -Auxap --overwrite=\* --ask 4 --devel"
+alias ainstall "/usr/bin/sudo aura -Axap" 
+alias ainfo "aura -Ai"
+alias asearch "aura --abc -As"
+alias rmorphan "/usr/bin/sudo aura -Oj"
+alias rmbackup "/usr/bin/sudo aura -Bc 5"
+alias restore "/usr/bin/sudo aura -Br"
+alias remove "/usr/bin/sudo aura -Qtdq | paru -Rns -"
+alias downgrade "/usr/bin/sudo aura -C"
 
 ###--git-aliases--###
 alias ginit "git init"
@@ -82,12 +82,14 @@ alias rkupd "sudo rkhunter --update"
 alias renable "sudo systemctl enable"
 alias rdisable "sudo systemctl disable"
 alias rstart "sudo systemctl start"
+alias rrestart "sudo systemctl restart"
 alias rstatus "sudo systemctl status"
 alias rstop "sudo systemctl stop"
 alias uenable "systemctl enable --user"
 alias udisable "systemctl disable --user"
 alias ustatus "systemctl status --user"
 alias ustart "systemctl start --user"
+alias urestart "systemctl restart --user"
 alias ustop "systemctl stop --user"
 
 ###--journalctl-aliases--###

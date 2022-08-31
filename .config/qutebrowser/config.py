@@ -13,7 +13,7 @@ c.downloads.location.directory = os.path.expanduser("~/Downloads")
 c.auto_save.session = False
 c.tabs.mousewheel_switching = False
 
-mySearchEngine = "https://4aeb-94-29-227-225.in.ngrok.io/" # --> change this :) 
+mySearchEngine = "https://search.disroot.org/" # --> change this :) 
 searchQuery = mySearchEngine + "/?q={}"
 
 ## search engine list
@@ -25,7 +25,7 @@ c.url.searchengines = {
 
 # aesthetics
 c.statusbar.show = 'never'
-c.fonts.default_family = "FiraCode Nerd Font"
+c.fonts.default_family = "FiraCode Nerd Font Mono"
 
 ## startup page
 startpage = "file://" + os.path.expanduser("~/.config/qutebrowser/index.html")

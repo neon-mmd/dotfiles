@@ -36,7 +36,7 @@ colors = color_picker("dracula")
 groups = groups(my_groups)
 mod = "mod4"
 terminal = guess_terminal()
-font = "FiraCode Nerd Font"
+font = "FiraCode Nerd Font Mono"
 
 # ---------------------------------------------keybindings--------------------------------------------
 keys = define_keybindings(terminal, colors, font)
