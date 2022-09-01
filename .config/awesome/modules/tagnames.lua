@@ -18,15 +18,16 @@ function tagnames.pick_a_tagnames_style(style)
         },
         iconic =
         {
-            "  ",
-            "  ",
-            "  ",
-            "  ",
-            "  ",
-            "  ",
-            "  ",
-            "  "
-        }
+            "",
+            "",
+            "",
+            "",
+	    "",
+            "",
+	    "",
+            "",
+	    ""
+	}
     }
     return tagStyle[style]
 end

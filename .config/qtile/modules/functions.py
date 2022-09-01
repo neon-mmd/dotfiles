@@ -128,15 +128,15 @@ def group_selector(group_type):
         ],
         "iconic":
         [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "﬐",
-            "",
-            ""
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
         ]
     }
     return my_groups[group_type]

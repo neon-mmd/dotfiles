@@ -23,32 +23,32 @@ alias find fd
 alias ls "exa -alh --group-directories-first --icons --git"
 alias grep rg
 alias cat bat
-# alias sudo "doas --"
+alias sudo "doas --"
 alias vim "nvim"
 alias tree "exa -a --tree --icons --group-directories-first"
 
 ###--system-update-aliases--###
 
-alias update "mirrorup && pupd && aupd && cache && rmbackup"
+alias update "mirrorup && pupd && aupd && cache"
 alias onlyupd "aupd && pupd"
 
-###--aura-aliases--###
+###--pacman-aliases--###
 
-alias pupd "sudo aura -Syu --overwrite=\* --noconfirm"
-alias psync "sudo aura -Sy"
-alias pinstall "sudo aura -Sy --overwrite=\*"
-alias pinfo "aura -Si"
-alias psearch "aura --abc -Ss"
-alias cache "sudo aura -Scc"
-alias aupd "sudo -Auxa --overwrite=\* --noconfirm --devel"
-alias ainstall "sudo aura -Axa --overwrite=\*" 
-alias ainfo "aura -Ai"
-alias asearch "aura --abc -As"
-alias rmorphan "sudo aura -Oj"
-alias rmbackup "sudo aura -Bc 5"
-alias restore "sudo aura -Br"
-alias remove "sudo aura -Qtdq | aura -Rns -"
-alias downgrade "sudo aura -C"
+alias pupd "sudo pacman -Syu --overwrite=\* --ask 4"
+alias psync "sudo pacman -Sy"
+alias pinstall "sudo pacman -Sy --overwrite=\*"
+alias pinfo "pacman -Si"
+alias psearch "pacman -Ss"
+alias pkgls "pacman -Qq"
+alias pkgcnt "pacman -Qq | wc -l"
+alias cache "sudo paccache -rf"
+
+###--paru-aliases--###
+alias aupd "paru -Su --overwrite=\* --ask 4"
+alias ainstall "paru -S --overwrite=\*" 
+alias ainfo "paru -Si"
+alias asearch "paru -Ss"
+alias remove "paru -Qtdq | paru -Rns -"
 
 ###--git-aliases--###
 alias ginit "git init"
@@ -74,17 +74,17 @@ alias mvd "lms sync"
 alias nd "nodemon -e js,env,html,hbs,css,cert"
 
 ###--rkhunter-aliases--###
-alias rkchk "doas -- rkhunter -c --sk"
-alias rklog "doas -- cat /var/log/rkhunter.log"
-alias rkupd "doas -- rkhunter --update"
+alias rkchk "sudo rkhunter -c --sk"
+alias rklog "sudo cat /var/log/rkhunter.log"
+alias rkupd "sudo rkhunter --update"
 
 ###--systemd-aliases--###
-alias renable "doas -- systemctl enable"
-alias rdisable "doas -- systemctl disable"
-alias rstart "doas -- systemctl start"
-alias rrestart "doas -- systemctl restart"
-alias rstatus "doas -- systemctl status"
-alias rstop "doas -- systemctl stop"
+alias renable "sudo systemctl enable"
+alias rdisable "sudo systemctl disable"
+alias rstart "sudo systemctl start"
+alias rrestart "sudo systemctl restart"
+alias rstatus "sudo systemctl status"
+alias rstop "sudo systemctl stop"
 alias uenable "systemctl enable --user"
 alias udisable "systemctl disable --user"
 alias ustatus "systemctl status --user"
@@ -96,13 +96,13 @@ alias ustop "systemctl stop --user"
 alias errs "journalctl -p 3 -b"
 
 ###--snapper-aliases--###
-alias lssnaphome "doas -- snapper -c home list"
-alias lssnaproot "doas -- snapper -c root list"
-alias snaphome "doas -- snapper -c home -c"
-alias snaproot "doas -- snapper -c root -c"
+alias lssnaphome "sudo snapper -c home list"
+alias lssnaproot "sudo snapper -c root list"
+alias snaphome "sudo snapper -c home -c"
+alias snaproot "sudo snapper -c root -c"
 
 ###--reflector-aliases--###
-alias mirrorup "doas -- reflector --save /etc/pacman.d/mirrorlist -a 48 -l 20 -f 5 --sort rate"
+alias mirrorup "sudo reflector --save /etc/pacman.d/mirrorlist -a 48 -l 20 -f 5 --sort rate"
 
 ###--dotfiles-management-aliases--###
 alias config '/usr/bin/git --git-dir=/home/destruct/.cfg/ --work-tree=/home/destruct'

@@ -79,7 +79,7 @@ def define_keybindings(terminal, colors, font):
 
         # launch common-websites script for opening my common websites
         # which I use on day to day basis
-        Key("M-l",
+        Key("M-r",
             lazy.spawn("common-websites"),
             desc="common web links"),
 
