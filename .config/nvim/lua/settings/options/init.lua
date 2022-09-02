@@ -31,4 +31,7 @@ set.completeopt = "menuone,noselect"
 set.hidden = true
 set.mouse = "a"
 
+set.autoindent = true
+set.filetype.indent = false
+
 vim.notify = require("notify")

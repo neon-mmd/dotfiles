@@ -258,7 +258,7 @@
 
   ;; setting font and sizes
   (set-face-attribute 'default nil :font "Source Code Pro" :height neon/def-font-size)
-  (set-face-attribute 'variable-pitch nil :font "FiraCode Nerd Font Mono" :height neon/variable-pitch-font-size :weight 'regular)
+  (set-face-attribute 'variable-pitch nil :font "FiraCode Nerd Fonts Mono" :height neon/variable-pitch-font-size :weight 'regular)
   (set-face-attribute 'fixed-pitch nil :font "Source Code Pro" :height neon/def-font-size)
 
   )

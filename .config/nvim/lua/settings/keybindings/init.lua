@@ -11,6 +11,8 @@ bind("n","<leader>ff",":Telescope find_files<CR>",opts)
 bind("n","<leader>rg",":Telescope live_grep<CR>",opts)
 bind("n","<leader>ld",":Telescope diagnostics<CR>",opts)
 bind("n","<leader>s",":ToggleTerm<CR>",opts)
+bind("n","<leader>fb",":Format<CR>",opts)
+bind("n","<leader>u",":PackerSync<CR>",opts)
 
 -- Move to previous/next
 bind('n', '<A-,>', '<Cmd>BufferPrevious<CR>', opts)

@@ -36,7 +36,7 @@ colors = color_picker("dracula")
 groups = groups(my_groups)
 mod = "mod4"
 terminal = guess_terminal()
-font = "FiraCode Nerd Font Mono"
+font = "fontawesome"
 
 # ---------------------------------------------keybindings--------------------------------------------
 keys = define_keybindings(terminal, colors, font)
@@ -63,9 +63,9 @@ auto_minimize = True
 # -------------------------------------------autostart---------------------------------------
 
 
-@ hook.subscribe.startup_once
+@hook.subscribe.startup_once
 def autostart():
-    home = os.path.expanduser(r'~/.config/autostart-apps-wm/autostart.sh')
+    home = os.path.expanduser(r"~/.config/autostart-apps-wm/autostart.sh")
     run([home])
 
 

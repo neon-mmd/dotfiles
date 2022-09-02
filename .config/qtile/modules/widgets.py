@@ -32,7 +32,7 @@ def widget_creation(colors):
             Clock(background=colors["5"],
                   foreground=colors["bg"],
                   update_interval=1.0,
-                  format=' %Y-%m-%d %a  %I:%M %p'
+                  format='  %Y-%m-%d %a    %I:%M %p'
                   ),
             unicode(colors["5"], colors["2"],"left",face_style),
             check_battery(colors["bg"],colors["2"]),
@@ -40,7 +40,7 @@ def widget_creation(colors):
             CheckUpdates(
                 update_interval=60,
                 distro="Arch",
-                display_format="{updates}  Updates",
+                display_format="{updates}   Updates",
                 no_update_string="Nothing To Update",
                 colour_no_updates=colors["fg"],
                 colour_have_updates=colors["bg"],
