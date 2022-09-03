@@ -23,7 +23,7 @@ local colors = themes.pick_a_theme("dracula")
 
 local theme = {}
 theme.dir = os.getenv("HOME") .. "/.config/awesome/themes/powerarrow"
-theme.font = "fontawesome 10"
+theme.font = "Iosevka Nerd Font 10"
 theme.fg_normal = colors["bg"]
 theme.fg_focus = colors["bg"]
 theme.fg_urgent = colors["bg"]

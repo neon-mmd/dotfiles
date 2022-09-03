@@ -47,7 +47,7 @@ alias pkgcnt="pacman -Qq | wc -l"
 
 ###--paru-aliases--###
 alias aupd="paru -Su --overwrite=\* --ask 4"
-alias ainstall="paru -S --overwrite=\*" 
+alias ainstall="paru -S --overwrite=\*"
 alias ainfo="paru -Si"
 alias asearch="paru -Ss"
 alias remove="paru -Qtdq | paru -Rns -"

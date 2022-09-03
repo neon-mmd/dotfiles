@@ -36,7 +36,7 @@ colors = color_picker("dracula")
 groups = groups(my_groups)
 mod = "mod4"
 terminal = guess_terminal()
-font = "fontawesome"
+font = "Iosevka Nerd Font"
 
 # ---------------------------------------------keybindings--------------------------------------------
 keys = define_keybindings(terminal, colors, font)

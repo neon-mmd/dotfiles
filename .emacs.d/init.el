@@ -1,4 +1,4 @@
-;; straight.el configuration 
+;; straight.el configuration
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
@@ -19,13 +19,13 @@
 
 ;; no-littering configuration
 (defvar no-littering-etc-directory
-  (expand-file-name "~/.config/emacs/")) 
+  (expand-file-name "~/.config/emacs/"))
 (defvar no-littering-var-directory
-      (expand-file-name "~/.config/emacs/")) 
+  (expand-file-name "~/.config/emacs/"))
 (defvar auto-save-file-name-transforms
-      `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+  `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
 (defvar custom-file (no-littering-expand-etc-file-name "custom.el"))
- 
+
 (require 'recentf)
 (add-to-list 'recentf-exclude no-littering-var-directory)
 (add-to-list 'recentf-exclude no-littering-etc-directory)
@@ -38,9 +38,9 @@
 ;; don't create mess in the .emacs.d folder
 (use-package no-littering
   :straight t
-   )
+  )
 
-;; do garbage collection automatically in minor mode 
+;; do garbage collection automatically in minor mode
 (use-package gcmh
   :straight t
   :custom(
@@ -52,9 +52,9 @@
   :init(gcmh-mode 1)
   )
 
-;;keybindings and line-numbers 
+;;keybindings and line-numbers
 (global-display-line-numbers-mode t)
-(global-set-key (kbd "<escape>") 'keyboard-escape-quit) 
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
 ;;defining font-size and frame-transparency variables
 (defvar neon/def-font-size 120)
@@ -73,7 +73,7 @@
 (auto-save-mode t) ; automatically save files.
 (setq tab-width 4) ; set tab-width to 4.
 (setq use-dialog-box nil) ; don't show dialog boxes.
-(setq visible-mode t) 
+(setq visible-mode t)
 (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*"))) ; set the initial buffer to dashboard
 (setq native-comp-async-report-warnings-errors nil) ; disable compiler warnings as they are disruptive.
 
@@ -101,9 +101,9 @@
    :port 6697
    :nick "slenderHacker"
    :password (password-store-get "erc/irc")) ;; using pass to retrieve password
-  ) 
+  )
 
-;; keybindings 
+;; keybindings
 (use-package general
   :straight t
   :config
@@ -112,7 +112,7 @@
   ;; defining a new keymap prefix
   (define-prefix-command 'ring-map)
   (global-set-key (kbd "C-a") 'ring-map)
-  
+
   (general-create-definer neon/ctrl-a-keys
     :prefix "C-a"
     )
@@ -134,25 +134,26 @@
     "d" 'consult-lsp-diagnostics
     "E" 'emojify-insert-emoji
     "A" 'all-the-icons-insert
+    "F" 'format-all-buffer
     )
 
   (general-def 'normal 'dired-mode-map
     "h" 'dired-single-up-directory
-    "l" 'dired-single-buffer 
+    "l" 'dired-single-buffer
     "R" 'dired-async-do-rename
     "S" 'dired-async-do-symlink
     "C" 'dired-async-do-copy
     "H" 'dired-async-do-hardlink
     )
-  
+
   (general-def 'normal 'company-active-map
     "<tab>" 'company-complete-selection
     )
 
   (general-def 'normal 'lsp-mode-map
     "<tab>" 'company-indent-or-complete-common
-     )
-  
+    )
+
   (general-create-definer neon/ctrl-x-keys
     :prefix "C-x"
     )
@@ -205,12 +206,12 @@
 		eww-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
-;;display startup-time 
+;;display startup-time
 (defun neon/display-startup-time-n-garbage ()
   (message "Emacs loaded in %s with %d garbage collections."
            (format "%.2f seconds"
                    (float-time
-                     (time-subtract after-init-time before-init-time)))
+                    (time-subtract after-init-time before-init-time)))
            gcs-done))
 
 (add-hook 'emacs-startup-hook #'neon/display-startup-time-n-garbage)
@@ -248,7 +249,7 @@
 ;; check whether daemon is running
 (if (daemonp)
     (message "Loading in the daemon!")
-    (message "Loading in regular Emacs!"))
+  (message "Loading in regular Emacs!"))
 
 (defun neon/frame-n-fonts ()
   ;; Set frame transparency
@@ -258,7 +259,7 @@
 
   ;; setting font and sizes
   (set-face-attribute 'default nil :font "Source Code Pro" :height neon/def-font-size)
-  (set-face-attribute 'variable-pitch nil :font "FiraCode Nerd Fonts Mono" :height neon/variable-pitch-font-size :weight 'regular)
+  (set-face-attribute 'variable-pitch nil :font "Iosevka Nerd Font" :height neon/variable-pitch-font-size :weight 'regular)
   (set-face-attribute 'fixed-pitch nil :font "Source Code Pro" :height neon/def-font-size)
 
   )
@@ -277,12 +278,12 @@
 (use-package doom-themes
   :straight t
   :config
-  (setq doom-themes-enable-bold t    
+  (setq doom-themes-enable-bold t
         doom-themes-enable-italic t)
   (load-theme 'doom-dracula t)
   (doom-themes-visual-bell-config)
   (doom-themes-neotree-config)
-  (setq doom-themes-treemacs-theme "doom-tomorrow-night") 
+  (setq doom-themes-treemacs-theme "doom-tomorrow-night")
   (doom-themes-treemacs-config)
   (doom-themes-org-config)
   )
@@ -310,16 +311,16 @@
   :config
   (dashboard-setup-startup-hook)
   (setq dashboard-items '((recents  . 5)
-                        (bookmarks . 5)
-                        (projects . 5)
-                        (agenda . 5)
-                        (registers . 5)))
+                          (bookmarks . 5)
+                          (projects . 5)
+                          (agenda . 5)
+                          (registers . 5)))
   (setq dashboard-startup-banner (expand-file-name "~/.emacs.d/emacs-logo.png"))
   (setq dashboard-center-content t)
   (setq dashboard-set-heading-icons t)
   (setq dashboard-set-file-icons t)
   (setq dashboard-week-agenda t)
-)
+  )
 
 ;; show notifications within emacs
 (use-package alert
@@ -409,14 +410,14 @@
   (async-bytecomp-package-mode 1)
   )
 
-;; improving dired 
+;; improving dired
 (use-package dired
   :after dashboard
   :straight nil
   :commands (dired dired-jump)
   :custom ((dired-listing-switches "-agh --group-directories-first"))
   )
-  
+
 ;; open only single dired buffer
 (use-package dired-single
   :straight t
@@ -450,9 +451,9 @@
 
 ;; get project root
 (defun neon/get-projectile-project-root ()
-   (when (fboundp 'projectile-project-root)
-    (projectile-project-root)) 
-    )
+  (when (fboundp 'projectile-project-root)
+    (projectile-project-root))
+  )
 
 ;; consult
 (use-package consult
@@ -522,19 +523,19 @@
 
 ;; indicate incomplete brackets and braces
 (use-package rainbow-delimiters
-    :hook((c-mode          
-         c++-mode        
-         c-or-c++-mode   
-         java-mode       
-         js-mode         
-	 js2-mode        
-         js-jsx-mode     
-         typescript-mode 
-         python-mode     
-         web-mode       
-	 html-mode       
-	 sh-mode         
-	 lua-mode        
+  :hook((c-mode
+         c++-mode
+         c-or-c++-mode
+         java-mode
+         js-mode
+	 js2-mode
+         js-jsx-mode
+         typescript-mode
+         python-mode
+         web-mode
+	 html-mode
+	 sh-mode
+	 lua-mode
 	 rust-mode
 	 emacs-lisp-mode
          ). rainbow-delimiters-mode)
@@ -551,11 +552,11 @@
 ;; vterm
 (setq shell-file-name "/bin/fish")
 (use-package vterm
-  :after dashboard 
+  :after dashboard
   :straight t
   :config
   (setq-local vterm-max-scrollback 5000)
- )
+  )
 
 ;; lsp
 (use-package lsp-mode
@@ -645,8 +646,8 @@
 ;; make company-ui better
 (use-package company-box
   :straight t
-   :hook(company-mode . company-box-mode)
-   )
+  :hook(company-mode . company-box-mode)
+  )
 
 ;; make company remember recent and frequently used completion
 (use-package company-prescient
@@ -659,9 +660,9 @@
 ;; on the flychecking for errors
 (use-package flycheck
   :straight t
-   :after lsp-mode
-   :hook(lsp-mode . flycheck-mode)
-   )
+  :after lsp-mode
+  :hook(lsp-mode . flycheck-mode)
+  )
 
 ;; yasnippet-snippets
 (use-package yasnippet-snippets
@@ -670,12 +671,12 @@
   )
 
 ;; yasnippet code completion
- (use-package yasnippet
-   :hook(lsp-mode . yas-minor-mode)
-   :straight t
-   :config
-   (yas-reload-all)
-   )
+(use-package yasnippet
+  :hook(lsp-mode . yas-minor-mode)
+  :straight t
+  :config
+  (yas-reload-all)
+  )
 
 ;; comment out lines using M-/
 (use-package evil-nerd-commenter
@@ -696,7 +697,7 @@
 
 (use-package lsp-java
   :straight t
-   :hook(java-mode-hook . lsp))
+  :hook(java-mode-hook . lsp))
 
 ;; extra language modes in emacs
 (use-package rust-mode
@@ -738,9 +739,9 @@
 ;; Erc to chat on irc
 (use-package erc
   :straight nil
-  :commands erc-tls 
+  :commands erc-tls
   :config
-  
+
   ;; basic configuration
   (setq erc-server "irc.libera.chat"
 	erc-nick "slenderHacker"    ;; <---- please make sure to change this
@@ -768,7 +769,7 @@
   (setq erc-pals '("#acwd")
         erc-fools '()
         erc-keywords '("slenderHacker" "python" "c++" "c" "java" "javascript" "html" "css" "lua" "nodejs" "sqlite" "rust"))
-  
+
   ;; show notifications when someone mentions my name
   ;; (add-to-list 'erc-modules 'notifications)
 
@@ -802,24 +803,113 @@
 
 ;; visulise color with rainbow-mode
 (use-package rainbow-mode
-  :hook((c-mode          
-         c++-mode        
-         c-or-c++-mode   
-         java-mode       
-         js-mode         
-	 js2-mode        
-         js-jsx-mode     
-         typescript-mode 
-         python-mode     
-         web-mode       
-	 html-mode       
-	 sh-mode         
-	 lua-mode        
+  :hook((c-mode
+         c++-mode
+         c-or-c++-mode
+         java-mode
+         js-mode
+	 js2-mode
+         js-jsx-mode
+         typescript-mode
+         python-mode
+         web-mode
+	 html-mode
+	 sh-mode
+	 lua-mode
 	 rust-mode
 	 emacs-lisp-mode
          ). rainbow-mode)
   :straight t
   :after dashboard
+  )
+
+;; format code automatically
+(use-package format-all
+  :straight t
+  :custom
+  (setq format-all-default-formatters
+	'(("Assembly" asmfmt)
+	  ("ATS" atsfmt)
+	  ("Bazel" buildifier)
+	  ("BibTeX" emacs-bibtex)
+	  ("C" clang-format)
+	  ("C#" clang-format)
+	  ("C++" clang-format)
+	  ("Cabal Config" cabal-fmt)
+	  ("Clojure" zprint)
+	  ("CMake" cmake-format)
+	  ("Crystal" crystal)
+	  ("CSS" prettier)
+	  ("Cuda" clang-format)
+	  ("D" dfmt)
+	  ("Dart" dart-format)
+	  ("Dhall" dhall)
+	  ("Dockerfile" dockfmt)
+	  ("Elixir" mix-format)
+	  ("Elm" elm-format)
+	  ("Emacs Lisp" emacs-lisp)
+	  ("Erlang" efmt)
+	  ("F#" fantomas)
+	  ("Fish" beautysh)   ; fish-indent
+	  ("Fortran Free Form" fprettify)
+	  ("GLSL" clang-format)
+	  ("Go" gofmt)
+	  ("GraphQL" prettier)
+	  ("Haskell" brittany)
+	  ("HTML" html-tidy)
+	  ("HTML+ERB" erb-format)
+	  ("Java" clang-format)
+	  ("JavaScript" prettier)
+	  ("JSON" prettier)
+	  ("JSON5" prettier)
+	  ("Jsonnet" jsonnetfmt)
+	  ("JSX" prettier)
+	  ("Kotlin" ktlint)
+	  ("LaTeX" latexindent)
+	  ("Less" prettier)
+	  ("Literate Haskell" brittany)
+	  ("Lua" lua-fmt)
+	  ("Markdown" prettier)
+	  ("Nix" nixpkgs-fmt)
+	  ("Objective-C" clang-format)
+	  ("OCaml" ocp-indent)
+	  ("Perl" perltidy)
+	  ("PHP" prettier)
+	  ("Protocol Buffer" clang-format)
+	  ("PureScript" purty)
+	  ("Python" black)
+	  ("R" styler)
+	  ("Reason" bsrefmt)
+	  ("ReScript" rescript)
+	  ("Ruby" rufo)
+	  ("Rust" rustfmt)
+	  ("Scala" scalafmt)
+	  ("SCSS" prettier)
+	  ("Shell" beautysh)
+	  ("Solidity" prettier)
+	  ("SQL" sqlformat)
+	  ("Svelte" prettier)
+	  ("Swift" swiftformat)
+	  ("Terraform" terraform-fmt)
+	  ("TOML" prettier)
+	  ("TSX" prettier)
+	  ("TypeScript" prettier)
+	  ("V" v-fmt)
+	  ("Verilog" istyle-verilog)
+	  ("Vue" prettier)
+	  ("XML" html-tidy)
+	  ("YAML" prettier)
+	  ("Zig" zig)
+	  ("_Angular" prettier)
+	  ("_Flow" prettier)
+	  ("_Gleam" gleam)
+	  ("_Ledger" ledger-mode)
+	  ("_Nginx" nginxfmt)
+	  ("_Snakemake" snakefmt))
+	)
+
+  :hook (format-all-mode-hook . format-all-ensure-formatter)
+  :after lsp
   )
 
 ;; password management with pass
@@ -846,11 +936,11 @@
 
 ;; org-configuration
 (defun neon/org-config ()
-  ;; replacing org-list symbol '.' with arrows 
+  ;; replacing org-list symbol '.' with arrows
   (font-lock-add-keywords
- 'org-mode
- '(("^[[:space:]]*\\(-\\) "
-    0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "➞")))))
+   'org-mode
+   '(("^[[:space:]]*\\(-\\) "
+      0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "➞")))))
 
   ;; Set faces for heading levels.
   ;; rainbow colored headings with different colored heading
@@ -889,7 +979,7 @@
 ;; org
 (use-package org
   :after dashboard
-  :straight t  ; required to update the package 
+  :straight t  ; required to update the package
   :hook
   (org-mode . visual-line-mode)
   (org-mode . org-indent-mode)
@@ -900,7 +990,7 @@
   (org-startup-with-inline-images t)
   (org-hide-emphasis-markers t)
   (org-agenda-files '("~/rest/sheduledTasks/tasks.org"))
-)
+  )
 
 ;; making heading look fancier and elegant using org-bullets.
 (use-package org-bullets
@@ -925,15 +1015,15 @@
 ;; and efficiency.
 (with-eval-after-load 'org
   (org-babel-do-load-languages
-      'org-babel-load-languages
-      '((emacs-lisp . t)
-        (python . t)
-        (java . t)
-        (shell . t)
-        (css . t)
-        (js . t)
-        (lua . t)
-	))
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (python . t)
+     (java . t)
+     (shell . t)
+     (css . t)
+     (js . t)
+     (lua . t)
+     ))
 
   (push '("conf-unix" . conf-unix) org-src-lang-modes))
 

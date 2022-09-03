@@ -40,7 +40,7 @@ def widget_creation(colors):
             CheckUpdates(
                 update_interval=60,
                 distro="Arch",
-                display_format="{updates}   Updates",
+                display_format="{updates}   Updates",
                 no_update_string="Nothing To Update",
                 colour_no_updates=colors["fg"],
                 colour_have_updates=colors["bg"],
