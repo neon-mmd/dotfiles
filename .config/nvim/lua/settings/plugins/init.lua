@@ -67,10 +67,11 @@ return require("packer").startup(function(use)
 	use("windwp/nvim-autopairs")
 
 	-- productivity
-	-- use("levouh/tint.nvim")
+	use("levouh/tint.nvim")
 	use("nvim-telescope/telescope.nvim")
 	use("jose-elias-alvarez/null-ls.nvim")
 	use("TimUntersberger/neogit")
+    use("lewis6991/impatient.nvim")
 
 	-- terminal in neovim
 	use("akinsho/toggleterm.nvim")
