@@ -105,7 +105,7 @@ wk.register({
 wk.register({
     g = {
         name = "General",
-        q = { "<cmd>quit<cr>", "Quit" },
+        q = { "<cmd>quit!<cr>", "Quit" },
         w = { "<cmd>w!<cr>", "Write" },
         n = { "<cmd>enew<cr>", "New File" },
         d = { "<cmd>Alpha<cr>", "Dashboard" },

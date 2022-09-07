@@ -34,4 +34,6 @@ set.mouse = "a"
 set.autoindent = true
 set.filetype.indent = false
 
+set.clipboard = "unnamedplus"
+
 vim.notify = require("notify")
