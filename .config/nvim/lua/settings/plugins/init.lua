@@ -1,8 +1,9 @@
-local status, _ = pcall(require, "packer")
-
-if not status then
-    vim.notify("ERROR: packer.nvim not found!")
-    return
+local fn = vim.fn
+local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+if fn.empty(fn.glob(install_path)) > 0 then
+    packer_bootstrap =
+    fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
+    vim.cmd([[packadd packer.nvim]])
 end
 
 vim.cmd([[
@@ -12,12 +13,11 @@ vim.cmd([[
   augroup end
 ]])
 
-local fn = vim.fn
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-    packer_bootstrap =
-    fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
-    vim.cmd([[packadd packer.nvim]])
+local status, _ = pcall(require, "packer")
+
+if not status then
+    vim.notify("ERROR: packer.nvim not found!")
+    return
 end
 
 return require("packer").startup(function(use)
@@ -44,6 +44,10 @@ return require("packer").startup(function(use)
     use("nvim-lualine/lualine.nvim")
     use("romgrk/barbar.nvim")
     use("norcalli/nvim-colorizer.lua")
+    use({
+        "lewis6991/gitsigns.nvim",
+        tag = "release",
+    })
 
     -- beautify code
     use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })

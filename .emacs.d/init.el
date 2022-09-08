@@ -153,7 +153,7 @@
   (general-create-definer neon/ctrl-q-keys
     :prefix "C-q"
     )
-  
+
   (neon/ctrl-q-keys
     "v" 'vterm-other-window
     "s" 'treemacs
@@ -568,22 +568,9 @@
 
 ;; indicate incomplete brackets and braces
 (use-package rainbow-delimiters
-  :hook((c-mode
-         c++-mode
-         c-or-c++-mode
-         java-mode
-         js-mode
-	 js2-mode
-         js-jsx-mode
-         typescript-mode
-         python-mode
-         web-mode
-	 html-mode
-	 sh-mode
-	 lua-mode
-	 rust-mode
-	 emacs-lisp-mode
-         ). rainbow-delimiters-mode)
+  :hook((lsp-mode
+	 emacs-lisp-mode)
+	. rainbow-delimiters-mode)
   :after dashboard
   :straight t
   )
@@ -765,7 +752,7 @@
 ;; Entries older than 1 weeks are marked as read
 (add-hook 'elfeed-new-entry-hook
           (elfeed-make-tagger :before "1 weeks ago"
-                              :remove 'unread))
+			      :remove 'unread))
 
 ;; elfeed-org to enhance elfeed
 (use-package elfeed-org
@@ -848,22 +835,9 @@
 
 ;; visulise color with rainbow-mode
 (use-package rainbow-mode
-  :hook((c-mode
-         c++-mode
-         c-or-c++-mode
-         java-mode
-         js-mode
-	 js2-mode
-         js-jsx-mode
-         typescript-mode
-         python-mode
-         web-mode
-	 html-mode
-	 sh-mode
-	 lua-mode
-	 rust-mode
-	 emacs-lisp-mode
-         ). rainbow-mode)
+  :hook((lsp-mode
+	 emacs-lisp-mode)
+	. rainbow-mode)
   :straight t
   :after dashboard
   )
@@ -901,11 +875,33 @@
   :after lsp
   )
 
+;; show git signs in git projects
+(use-package diff-hl
+  :straight t
+  :after dashboard
+  :init
+  (global-diff-hl-mode)
+  )
+
 ;; password management with pass
 (use-package pass
   :straight t
   :after dashboard
   )
+
+;; install treesitter
+(use-package tree-sitter
+  :straight t
+  )
+
+;; install treesitter language parser
+(use-package tree-sitter-langs
+  :straight t
+  )
+
+;; enable treesitter highlighting
+(global-tree-sitter-mode)
+(add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
 
 ;; to enable acessing of password from pass.
 (use-package auth-source-pass

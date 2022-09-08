@@ -113,28 +113,6 @@ wk.register({
 }, { prefix = "<leader>" })
 
 wk.register({
-    ["A"] = {
-        name = "Buffer Management",
-        [","] = { "<cmd>BufferPrevious<cr>", "Previous" },
-        ["."] = { "<cmd>BufferNext<cr>", "Next" },
-        ["<"] = { "<cmd>BufferMovePrevious<cr>", "Move to Previous" },
-        [">"] = { "<cmd>BufferMoveNext<cr>", "Move to Next" },
-        ["1"] = { "<cmd>BufferGoto 1<cr>", "Goto 1" },
-        ["2"] = { "<cmd>BufferGoto 2<cr>", "Goto 2" },
-        ["3"] = { "<cmd>BufferGoto 3<cr>", "Goto 3" },
-        ["4"] = { "<cmd>BufferGoto 4<cr>", "Goto 4" },
-        ["5"] = { "<cmd>BufferGoto 5<cr>", "Goto 5" },
-        ["6"] = { "<cmd>BufferGoto 6<cr>", "Goto 6" },
-        ["7"] = { "<cmd>BufferGoto 7<cr>", "Goto 7" },
-        ["8"] = { "<cmd>BufferGoto 8<cr>", "Goto 8" },
-        ["9"] = { "<cmd>BufferGoto 9<cr>", "Goto 9" },
-        ["0"] = { "<cmd>BufferGoto 0<cr>", "Goto 0" },
-        p = { "<cmd>BufferPin<cr>", "Pin" },
-        c = { "<cmd>BufferClose<cr>", "Close" },
-    },
-})
-
-wk.register({
     b = {
         name = "Buffer Order",
         b = { "<cmd>BufferOrderByBufferNumber<cr>", "Number" },
@@ -144,9 +122,3 @@ wk.register({
     },
 }, { prefix = " " })
 
-wk.register({
-    ["C"] = {
-        name = "Buffer/Splits",
-        p = { "<cmd>BufferPick<cr>", "Pick" },
-    },
-})
