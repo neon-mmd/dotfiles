@@ -35,5 +35,6 @@ set.autoindent = true
 set.filetype.indent = false
 
 set.clipboard = "unnamedplus"
+set.laststatus = 3
 
 vim.notify = require("notify")

@@ -80,9 +80,12 @@ wk.register({
 wk.register({
     l = {
         name = "Lsp",
-        d = { "<cmd>Telescope diagnostics<cr>", "Lsp Diagnostics" },
+        d = { "<cmd>TroubleToggle<cr>", "Toggle Trouble Diagnostics" },
         f = { "<cmd>Format<cr>", "Format Buffer" },
         i = { "<cmd>LspInstallInfo<cr>", "Lsp Install Info" },
+        c = { "<cmd>Lspsaga code_actions<cr>", "Lsp Code Actions" },
+        p = { "<cmd>Lspsaga peek_definition<cr>", "Lsp Preview Defination" },
+        s = { "<cmd>Lspsaga show_cursor_diagnostics<cr>", "Lsp Diagnostics" },
     },
 }, { prefix = "<leader>" })
 
@@ -99,6 +102,7 @@ wk.register({
         name = "Applications/Utilities",
         g = { "<cmd>Neogit<cr>", "Open Git" },
         u = { "<cmd>PackerSync<cr>", "Update/Install Plugins" },
+        t = { "<cmd>TodoTelescope<cr>", "Show All Todos in Telescope View" },
     },
 }, { prefix = "<leader>" })
 
@@ -109,6 +113,9 @@ wk.register({
         w = { "<cmd>w!<cr>", "Write" },
         n = { "<cmd>enew<cr>", "New File" },
         d = { "<cmd>Alpha<cr>", "Dashboard" },
+        V = { "<cmd>set winbar=%f<cr>", "WinBar On" },
+        v = { "<cmd>set winbar='<cr>", "WinBar Off" },
+        g = { "<cmd>set laststatus=2<cr>", "Laststatus Off" },
     },
 }, { prefix = "<leader>" })
 
@@ -121,4 +128,3 @@ wk.register({
         w = { "<cmd>BufferOrderByWindowNumber<cr>", "Window Nu Numbermber" },
     },
 }, { prefix = " " })
-

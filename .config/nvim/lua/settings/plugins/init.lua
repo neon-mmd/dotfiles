@@ -48,6 +48,7 @@ return require("packer").startup(function(use)
         "lewis6991/gitsigns.nvim",
         tag = "release",
     })
+    use({ "kevinhwang91/nvim-bqf" })
 
     -- beautify code
     use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
@@ -76,6 +77,9 @@ return require("packer").startup(function(use)
     use("jose-elias-alvarez/null-ls.nvim")
     use("TimUntersberger/neogit")
     use("lewis6991/impatient.nvim")
+    use("folke/trouble.nvim")
+    use("folke/todo-comments.nvim")
+    use({ "glepnir/lspsaga.nvim", branch = "main" })
 
     -- terminal in neovim
     use("akinsho/toggleterm.nvim")
