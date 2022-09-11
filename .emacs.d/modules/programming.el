@@ -231,9 +231,14 @@
         hl-todo-keyword-faces
         `(("TODO"       bold :background "#66B3FF" :foreground "#000000")
           ("FIX"        bold :background "#ff0000" :foreground "#ffffff")
+          ("FIXME"      bold :background "#ff0000" :foreground "#ffffff")
+          ("BUG"        bold :background "#ff0000" :foreground "#ffffff")
+          ("FIXIT"      bold :background "#ff0000" :foreground "#ffffff")
+          ("ISSUE"      bold :background "#ff0000" :foreground "#ffffff")
           ("HACK"       bold :background "#E6BF00" :foreground "#000000")
           ("PERF"       bold :background "#80D4FF" :foreground "#000000")
           ("NOTE"       bold :background "#B3B300" :foreground "#000000")
+          ("TEST"       bold :background "#0000ff" :foreground "#000000")
           ("WARNING"    bold :background "#808000" :foreground "#000000")))
   )
 
