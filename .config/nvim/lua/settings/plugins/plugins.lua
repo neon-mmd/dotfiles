@@ -1,22 +1,27 @@
-local fn = vim.fn
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-    packer_bootstrap =
-    fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
-    vim.cmd([[packadd packer.nvim]])
+local bootstrap = function ()
+    local fn = vim.fn
+    local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+    if fn.empty(fn.glob(install_path)) > 0 then
+        fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
+        vim.cmd([[packadd packer.nvim]])
+        return true
+    end
+    return false
 end
+
+local packer_bootstrap = bootstrap()
 
 vim.cmd([[
   augroup packer_user_config
     autocmd!
-    autocmd BufWritePost init.lua source <afile> | PackerSync
+    autocmd BufWritePost plugins.lua source <afile> | PackerSync
   augroup end
 ]])
 
 local status, _ = pcall(require, "packer")
 
 if not status then
-    vim.notify("ERROR: packer.nvim not found!")
+    vim.notify("ERROR: Packer not found!!")
     return
 end
 
@@ -31,12 +36,14 @@ return require("packer").startup(function(use)
 
     -- lsp
     use("neovim/nvim-lspconfig")
-    use("onsails/lspkind.nvim")
     use("williamboman/nvim-lsp-installer")
 
     -- autocompletions
     use("hrsh7th/nvim-cmp")
+    use("hrsh7th/cmp-path")
+    use("hrsh7th/cmp-buffer")
     use("hrsh7th/cmp-nvim-lsp")
+    use("hrsh7th/cmp-nvim-lua")
     use("saadparwaiz1/cmp_luasnip")
 
     -- asthetics
@@ -49,6 +56,8 @@ return require("packer").startup(function(use)
         tag = "release",
     })
     use({ "kevinhwang91/nvim-bqf" })
+    use("windwp/nvim-spectre")
+    use("onsails/lspkind.nvim")
 
     -- beautify code
     use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
@@ -74,11 +83,14 @@ return require("packer").startup(function(use)
     -- productivity
     use("levouh/tint.nvim")
     use("nvim-telescope/telescope.nvim")
+    use("nvim-telescope/telescope-project.nvim")
     use("jose-elias-alvarez/null-ls.nvim")
     use("TimUntersberger/neogit")
     use("lewis6991/impatient.nvim")
     use("folke/trouble.nvim")
     use("folke/todo-comments.nvim")
+    use("windwp/nvim-ts-autotag")
+    use("Pocco81/auto-save.nvim")
     use({ "glepnir/lspsaga.nvim", branch = "main" })
 
     -- terminal in neovim

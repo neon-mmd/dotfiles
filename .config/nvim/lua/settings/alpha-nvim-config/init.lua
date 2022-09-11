@@ -1,5 +1,6 @@
 local status_ok, alpha = pcall(require, "alpha")
 if not status_ok then
+    vim.notify("ERROR: Alpha not found!!")
     return
 end
 
@@ -13,23 +14,25 @@ dashboard.section.header.val = {
     [[ VP   V8P Y88888P  `Y88P'     YP    Y888888P YP  YP  YP ]],
 }
 dashboard.section.buttons.val = {
-    dashboard.button("f", "  Find file", ":Telescope find_files <CR>"),
-    dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
-    dashboard.button("p", "  Find project", ":Telescope projects <CR>"),
-    dashboard.button("r", "  Recently used files", ":Telescope oldfiles <CR>"),
-    dashboard.button("t", "  Find text", ":Telescope live_grep <CR>"),
-    dashboard.button("c", "  Configuration", ":e ~/.config/nvim/init.lua <CR>"),
-    dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
+    dashboard.button(";ff", "  Find file", ":Telescope find_files <CR>"),
+    dashboard.button(";gn", "  New file", ":enew <BAR> startinsert <CR>"),
+    dashboard.button(";gp", "  Find project", ":Telescope projects <CR>"),
+    dashboard.button(";fr", "  Recently used files", ":Telescope oldfiles <CR>"),
+    dashboard.button(";fg", "  Find text", ":Telescope live_grep <CR>"),
+    dashboard.button(";gc", "  Configuration", ":e ~/.config/nvim/init.lua <CR>"),
+    dashboard.button(";gq", "  Quit Neovim", ":qa<CR>"),
 }
 
 local function footer()
-    local randomFooterText = { "Vim is great!!!"
-        , "Why Vi use Vim!"
-        , "Vim -- Vi improved!"
-        , "Vim is awesome"
-        , "I love Vim"
-        , "Vi made easy!"
-        , "Other text editors are nuts!!!"
+    local randomFooterText = {
+        "Vim is great!!!",
+        "Why Vi use Vim!",
+        "Vim -- Vi improved!",
+        "Vim is awesome",
+        "I love Vim",
+        "Vi made easy!",
+        "Other text editors are nuts!!!",
+        "Vi is not a layer, it is a philosophy!",
     }
 
     return randomFooterText[math.random(1, #randomFooterText)]
