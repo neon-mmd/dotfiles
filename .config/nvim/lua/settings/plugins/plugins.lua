@@ -1,4 +1,4 @@
-local bootstrap = function ()
+local bootstrap = function()
     local fn = vim.fn
     local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
     if fn.empty(fn.glob(install_path)) > 0 then
@@ -18,14 +18,21 @@ vim.cmd([[
   augroup end
 ]])
 
-local status, _ = pcall(require, "packer")
+local status, packer = pcall(require, "packer")
 
 if not status then
     vim.notify("ERROR: Packer not found!!")
     return
 end
 
-return require("packer").startup(function(use)
+packer.init({
+    enable = true,
+    threshold = 0,
+    max_jobs = 4,
+    display = {},
+})
+
+return packer.startup(function(use)
     -- general
     use("wbthomason/packer.nvim") -- package manager for neovim
     use("GustavoPrietoP/doom-themes.nvim") -- doom themes for neovim
@@ -58,6 +65,7 @@ return require("packer").startup(function(use)
     use({ "kevinhwang91/nvim-bqf" })
     use("windwp/nvim-spectre")
     use("onsails/lspkind.nvim")
+    use("David-Kunz/markid")
 
     -- beautify code
     use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
@@ -92,11 +100,15 @@ return require("packer").startup(function(use)
     use("windwp/nvim-ts-autotag")
     use("Pocco81/auto-save.nvim")
     use({ "glepnir/lspsaga.nvim", branch = "main" })
+    use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+    use("nvim-orgmode/orgmode")
 
     -- terminal in neovim
     use("akinsho/toggleterm.nvim")
 
     if packer_bootstrap then
-        require("packer").sync()
+        packer.sync()
+    else
+        packer.install()
     end
 end)

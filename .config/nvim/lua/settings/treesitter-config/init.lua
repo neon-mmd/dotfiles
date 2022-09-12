@@ -44,4 +44,7 @@ require("nvim-treesitter.configs").setup({
             "hbs",
         },
     },
+    markid = {
+        enable = true,
+    },
 })

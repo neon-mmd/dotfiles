@@ -84,7 +84,7 @@ wk.register({
 		f = { "<cmd>Format<cr>", "Format Buffer" },
 		i = { "<cmd>LspInstallInfo<cr>", "Lsp Install Info" },
 		c = { "<cmd>Lspsaga code_actions<cr>", "Lsp Code Actions" },
-		p = { "<cmd>Lspsaga peek_definition<cr>", "Lsp Preview Defination" },
+		p = { "<cmd>Lspsaga hover_doc<cr>", "Lsp Preview Defination" },
 		s = { "<cmd>Lspsaga show_cursor_diagnostics<cr>", "Lsp Diagnostics" },
 	},
 }, { prefix = "<leader>" })
@@ -117,7 +117,7 @@ wk.register({
 		V = { "<cmd>set winbar=%f<cr>", "WinBar On" },
 		v = { "<cmd>set winbar='<cr>", "WinBar Off" },
 		g = { "<cmd>set laststatus=2<cr>", "Laststatus Off" },
-		p = { "<cmd>lua require'telescope'.extensions.project.project{}<cr>", "Open Projects" },
+		p = { "<cmd>Telescope project<cr>", "Open Projects" },
 	},
 }, { prefix = "<leader>" })
 

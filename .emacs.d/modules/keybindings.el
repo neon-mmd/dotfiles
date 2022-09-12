@@ -63,6 +63,8 @@
     "d" 'consult-lsp-diagnostics
     "p" 'check-parens
     "f" 'format-all-buffer
+    "i" 'lsp-ui-doc-glance
+    "c" 'lsp-find-definition
     )
 
   (general-create-definer neon/ctrl-j-keys
