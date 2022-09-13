@@ -1,9 +1,15 @@
 local status_ok, lsp_installer = pcall(require, "nvim-lsp-installer")
 if not status_ok then
+    vim.notify("ERROR: lsp_installer not found!!")
 	return
 end
 
-local lspconfig = require("lspconfig")
+local status,lspconfig = pcall(require,"lspconfig")
+
+if not status then
+    vim.notify("ERROR: lspconfig not found!!")
+    return
+end
 
 local servers = { "pylsp", "sumneko_lua","clangd", "rust_analyzer", "denols", "jdtls", "cssls", "html", "bashls" }
 

@@ -1,4 +1,10 @@
-require("telescope").setup({
+local status,telescope = pcall(require,"telescope")
+if not status then
+    vim.notify("ERROR: telescope not found!!")
+    return
+end
+
+telescope.setup({
 	extensions = {
 		fzf = {
 			fuzzy = true, -- false will only do exact matching
@@ -28,5 +34,5 @@ require("telescope").setup({
 	},
 })
 
-require("telescope").load_extension("fzf")
-require("telescope").load_extension("project")
+telescope.load_extension("fzf")
+telescope.load_extension("project")

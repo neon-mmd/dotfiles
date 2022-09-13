@@ -1,4 +1,10 @@
-require("todo-comments").setup ({
+local status,todo = pcall(require,"todo-comments")
+if not status then
+    vim.notify("ERROR: todo-comments not found!!")
+    return
+end
+
+todo.setup ({
 	signs = true, -- show icons in the signs column
 	sign_priority = 8, -- sign priority
 	-- keywords recognized as todo comments

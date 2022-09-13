@@ -1,4 +1,8 @@
-local wk = require("which-key")
+local status,wk = pcall(require,"which-key")
+if not status then
+    vim.notify("ERROR: which-key not found!!")
+    return
+end
 
 wk.setup({
 	plugins = {

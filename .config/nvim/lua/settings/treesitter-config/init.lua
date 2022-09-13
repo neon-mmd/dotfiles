@@ -1,4 +1,10 @@
-require("nvim-treesitter.configs").setup({
+local status,treesitter = pcall(require,"nvim-treesitter")
+if not status then
+    vim.notify("ERROR: nvim-treesitter not found!!")
+    return
+end
+
+treesitter.setup({
     ensure_installed = maintained,
     sync_install = false,
     highlight = {

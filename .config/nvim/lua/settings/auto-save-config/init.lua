@@ -1,6 +1,10 @@
 local status, AutoSave = pcall(require, 'auto-save')
+if not status then
+    vim.notify("ERROR: auto-save not found!!")
+    return
+end
 
-require("auto-save").setup({
+AutoSave.setup({
 	enabled = true, -- start auto-save when the plugin is loaded (i.e. when your package manager loads it)
 	execution_message = {
 		message = function() -- message to print on save

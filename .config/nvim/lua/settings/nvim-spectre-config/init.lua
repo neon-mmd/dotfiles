@@ -1,4 +1,10 @@
-require("spectre").setup({
+local status,spectre = pcall(require,"spectre")
+if not status then
+    vim.notify("ERROR: spectre not found!!")
+    return
+end
+
+spectre.setup({
     color_devicons = true,
     open_cmd = "vnew",
     live_update = false, -- auto excute search again when you write any file in vim

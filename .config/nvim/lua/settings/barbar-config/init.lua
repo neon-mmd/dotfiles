@@ -1,4 +1,11 @@
-require'bufferline'.setup {
+local status, bufferline = pcall(require,'bufferline')
+
+if not status then
+    vim.notfiy("ERROR: bufferline not found!!")
+    return
+end
+
+bufferline.setup {
   animation = false,
   auto_hide = false,
   tabpages = false,

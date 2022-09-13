@@ -1,4 +1,8 @@
-local saga = require("lspsaga")
+local status,saga = pcall(require,"lspsaga")
+if not status then
+    vim.notify("ERROR: lspsaga not found!!")
+    return
+end
 
 saga.init_lsp_saga({
     -- Options with default value
