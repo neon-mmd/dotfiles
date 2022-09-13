@@ -1,19 +1,19 @@
-local status_ok, lsp_installer = pcall(require, "nvim-lsp-installer")
+local status_ok, mason_installer = pcall(require, "mason-lspconfig")
 if not status_ok then
-    vim.notify("ERROR: lsp_installer not found!!")
+	vim.notify("ERROR: mason-lspconfig not found!!")
 	return
 end
 
-local status,lspconfig = pcall(require,"lspconfig")
+local status, lspconfig = pcall(require, "lspconfig")
 
 if not status then
-    vim.notify("ERROR: lspconfig not found!!")
-    return
+	vim.notify("ERROR: lspconfig not found!!")
+	return
 end
 
-local servers = { "pylsp", "sumneko_lua","clangd", "rust_analyzer", "denols", "jdtls", "cssls", "html", "bashls" }
+local servers = { "pylsp", "sumneko_lua", "clangd", "rust_analyzer", "denols", "jdtls", "cssls", "html", "bashls" }
 
-lsp_installer.setup({
+mason_installer.setup({
 	ensure_installed = servers,
 })
 
