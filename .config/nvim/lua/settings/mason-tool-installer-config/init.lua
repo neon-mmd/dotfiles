@@ -12,6 +12,7 @@ mason_tool_installer.setup({
 		"black",
 		"prettier",
 		"flake8",
+		"clang-format",
 	},
 	auto_update = true,
 
