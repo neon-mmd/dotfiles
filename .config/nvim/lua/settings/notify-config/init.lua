@@ -7,4 +7,6 @@ end
 
 notify.setup({
     background_color = "#000000",
+    timeout = 1,
+    stages = "fade"
 })

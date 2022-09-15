@@ -36,8 +36,8 @@ return packer.startup(function(use)
     -- general
     use("wbthomason/packer.nvim") -- package manager for neovim
     use("GustavoPrietoP/doom-themes.nvim") -- doom themes for neovim
-    use("nvim-lua/popup.nvim") -- required
-    use("nvim-lua/plenary.nvim") -- required
+    use("nvim-lua/popup.nvim") -- popup api for neovim to improve popups
+    use("nvim-lua/plenary.nvim") -- plenary to provide vim apis
     use("kyazdani42/nvim-web-devicons") -- for icons
     use("kyazdani42/nvim-tree.lua") -- tree like nerd tree in neovim
 
@@ -104,6 +104,7 @@ return packer.startup(function(use)
     use({ "glepnir/lspsaga.nvim", branch = "main" })
     use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
     use("nvim-orgmode/orgmode")
+    use("uga-rosa/ccc.nvim")
 
     -- terminal in neovim
     use("akinsho/toggleterm.nvim")
