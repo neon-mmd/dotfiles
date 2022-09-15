@@ -107,7 +107,7 @@ wk.register({
         g = { "<cmd>Neogit<cr>", "Open Git" },
         u = { "<cmd>PackerSync<cr>", "Update/Install Plugins" },
         t = { "<cmd>TodoTelescope<cr>", "Show All Todos in Telescope View" },
-        c = { "<cmd>CccPick<cr>", "Color Picker" },
+        c = { "<cmd>PickColorInsert<cr>", "Color Picker" },
     },
 }, { prefix = "<leader>" })
 

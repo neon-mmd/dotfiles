@@ -104,7 +104,7 @@ return packer.startup(function(use)
     use({ "glepnir/lspsaga.nvim", branch = "main" })
     use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
     use("nvim-orgmode/orgmode")
-    use("uga-rosa/ccc.nvim")
+    use("ziontee113/color-picker.nvim")
 
     -- terminal in neovim
     use("akinsho/toggleterm.nvim")
