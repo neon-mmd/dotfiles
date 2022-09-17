@@ -53,6 +53,10 @@
 ;;treemacs
 (use-package lsp-treemacs
   :straight t
+  :config
+  (setq treemacs-width 30)
+  (setq treemacs--width-is-locked nil)
+  (setq treemacs-width-is-initially-locked nil)
   :hook(lsp-mode . lsp-treemacs-sync-mode)
   )
 

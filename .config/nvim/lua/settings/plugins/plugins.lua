@@ -85,7 +85,7 @@ return packer.startup(function(use)
     use("folke/which-key.nvim")
 
     -- fancy dashboard for neovim
-    use("goolord/alpha-nvim")
+    use("glepnir/dashboard-nvim")
 
     -- automatically close brackets
     use("windwp/nvim-autopairs")

@@ -21,6 +21,10 @@
 ;;keybindings and line-numbers
 (global-display-line-numbers-mode t)
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+(global-set-key (kbd "C-<left>") 'shrink-window-horizontally)
+(global-set-key (kbd "C-<right>") 'enlarge-window-horizontally)
+(global-set-key (kbd "C-<down>") 'shrink-window)
+(global-set-key (kbd "C-<up>") 'enlarge-window)
 
 ;; general ui & general configuration.
 (scroll-bar-mode -1) ; disable scroll bars.
