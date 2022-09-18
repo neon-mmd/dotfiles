@@ -10,5 +10,5 @@ pcmanfm -d &
 battery-notifier &
 volumeicon &
 gpg-connect-agent /bye &
-xclip -silent &
+xclip -silent
 imwheel &
