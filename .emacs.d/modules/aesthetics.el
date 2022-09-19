@@ -23,7 +23,7 @@
                           (agenda . 5)
                           (registers . 5)))
   (setq dashboard-startup-banner (expand-file-name "~/.emacs.d/banners/emacs-logo.txt"))
-  (setq dashboard-banner-logo-title "A PDE for Aliens 👽!!!")
+  (setq dashboard-banner-logo-title "Not a Deodorant 😀!!!")
   (setq dashboard-center-content t)
   (setq dashboard-set-heading-icons t)
   (setq dashboard-set-file-icons t)
@@ -31,7 +31,7 @@
   (setq dashboard-set-footer t)
   (setq dashboard-footer-icon "🪐 ")
   (setq dashboard-set-init-info t)
-  (setq dashboard-init-info "A PDE for Aliens 👽!!!")
+  (setq dashboard-init-info "Not a Deodorant 😀!!!")
   )
 
 ;;doom-modeline bar
