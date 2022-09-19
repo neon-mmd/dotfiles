@@ -68,17 +68,18 @@ db.custom_center = {
 
 local function footer()
     local randomFooterText = {
-        "Vim is great!!!",
-        "Why Vi use Vim!",
-        "Vim -- Vi improved!",
-        "Vim is awesome",
-        "I love Vim",
+        "Neovim is great!!!",
+        "Why Vim use Neovim!",
+        "Vim, Vi improved!, Neovim, Lua plus Vim!",
+        "Neovim is awesome",
+        "I love Neovim",
         "Vi made easy!",
         "Other text editors are nuts!!!",
         "Vi is not a layer, it is a philosophy!",
         "I showed you my source code, Plz respond!",
         "Vi Vi Vi, the editor of the beast!!!",
-        "While any Editor can save your soul, only neovim can save your soul",
+        "While any Editor can save your soul, only Neovim can save your soul",
+        "Who uses VIM anyway? Go NEOVIM!",
     }
 
     return { "🪐 " .. randomFooterText[math.random(1, #randomFooterText)] }
