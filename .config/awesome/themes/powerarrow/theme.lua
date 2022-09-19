@@ -23,7 +23,7 @@ local colors = themes.pick_a_theme("dracula")
 
 local theme = {}
 theme.dir = os.getenv("HOME") .. "/.config/awesome/themes/powerarrow"
-theme.font = "Iosevka Nerd Font 10"
+theme.font = "Iosevka Nerd Font 12"
 theme.fg_normal = colors["bg"]
 theme.fg_focus = colors["bg"]
 theme.fg_urgent = colors["bg"]
@@ -101,8 +101,8 @@ theme.titlebar_maximized_button_normal_active = theme.dir .. "/icons/titlebar/ma
 theme.titlebar_maximized_button_focus_inactive = theme.dir .. "/icons/titlebar/maximized_focus_inactive.png"
 theme.titlebar_maximized_button_normal_inactive = theme.dir .. "/icons/titlebar/maximized_normal_inactive.png"
 theme.bg_systray = colors["3"]
-theme.systray_icon_spacing = dpi(5)
-theme.taglist_spacing = dpi(10)
+theme.systray_icon_spacing = dpi(4)
+theme.taglist_spacing = dpi(24)
 theme.taglist_squares_resize = true
 theme.squares_resize = true
 theme.fg_occupied = colors["4"]
@@ -331,7 +331,7 @@ function theme.at_screen_connect(s)
 	s.mypromptbox = awful.widget.prompt()
 	-- Create an imagebox widget which will contains an icon indicating which layout we're using.
 	-- We need one layoutbox per screen.
-	s.mylayoutbox = awful.widget.layoutbox(s)
+	s.mylayoutbox = wibox.container.background(awful.widget.layoutbox(s),colors["5"])
 	s.mylayoutbox:buttons(my_table.join(
 		awful.button({}, 1, function()
 			awful.layout.inc(1)
@@ -384,7 +384,10 @@ function theme.at_screen_connect(s)
 		{ -- Right widgets
 			layout = wibox.layout.fixed.horizontal,
 			arrow_left(colors["bg"], colors["3"]),
-			wibox.container.background(wibox.container.margin(wibox.widget.systray(), dpi(3), dpi(3)), colors["3"]),
+			wibox.container.background(
+				wibox.container.margin(wibox.widget.systray(), dpi(3), dpi(3), dpi(3), dpi(3)),
+				colors["3"]
+			),
 			--[[ using shapes
             --pl(wibox.widget { mpdicon, theme.mpd.widget, layout = wibox.layout.align.horizontal }, "#343434"),
             --pl(task, "#343434"),
@@ -427,7 +430,7 @@ function theme.at_screen_connect(s)
 			),
 			--arrow("#C0C0A2", "#777E76"),
 			--wibox.container.background(wibox.container.margin(binclock.widget, dpi(4), dpi(8)), "#777E76"),
-			arrow_left(colors["2"], "alpha"),
+			arrow_left(colors["2"], colors["5"]),
 			--]]
 			s.mylayoutbox,
 		},
