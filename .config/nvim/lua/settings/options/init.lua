@@ -37,4 +37,7 @@ set.filetype.indent = false
 set.clipboard = "unnamedplus"
 set.laststatus = 3
 
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 vim.notify = require("notify")

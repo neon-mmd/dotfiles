@@ -30,6 +30,7 @@ packer.init({
     threshold = 0,
     max_jobs = 4,
     display = {},
+    autoremove = true,
 })
 
 return packer.startup(function(use)
@@ -39,7 +40,7 @@ return packer.startup(function(use)
     use("nvim-lua/popup.nvim") -- popup api for neovim to improve popups
     use("nvim-lua/plenary.nvim") -- plenary to provide vim apis
     use("kyazdani42/nvim-web-devicons") -- for icons
-    use("kyazdani42/nvim-tree.lua") -- tree like nerd tree in neovim
+    use({ "kyazdani42/nvim-tree.lua", tag = "nightly" })
 
     -- lsp
     use("neovim/nvim-lspconfig")
@@ -58,7 +59,6 @@ return packer.startup(function(use)
     -- asthetics
     use("rcarriga/nvim-notify")
     use("nvim-lualine/lualine.nvim")
-    use("romgrk/barbar.nvim")
     use("norcalli/nvim-colorizer.lua")
     use({
         "lewis6991/gitsigns.nvim",

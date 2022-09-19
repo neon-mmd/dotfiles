@@ -97,7 +97,7 @@ wk.register({
     t = {
         name = "+Toggle",
         t = { "<cmd>ToggleTerm<cr>", "Toggle Terminal" },
-        s = { "<cmd>NvimTreeToggle<cr>", "Toggle Sidebar" },
+        s = { "<cmd>lua require('nvim-tree').toggle(false, true)<cr>", "Toggle Sidebar" },
     },
 }, { prefix = "<leader>" })
 
@@ -138,10 +138,7 @@ wk.register({
 
 wk.register({
     b = {
-        name = "+Buffer Order",
-        b = { "<cmd>BufferOrderByBufferNumber<cr>", "Number" },
-        d = { "<cmd>BufferOrderByDirectory<cr>", "Directory" },
-        l = { "<cmd>BufferOrderByLanguage<cr>", "Language" },
-        w = { "<cmd>BufferOrderByWindowNumber<cr>", "Window Nu Numbermber" },
+        name = "+Buffers",
+        b = { "<cmd>Telescope buffers<cr>", "Buffer Management" },
     },
-}, { prefix = " " })
+}, { prefix = "<leader>" })
