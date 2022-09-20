@@ -28,9 +28,12 @@ end
 packer.init({
     enable = true,
     threshold = 0,
-    max_jobs = 4,
+    max_jobs = 5,
     display = {},
     autoremove = true,
+    auto_clean = true,
+    compile_on_sync = true,
+    auto_reload_compiled = true,
 })
 
 return packer.startup(function(use)
@@ -97,7 +100,6 @@ return packer.startup(function(use)
     use("jose-elias-alvarez/null-ls.nvim")
     use("TimUntersberger/neogit")
     use("lewis6991/impatient.nvim")
-    use("folke/trouble.nvim")
     use("folke/todo-comments.nvim")
     use("windwp/nvim-ts-autotag")
     use("Pocco81/auto-save.nvim")

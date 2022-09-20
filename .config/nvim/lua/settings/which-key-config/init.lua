@@ -84,10 +84,10 @@ wk.register({
 wk.register({
     l = {
         name = "+Lsp",
-        d = { "<cmd>TroubleToggle<cr>", "Toggle Trouble Diagnostics" },
+        d = { "<cmd>Telescope diagnostics<cr>", "Show Diagnostics using Telescope" },
         f = { "<cmd>Format<cr>", "Format Buffer" },
         i = { "<cmd>Mason<cr>", "Lsp Install Info" },
-        c = { "<cmd>Lspsaga code_actions<cr>", "Lsp Code Actions" },
+        c = { "<cmd>Lspsaga code_action<cr>", "Lsp Code Actions" },
         p = { "<cmd>Lspsaga hover_doc<cr>", "Lsp Preview Defination" },
         s = { "<cmd>Lspsaga show_cursor_diagnostics<cr>", "Lsp Diagnostics" },
     },
