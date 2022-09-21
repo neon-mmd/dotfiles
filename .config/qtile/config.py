@@ -32,7 +32,7 @@ my_groups = group_selector("iconic")
 #   solarized-light
 # ]
 
-colors = color_picker("dracula")
+colors = color_picker("nord")
 groups = groups(my_groups)
 mod = "mod4"
 terminal = guess_terminal()

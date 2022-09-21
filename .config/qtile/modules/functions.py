@@ -175,9 +175,9 @@ def unicode(color1, color2, direction, Type):
         elif Type == "semi-circle":
             padding_amount = 0
         elif Type == "bottom-right-triangle":
-            padding_amount = 12
+            padding_amount = 0
         elif Type == "top-right-triangle":
-            padding_amount = 12
+            padding_amount = 0
         else:
             padding_amount = 0
     else:

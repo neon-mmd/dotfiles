@@ -1,4 +1,4 @@
-local colorscheme = 'doom-dracula'
+local colorscheme = 'doom-nord'
 
 local status,_ = pcall(vim.cmd, 'colorscheme ' .. colorscheme)
 

@@ -30,7 +30,7 @@ function keybindings.define_global_keybindings(terminal, browser, editor,font)
         easykey.EzKey("M-v", function() awful.util.spawn("virt-manager") end, "Launch VirtManager", "Apps/Scripts"),
 
 	-- Common websites script
-        easykey.EzKey("M-l", function() awful.util.spawn("common-websites") end, "Launch custom web links bookmark", "Apps/Scripts"),
+        easykey.EzKey("M-c", function() awful.util.spawn("common-websites") end, "Launch custom web links bookmark", "Apps/Scripts"),
 
 	-- Article viewer and convertor script
         easykey.EzKey("M-i", function() awful.util.spawn("article-viewer-convertor") end, "Download any article locally", "Apps/Scripts"),
