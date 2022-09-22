@@ -46,6 +46,9 @@ return packer.startup(function(use)
     use({ "kyazdani42/nvim-tree.lua", tag = "nightly" })
 
     -- lsp
+    use({
+        "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    })
     use("neovim/nvim-lspconfig")
     use("williamboman/mason.nvim")
     use("williamboman/mason-lspconfig.nvim")

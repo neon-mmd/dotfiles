@@ -40,4 +40,10 @@ set.laststatus = 3
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- Disable virtual_text since it's redundant due to lsp_lines.
+vim.diagnostic.config({
+    virtual_text = false,
+    virtual_lines = false,
+})
+
 vim.notify = require("notify")
