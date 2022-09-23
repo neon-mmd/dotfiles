@@ -26,6 +26,9 @@ c.url.searchengines = {
 # aesthetics
 c.statusbar.show = "never"
 c.fonts.default_family = "FiraCode Nerd Font Mono"
+c.content.user_stylesheets = os.path.expanduser(
+    "~/.config/qutebrowser/stylesheets/stylesheet.css"
+)
 
 ## startup page
 startpage = "file://" + os.path.expanduser("~/.config/qutebrowser/index.html")
