@@ -78,6 +78,7 @@ wk.register({
 		f = { "<cmd>Telescope find_files<cr>", "Find Files" },
 		r = { "<cmd>Telescope oldfiles<cr>", "Open Recent Files" },
 		g = { "<cmd>Telescope live_grep<cr>", "Search Word(s)" },
+		p = { "<cmd>Telescope project<cr>", "Open Projects" },
 	},
 }, { prefix = "<leader>" })
 
@@ -90,6 +91,7 @@ wk.register({
 		c = { "<cmd>Lspsaga code_action<cr>", "Lsp Code Actions" },
 		p = { "<cmd>Lspsaga hover_doc<cr>", "Lsp Preview Defination" },
 		s = { "<cmd>Lspsaga show_cursor_diagnostics<cr>", "Lsp Diagnostics" },
+		h = { "<cmd>Telescope lsp_document_symbols<cr>", "Show Document Symbols" },
 	},
 }, { prefix = "<leader>" })
 
@@ -123,7 +125,6 @@ wk.register({
 		V = { "<cmd>set winbar=%f<cr>", "WinBar On" },
 		v = { "<cmd>set winbar='<cr>", "WinBar Off" },
 		g = { "<cmd>set laststatus=2<cr>", "Laststatus Off" },
-		p = { "<cmd>Telescope project<cr>", "Open Projects" },
 	},
 }, { prefix = "<leader>" })
 
