@@ -111,6 +111,10 @@ alias config '/usr/bin/git --git-dir=/run/media/destruct/39568688-b38c-43ac-a7de
 ###--kitty-kittens-aliases--###
 alias img="kitty +kitten icat"
 
+###--flatpak-aliases--###
+alias fupd="flatpak update"
+alias uninstall="flatpak uninstall"
+
 #--------------------------------------FUNCTIONS--------------------------------------------
 
 ###--vterm-shell-side-config--###
