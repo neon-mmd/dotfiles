@@ -4,10 +4,10 @@
   :config
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t)
-  (load-theme 'doom-dracula t)
+  (load-theme 'doom-nord t)
   (doom-themes-visual-bell-config)
   (doom-themes-neotree-config)
-  (setq doom-themes-treemacs-theme "doom-tomorrow-night")
+  (setq doom-themes-treemacs-theme "doom-nord")
   (doom-themes-treemacs-config)
   (doom-themes-org-config)
   )

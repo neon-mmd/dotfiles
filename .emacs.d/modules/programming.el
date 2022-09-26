@@ -25,16 +25,24 @@
   (setq lsp-signature-auto-activate nil)
   (setq lsp-signature-render-documentation nil)
   (setq lsp-eldoc-hook nil)
+  (setq lsp-eldoc-enable-hover nil)
+  (setq lsp-ui-sideline-enable nil)
+  (setq lsp-ui-doc-show-with-cursor nil)
+  (setq lsp-ui-doc-show-with-mouse nil)
+  (setq lsp-completion-show-kind t)
+  (setq lsp-completion-provider :none)
   (setq lsp-modeline-code-actions-enable nil)
   (setq lsp-modeline-diagnostics-enable nil)
   (setq lsp-headerline-breadcrumb-enable nil)
   (setq lsp-semantic-tokens-enable nil)
+  (setq lsp-ui-sideline-show-code-actions nil)
   (setq lsp-enable-folding nil)
   (setq lsp-enable-imenu nil)
-  (setq lsp-enable-snippet nil)
-  (setq read-process-output-max (* 1024 1024)) ;; 1MB
-  ;;(setq gc-cons-threshold 100000000)
-  (setq lsp-idle-delay 0.5)
+  (setq lsp-enable-snippet t)
+  (setq tab-always-indent 'complete)
+  (setq read-process-output-max (* 3 (* 1024 1024))) ;; 3MB
+  ;; (setq gc-cons-threshold 100000000)
+  (setq lsp-idle-delay 0.500)
   )
 
 ;; lsp-ui
@@ -47,7 +55,6 @@
   (setq lsp-ui-sideline-mode 1)
   (setq lsp-ui-sideline-show-hover nil)
   (setq lsp-ui-sideline-show-diagnostics t)
-  (setq lsp-ui-sideline-show-code-actions nil)
   )
 
 ;;treemacs
@@ -66,40 +73,73 @@
   :after lsp
   )
 
-;; adding yasnippet as a company backend
-(defvar company-mode/enable-yas t
-  "Enable yasnippet for all backends.")
-
-(defun company-mode/backend-with-yas (backend)
-  (if (or (not company-mode/enable-yas) (and (listp backend) (member 'company-yasnippet backend)))
-      backend
-    (append (if (consp backend) backend (list backend))
-            '(:with company-yasnippet))))
-
-;; company mode completion
-(use-package company-lsp
+;; beautify corfu with icons
+(use-package kind-icon
   :straight t
-  :after lsp
-  :hook (lsp-mode . company-mode)
-  :custom(
-	  (company-minimum-prefix-length 1)
-	  (company--idle-delay 0.0)
-	  (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends)))
+  :after corfu
+  :custom
+  (kind-icon-default-face 'corfu-default) ; to compute blended backgrounds correctly
+  (kind-icon-use-icons t)
+  (kind-icon-blend-background nil)
+  (kind-icon-blend-frac 0.08)
+  :config
+  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
   )
 
-;; make company-ui better
-(use-package company-box
+(use-package corfu-doc
   :straight t
-  :hook(company-mode . company-box-mode)
+  :after corfu
+  :hook(corfu-mode . corfu-doc-mode)
+  :custom
+  (corfu-doc-delay 0.5)
+  (corfu-doc-max-width 70)
+  (corfu-doc-max-height 20)
   )
 
-;; make company remember recent and frequently used completion
-(use-package company-prescient
+;; show completions
+(use-package corfu
   :straight t
-  :after company
+  :custom
+  (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
+  (corfu-auto nil)                 ;; Enable auto completion
+  ;; (corfu-separator ?\s)          ;; Orderless field separator
+  (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
+  (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
+  ;; (corfu-preview-current nil)    ;; Disable current candidate preview
+  (corfu-preselect-first t)    ;; enable candidate preselection
+  ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
+  (corfu-echo-documentation nil) ;; Disable documentation in the echo area
+  (corfu-scroll-margin 4)        ;; Use scroll margin
+  (corfu-auto-prefix 1)
+  (corfu-min-width 80)
+  (corfu-max-width corfu-min-width)
+  (corfu-count 14)
+  (corfu-echo-documentation nil)
+  (corfu-auto-delay 0.25)
+
+
+  ;; Enable Corfu only for certain modes.
+  :hook (prog-mode . corfu-mode)
+  )
+
+;; A few more useful configurations...
+(use-package emacs
+  :straight nil
   :init
-  (company-prescient-mode +1)
+  ;; TAB cycle if there are only few candidates
+  (setq completion-cycle-threshold nil)
+
+  ;; Emacs 28: Hide commands in M-x which do not apply to the current mode.
+  ;; Corfu commands are hidden, since they are not supposed to be used via M-x.
+  (setq read-extended-command-predicate
+        #'command-completion-default-include-p)
+
+  ;; Enable indentation+completion using the TAB key.
+  ;; `completion-at-point' is often bound to M-TAB.
+  (setq tab-always-indent 'complete)
   )
+
+
 
 ;; on the flychecking for errors
 (use-package flycheck
@@ -127,17 +167,17 @@
   :after evil
   )
 
-;; emacs-lisp-mode and company
-(use-package emacs-lisp-mode
-  :straight nil
-  :hook(emacs-lisp-mode . company-mode)
-  )
-
 ;; lsp language servers
 (use-package lsp-pyright
   :hook (python-mode . (lambda () (require 'lsp-pyright)))
+  :custom
+  (lsp-pyright-typechecking-mode nil)
+  (lsp-pyright-auto-search-paths t)
+  (lsp-pyright-diagnostic-mode "workspace")
+  (lsp-pyright-use-library-codes-for-types t)
   :init (when (executable-find "python3")
-          (setq lsp-pyright-python-executable-cmd "python3")))
+          (setq lsp-pyright-python-executable-cmd "python3"))
+  )
 
 (use-package lsp-java
   :straight t

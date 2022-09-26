@@ -43,6 +43,8 @@
     "b" 'eww
     "e" 'emojify-insert-emoji
     "a" 'all-the-icons-insert
+    "s" 'desktop-save
+    "r" 'desktop-revert
     )
 
   (general-create-definer neon/ctrl-q-keys
@@ -96,6 +98,16 @@
     "<tab>" 'company-indent-or-complete-common
     )
 
+  (general-def 'insert 'corfu-map
+    "<tab>" 'corfu-next
+    "<return>" 'corfu-insert
+    )
+
+  (general-def 'normal 'corfu-map
+    "C-u" 'corfu-doc-scroll-up
+    "C-d" 'corfu-doc-scroll-down
+    )
+
   (general-create-definer neon/ctrl-x-keys
     :prefix "C-x"
     )
@@ -127,6 +139,7 @@
    [remap describe-key]  'helpful-key
    [remap dired-up-directory] 'dired-single-up-directory
    [remap dired-buffers] 'dired-single-buffer
+   [remap corfu-show-documentation] 'corfu-doc-toggle
    )
 
   (general-def 'normal

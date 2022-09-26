@@ -43,7 +43,7 @@ return packer.startup(function(use)
     use("nvim-lua/popup.nvim") -- popup api for neovim to improve popups
     use("nvim-lua/plenary.nvim") -- plenary to provide vim apis
     use("kyazdani42/nvim-web-devicons") -- for icons
-    use({ "kyazdani42/nvim-tree.lua", tag = "nightly" })
+    use("sidebar-nvim/sidebar.nvim")
 
     -- lsp
     use({
@@ -110,6 +110,8 @@ return packer.startup(function(use)
     use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
     use("nvim-orgmode/orgmode")
     use("ziontee113/color-picker.nvim")
+    use("rmagatti/auto-session")
+    use("rmagatti/session-lens")
 
     -- terminal in neovim
     use("akinsho/toggleterm.nvim")

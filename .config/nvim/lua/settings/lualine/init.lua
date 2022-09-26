@@ -1,7 +1,7 @@
-local status,lualine = pcall(require,"lualine")
+local status, lualine = pcall(require, "lualine")
 if not status then
-    vim.notify("ERROR: lualine not found!!")
-    return
+	vim.notify("ERROR: lualine not found!!")
+	return
 end
 
 lualine.setup({
@@ -53,7 +53,7 @@ lualine.setup({
 				},
 			},
 		},
-		lualine_x = {},
+		lualine_x = { require("auto-session-library").current_session_name },
 		lualine_y = { "branch" },
 		lualine_z = { "diagnostics" },
 	},

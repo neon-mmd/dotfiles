@@ -17,4 +17,13 @@
           (elfeed-make-tagger :before "1 weeks ago"
 			      :remove 'unread))
 
+(add-hook 'vterm-exit-functions
+	  (lambda (_ _)
+	    (let* ((buffer (current-buffer))
+		   (window (get-buffer-window buffer)))
+              (when (not (one-window-p))
+		(delete-window window))
+              (kill-buffer buffer)))
+	  )
+
 (provide 'hooks)

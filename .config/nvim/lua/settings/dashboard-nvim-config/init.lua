@@ -23,6 +23,12 @@ db.default_banner = {
 
 db.custom_center = {
     {
+        icon = "  ",
+        desc = "Query Saved Session                     ",
+        shortcut = ";sq",
+        action = "SearchSession",
+    },
+    {
         icon = "  ",
         desc = "New file                                ",
         shortcut = ";gn",
@@ -78,7 +84,7 @@ local function footer()
         "Vi is not a layer, it is a philosophy!",
         "I showed you my source code, Plz respond!",
         "Vi Vi Vi, the editor of the beast!!!",
-        "While any Editor can save your soul, only Neovim can save your soul",
+        "While any Editor can save your work, only Neovim can save your soul",
         "Who uses VIM anyway? Go NEOVIM!",
     }
 
