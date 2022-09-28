@@ -86,6 +86,7 @@
   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
   )
 
+;; add corfu doc to completions 
 (use-package corfu-doc
   :straight t
   :after corfu
@@ -138,8 +139,6 @@
   ;; `completion-at-point' is often bound to M-TAB.
   (setq tab-always-indent 'complete)
   )
-
-
 
 ;; on the flychecking for errors
 (use-package flycheck

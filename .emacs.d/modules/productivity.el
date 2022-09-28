@@ -151,4 +151,14 @@
   ;; (counsel-describe-variable-function #'helpful-variable)
   )
 
+;; save sessions in emacs
+(use-package desktop
+  :straight nil
+  :config
+  (when (not (file-directory-p "~/.config/emacs/desktop/"))
+      (make-directory "~/.config/emacs/desktop/" t)
+      )
+  (setq desktop-dirname "~/.config/emacs/desktop/")
+  )
+
 (provide 'productivity)

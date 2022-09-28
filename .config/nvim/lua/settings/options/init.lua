@@ -21,6 +21,7 @@ set.breakindent = true
 set.scrolloff = 5
 set.fileencoding = "utf-8"
 set.conceallevel = 2
+set.ttyfast = true
 
 set.number = true
 set.relativenumber = false

@@ -42,6 +42,15 @@
 (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*"))) ; set the initial buffer to dashboard
 (setq native-comp-async-report-warnings-errors nil) ; disable compiler warnings as they are disruptive.
 
+;; Ignore linux root (/) in xml and html files
+(defadvice ffap-file-at-point (after ffap-file-at-point-after-advice ())
+  (if (string= ad-return-value "/")
+      (setq ad-return-value nil)))
+(ad-activate 'ffap-file-at-point)
+;; (ad-deactivate 'ffap-file-at-point)
+
+(ffap-bindings)
+
 ;; eww settings
 (use-package eww
   :straight nil

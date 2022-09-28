@@ -43,7 +43,7 @@
     "b" 'eww
     "e" 'emojify-insert-emoji
     "a" 'all-the-icons-insert
-    "s" 'desktop-save
+    "s" 'desktop-save-in-desktop-dir
     "r" 'desktop-revert
     )
 
