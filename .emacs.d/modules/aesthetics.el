@@ -7,7 +7,7 @@
   (load-theme 'doom-nord t)
   (doom-themes-visual-bell-config)
   (doom-themes-neotree-config)
-  (setq doom-themes-treemacs-theme "doom-nord")
+  ;; (setq doom-themes-treemacs-theme "doom-nord")
   (doom-themes-treemacs-config)
   (doom-themes-org-config)
   )
