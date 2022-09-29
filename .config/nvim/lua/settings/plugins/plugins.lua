@@ -21,13 +21,6 @@ end
 
 local packer_bootstrap = bootstrap()
 
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]])
-
 local status, packer = pcall(require, "packer")
 
 if not status then
