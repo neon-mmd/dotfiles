@@ -49,7 +49,7 @@ return packer.startup(function(use)
 	use("nvim-lua/popup.nvim") -- popup api for neovim to improve popups
 	use("nvim-lua/plenary.nvim") -- plenary to provide vim apis
 	use("kyazdani42/nvim-web-devicons") -- for icons
-	use("sidebar-nvim/sidebar.nvim")
+	use({ "kyazdani42/nvim-tree.lua", tag = "nightly" })
 
 	-- lsp
 	use({

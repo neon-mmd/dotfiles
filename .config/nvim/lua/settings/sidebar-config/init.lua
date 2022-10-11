@@ -1,27 +1,38 @@
-local status, sidebar = pcall(require, "sidebar-nvim")
-
+local status, tree = pcall(require, "nvim-tree")
 if not status then
-    vim.notify("ERROR: sidebar-nvim not found!!")
-    return
+	vim.notify("ERROR: nvim-tree not found!!")
+	return
 end
 
-sidebar.setup({
-    disable_default_keybindings = 0,
-    bindings = nil,
-    open = false,
-    side = "left",
-    initial_width = 35,
-    hide_statusline = false,
-    update_interval = 1000,
-    sections = { "files","symbols" },
-    section_separator = { "", "-----", "" },
-    section_title_separator = { "" },
-    symbols = {
-        icon = "ƒ",
-    },
-    files = {
-        icon = "",
-        show_hidden = true,
-        ignored_paths = { "%.git$" },
-    },
+tree.setup({
+	hijack_cursor = true,
+	sort_by = "case_sensitive",
+	view = {
+		adaptive_size = true,
+		mappings = {
+			list = {
+				{ key = "u", action = "dir_up" },
+			},
+		},
+	},
+	renderer = {
+		group_empty = true,
+		highlight_opened_files = "name",
+		special_files = {
+			"Cargo.toml",
+			"Makefile",
+			"README.md",
+			"readme.md",
+			"README.org",
+			"readme.org",
+			"README.rst",
+			"readme.rst",
+			"profile.json",
+			"package.json",
+			"package-lock.json",
+		},
+	},
+	filters = {
+		dotfiles = true,
+	},
 })
