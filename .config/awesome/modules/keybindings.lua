@@ -26,7 +26,7 @@ function keybindings.define_global_keybindings(terminal, browser, editor, font)
 		-- QuteBrowser
 		easykey.EzKey("M-b", function()
 			awful.util.spawn(browser)
-		end, "Launch QuteBrowser", "Apps/Scripts"),
+		end, "Launch Neon-Browser", "Apps/Scripts"),
 
 		-- Emacs server
 		easykey.EzKey("M-d", function()

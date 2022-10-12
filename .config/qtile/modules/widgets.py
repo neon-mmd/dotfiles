@@ -10,7 +10,6 @@ from libqtile.widget import (
 )
 from modules.functions import unicode, check_battery
 
-
 # -----------------------------------------------------widgets-------------------------------------
 
 face_style = "bottom-right-triangle"
@@ -52,7 +51,10 @@ def widget_creation(colors):
             ),
             unicode(colors["1"], colors["6"], "left", face_style),
             CurrentLayout(
-                foreground=colors["bg"], background=colors["6"], fmt="", fontsize=20
+                foreground=colors["bg"],
+                background=colors["6"],
+                fmt="",
+                fontsize=20,
             ),
         ],
         24,

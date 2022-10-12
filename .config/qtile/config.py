@@ -1,4 +1,5 @@
 import os
+from numpy import array
 from subprocess import run
 from libqtile.dgroups import simple_key_binder
 from libqtile import hook
@@ -48,7 +49,7 @@ layouts = layout_creation(colors)
 # -----------------------------------------------------widgets-------------------------------------
 widget_defaults = dict(font=font, fontsize=15, padding=10)
 extension_defaults = widget_defaults.copy()
-screens = [Screen(top=widget_creation(colors))]
+screens = array([Screen(top=widget_creation(colors))])
 mouse = mouse_behavior(mod)
 dgroups_app_rules = []  # type: List
 follow_mouse_focus = False
