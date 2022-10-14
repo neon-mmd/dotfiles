@@ -3,7 +3,7 @@
 nitrogen --restore --set-scaled ~/Pictures/wallpapers/ & 
 picom -b & 
 nm-applet &
-gnome-keyring & 
+gnome-keyring-daemon & 
 polkit-dumb-agent &
 optimus-manager-qt &
 pcmanfm -d &

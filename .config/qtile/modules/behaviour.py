@@ -6,7 +6,7 @@ from libqtile.lazy import lazy
 
 # -----------------------------------------------------widgets-------------------------------------
 def mouse_behavior(mod):
-    return array(
+    yield array(
         [
             Drag(
                 [mod],
@@ -26,7 +26,7 @@ def mouse_behavior(mod):
 
 
 def program_behaviour():
-    return array(
+    yield array(
         [
             *Floating.default_float_rules,
             Match(wm_class="confirmreset"),  # gitk

@@ -4,7 +4,7 @@ from libqtile.config import Group, Match
 
 # -----------------------------------------------groups---------------------------------------------
 def groups(my_groups):
-    return array(
+    yield array(
         [
             Group(my_groups[0], layout="monadtall"),
             Group(

@@ -16,7 +16,7 @@ from modules.functions import dmenu_select_according_to_theme
 
 
 def define_keybindings(terminal, colors, font):
-    return array(
+    yield array(
         [
             # Switch between windows
             Key("M-j", lazy.layout.up(), desc="Move focus up"),
@@ -71,7 +71,7 @@ def define_keybindings(terminal, colors, font):
             # Launch dmenu
             Key(
                 "M-r",
-                lazy.spawn(dmenu_select_according_to_theme(colors, font)),
+                lazy.spawn(tuple(dmenu_select_according_to_theme(colors, font))[0]),
                 desc="run prompt",
             ),
         ]

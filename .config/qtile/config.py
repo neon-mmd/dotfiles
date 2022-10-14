@@ -20,7 +20,7 @@ from modules.keybindings import define_keybindings
 #    named
 # ]
 
-my_groups = group_selector("iconic")
+my_groups = tuple(group_selector("iconic"))[0]
 
 # [
 #   dracula
@@ -33,29 +33,29 @@ my_groups = group_selector("iconic")
 #   solarized-light
 # ]
 
-colors = color_picker("nord")
-groups = groups(my_groups)
+colors = tuple(color_picker("nord"))[0]
+groups = tuple(groups(my_groups))[0]
 mod = "mod4"
 terminal = guess_terminal()
 font = "Iosevka Nerd Font"
 
 # ---------------------------------------------keybindings--------------------------------------------
-keys = define_keybindings(terminal, colors, font)
+keys = tuple(define_keybindings(terminal, colors, font))[0]
 dgroups_key_binder = simple_key_binder(mod)
 
 # --------------------------------------------layouts-----------------------------------------
-layouts = layout_creation(colors)
+layouts = tuple(layout_creation(colors))[0]
 
 # -----------------------------------------------------widgets-------------------------------------
 widget_defaults = dict(font=font, fontsize=15, padding=10)
 extension_defaults = widget_defaults.copy()
-screens = array([Screen(top=widget_creation(colors))])
-mouse = mouse_behavior(mod)
+screens = array([Screen(top=tuple(widget_creation(colors))[0])])
+mouse = tuple(mouse_behavior(mod))[0]
 dgroups_app_rules = []  # type: List
 follow_mouse_focus = False
 bring_front_click = False
 cursor_warp = False
-floating_layout = Floating(float_rules=program_behaviour())
+floating_layout = Floating(float_rules=tuple(program_behaviour())[0])
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True
@@ -67,7 +67,7 @@ auto_minimize = True
 @hook.subscribe.startup_once
 def autostart():
     home = os.path.expanduser(r"~/.config/autostart-apps-wm/autostart.sh")
-    run([home])
+    run((home))
 
 
 wmname = "LG3D"  # ---> compulsory otherwise qtile won't work

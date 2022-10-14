@@ -4,7 +4,7 @@ from libqtile.layout import MonadTall, Max
 
 # --------------------------------------------layouts-----------------------------------------
 def layout_creation(colors):
-    return array(
+    yield array(
         [
             # layout.Columns(border_focus_stack=['#d75f5f', '#8f3d3d'], border_width=4),
             MonadTall(

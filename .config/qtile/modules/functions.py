@@ -97,11 +97,11 @@ def color_picker(colorscheme_name):
         },
     }
 
-    return color_collection[colorscheme_name]
+    yield color_collection[colorscheme_name]
 
 
 def dmenu_select_according_to_theme(colors, font):
-    return (
+    yield (
         "dmenu_run -i -fn '"
         + font
         + ":pixelsize=17' -nb "
@@ -120,7 +120,7 @@ def group_selector(group_type):
         "named": ["term", "web", "virt", "mpv", "cloud", "code", "chat", "mail", "vc"],
         "iconic": ["", "", "", "", "", "", "", "", ""],
     }
-    return my_groups[group_type]
+    yield my_groups[group_type]
 
 
 def theme_style(direction, Type):
@@ -134,15 +134,15 @@ def theme_style(direction, Type):
     }
 
     if Type == "arrow":
-        return styles["arrow"][face_direction[direction]]
+        yield styles["arrow"][face_direction[direction]]
     elif Type == "semi-circle":
-        return styles["semi-circle"][face_direction[direction]]
+        yield styles["semi-circle"][face_direction[direction]]
     elif Type == "bottom-right-triangle":
-        return styles["bottom-right-triangle"][face_direction[direction]]
+        yield styles["bottom-right-triangle"][face_direction[direction]]
     elif Type == "top-right-triangle":
-        return styles["top-right-triangle"][face_direction[direction]]
+        yield styles["top-right-triangle"][face_direction[direction]]
     else:
-        return styles["vertical"][face_direction[direction]]
+        yield styles["vertical"][face_direction[direction]]
 
 
 def unicode(color1, color2, direction, Type):
@@ -172,8 +172,8 @@ def unicode(color1, color2, direction, Type):
         else:
             padding_amount = 0
 
-    return TextBox(
-        text=theme_style(direction, Type),
+    yield TextBox(
+        text=tuple(theme_style(direction, Type))[0],
         padding=padding_amount,
         fontsize=23,
         background=color1,
@@ -183,7 +183,7 @@ def unicode(color1, color2, direction, Type):
 
 def check_battery(colorbg, color2):
     if getoutput("acpi | grep 'Battery'") != "":
-        return Battery(
+        yield Battery(
             charge_char="",
             discharge_char="",
             notify_below=86,
@@ -193,4 +193,4 @@ def check_battery(colorbg, color2):
             format="{char} {percent:2.0%}",
         )
     else:
-        return TextBox(text="  ", fontsize=20, background=color2, foreground=colorbg)
+        yield TextBox(text="  ", fontsize=20, background=color2, foreground=colorbg)
