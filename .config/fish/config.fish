@@ -3,7 +3,13 @@ if status is-interactive
 end
 
 #-------------------------------RUN ON LAUNCH------------------------------------
-ufetch-arch | lolcat
+if [ "$INSIDE_EMACS" != vterm ]
+    ufetch-arch | lolcat
+
+    ###--new-colorful-kitty-message--###
+    toilet -f term '***Welcome to the Kitty Terminal***' -d /usr/share/figlet/fonts/ -t -F border --rainbow
+end
+
 faillock --reset --user $USER
 starship init fish | source
 
@@ -11,9 +17,6 @@ starship init fish | source
 
 ###--supress-old-fish-message--###
 set fish_greeting ''
-
-###--new-colorful-kitty-message--###
-toilet -f term '***Welcome to the Kitty Terminal***' -d /usr/share/figlet/fonts/ -t -F border --rainbow
 
 #-----------------------------------------ALIASES-----------------------------------------
 

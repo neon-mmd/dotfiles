@@ -8,14 +8,17 @@
 PS1='[\u@\h \W]\$ '
 
 #---------------------------RUN ON LAUNCH----------------------------------------
-ufetch-arch | lolcat
+if [[ "$INSIDE_EMACS" != 'vterm' ]]; then
+	ufetch-arch | lolcat
+
+	#-------------------------------BASH GREETING MESSAGE-----------------------------
+
+	###--new-colorful-kitty-message--###
+	toilet -f term '***Welcome to the Kitty Terminal***' -d /usr/share/figlet/fonts/ -t -F border --rainbow
+fi
+
 faillock --reset --user $USER
 eval "$(starship init bash)"
-
-#-------------------------------BASH GREETING MESSAGE-----------------------------
-
-###--new-colorful-kitty-message--###
-toilet -f term '***Welcome to the Kitty Terminal***' -d /usr/share/figlet/fonts/ -t -F border --rainbow
 
 #-----------------------------------------ALIASES-----------------------------------------
 
@@ -119,30 +122,30 @@ alias uninstall="flatpak uninstall"
 
 #--------------------------------------FUNCTIONS--------------------------------------------
 
-vterm_printf(){
-    if [ -n "$TMUX" ] && ([ "${TERM%%-*}" = "tmux" ] || [ "${TERM%%-*}" = "screen" ] ); then
-        # Tell tmux to pass the escape sequences through
-        printf "\ePtmux;\e\e]%s\007\e\\" "$1"
-    elif [ "${TERM%%-*}" = "screen" ]; then
-        # GNU screen (screen, screen-256color, screen-256color-bce)
-        printf "\eP\e]%s\007\e\\" "$1"
-    else
-        printf "\e]%s\e\\" "$1"
-    fi
+vterm_printf() {
+	if [ -n "$TMUX" ] && ([ "${TERM%%-*}" = "tmux" ] || [ "${TERM%%-*}" = "screen" ]); then
+		# Tell tmux to pass the escape sequences through
+		printf "\ePtmux;\e\e]%s\007\e\\" "$1"
+	elif [ "${TERM%%-*}" = "screen" ]; then
+		# GNU screen (screen, screen-256color, screen-256color-bce)
+		printf "\eP\e]%s\007\e\\" "$1"
+	else
+		printf "\e]%s\e\\" "$1"
+	fi
 }
 
 if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
-    function clear(){
-        vterm_printf "51;Evterm-clear-scrollback";
-        tput clear;
-    }
+	function clear() {
+		vterm_printf "51;Evterm-clear-scrollback"
+		tput clear
+	}
 fi
 
 #-------------------------------------COMPLETIONS--------------------------------------------
 
 # Use bash-completion, if available
-[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
-    . /usr/share/bash-completion/bash_completion
+[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] &&
+	. /usr/share/bash-completion/bash_completion
 
 #--------------------------------------Vim-mode----------------------------------------------
 set -o vi
