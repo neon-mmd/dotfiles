@@ -33,7 +33,7 @@ def define_keybindings(terminal, colors, font):
             # close the current application
             Key("M-S-c", lazy.window.kill(), desc="Kill focused window"),
             # launch the web browser
-            Key("M-b", lazy.spawn("neon-browser"), desc="launch neon-browser"),
+            Key("M-b", lazy.spawn("qutebrowser"), desc="launch neon-browser"),
             # launch gnu emacs using emacsclient if available otherwise
             # launch default emacs
             Key("M-d", lazy.spawn("emacsclient -c -n -a 'emacs'"), desc="launch emacs"),

@@ -56,7 +56,7 @@ local terminal = "kitty"
 local vi_focus = false
 local cycle_prev = true
 local editor = "emacsclient -c -n -a 'emacs'"
-local browser = "neon-browser"
+local browser = "qutebrowser"
 local font = "FiraCode Nerd Font Mono"
 
 awful.util.terminal = terminal
