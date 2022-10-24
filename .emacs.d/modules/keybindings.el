@@ -148,6 +148,7 @@
     "M-." 'embark-dwim
     "C-h B" 'embark-bindings
     "M-/" 'evilnc-comment-or-uncomment-lines
+    "C-M-/"  'dabbrev-expand
     )
   )
 

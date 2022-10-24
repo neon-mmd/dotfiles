@@ -29,6 +29,7 @@ default_border pixel 5
 
 # disable window title
 default_floating_border pixel 1
+for_window [class="^.*"] border pixel 5
 
 #autostart programs
 exec ~/.config/autostart-apps-wm/autostart.sh

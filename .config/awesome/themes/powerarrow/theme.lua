@@ -81,7 +81,7 @@ theme.widget_task = theme.dir .. "/icons/task.png"
 theme.widget_scissors = theme.dir .. "/icons/scissors.png"
 theme.tasklist_plain_task_name = true
 theme.tasklist_disable_icon = true
-theme.useless_gap = dpi(5)
+theme.useless_gap = dpi(3)
 theme.titlebar_close_button_focus = theme.dir .. "/icons/titlebar/close_focus.png"
 theme.titlebar_close_button_normal = theme.dir .. "/icons/titlebar/close_normal.png"
 theme.titlebar_ontop_button_focus_active = theme.dir .. "/icons/titlebar/ontop_focus_active.png"
@@ -331,7 +331,7 @@ function theme.at_screen_connect(s)
 	s.mypromptbox = awful.widget.prompt()
 	-- Create an imagebox widget which will contains an icon indicating which layout we're using.
 	-- We need one layoutbox per screen.
-	s.mylayoutbox = wibox.container.background(awful.widget.layoutbox(s),colors["5"])
+	s.mylayoutbox = wibox.container.background(awful.widget.layoutbox(s), colors["5"])
 	s.mylayoutbox:buttons(my_table.join(
 		awful.button({}, 1, function()
 			awful.layout.inc(1)

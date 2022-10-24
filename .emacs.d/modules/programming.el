@@ -86,7 +86,7 @@
   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
   )
 
-;; add corfu doc to completions 
+;; add corfu doc to completions
 (use-package corfu-doc
   :straight t
   :after corfu
@@ -102,7 +102,7 @@
   :straight t
   :custom
   (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
-  (corfu-auto nil)                 ;; Enable auto completion
+  (corfu-auto t)                 ;; Enable auto completion
   ;; (corfu-separator ?\s)          ;; Orderless field separator
   (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
   (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
@@ -121,6 +121,27 @@
 
   ;; Enable Corfu only for certain modes.
   :hook (prog-mode . corfu-mode)
+  )
+
+;; Use Dabbrev with Corfu!
+(use-package dabbrev
+  :straight t
+  ;; Swap M-/ and C-M-/
+  ;; Other useful Dabbrev configurations.
+  :custom
+  (dabbrev-ignored-buffer-regexps '("\\.\\(?:pdf\\|jpe?g\\|png\\)\\'"))
+  )
+
+;; use the `orderless' completion style.
+(use-package orderless
+  :straight t
+  :init
+  ;; Configure a custom style dispatcher (see the Consult wiki)
+  ;; (setq orderless-style-dispatchers '(+orderless-dispatch)
+  ;;       orderless-component-separator #'orderless-escapable-split-on-space)
+  (setq completion-styles '(orderless basic file)
+        completion-category-defaults nil
+        completion-category-overrides '((file (styles . (partial-completion)))))
   )
 
 ;; A few more useful configurations...

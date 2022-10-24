@@ -46,6 +46,7 @@ c.content.geolocation = False
 c.qt.chromium.sandboxing = "enable-all"
 c.content.cookies.accept = "no-unknown-3rdparty"
 c.content.canvas_reading = False
+# c.content.javascript.clipboard = "access"
 c.content.javascript.can_access_clipboard = True
 c.content.headers.custom = {
     "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
@@ -58,7 +59,7 @@ c.content.headers.do_not_track = True
 # c.content.private_browsing = True
 
 ## Tor
-# c.content.proxy = 'socks://localhost:9050/'
+# c.content.proxy = "socks://localhost:9050/"
 
 # adblock
 c.content.blocking.method = "both"

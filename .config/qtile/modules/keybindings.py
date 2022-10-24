@@ -42,7 +42,7 @@ def define_keybindings(terminal, colors, font):
             # launch the logout application
             Key("M-S-q", lazy.spawn("neon-logout"), desc="Shutdown Qtile"),
             # launch virt-manager to manage virtual machines
-            Key("M-v", lazy.spawn("virt-manager"), desc="launch virt-manager"),
+            Key("M-v", lazy.spawn("virtualbox"), desc="launch virtualbox"),
             # launch common-websites script for opening my common websites
             # which I use on day to day basis
             Key("M-c", lazy.spawn("common-websites"), desc="common web links"),

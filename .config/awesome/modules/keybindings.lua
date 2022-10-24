@@ -33,10 +33,10 @@ function keybindings.define_global_keybindings(terminal, browser, editor, font)
 			awful.util.spawn(editor)
 		end, "Launch the emacsclient frame", "Apps/Scripts"),
 
-		-- VirtManager
+		-- VirtualBox
 		easykey.EzKey("M-v", function()
-			awful.util.spawn("virt-manager")
-		end, "Launch VirtManager", "Apps/Scripts"),
+			awful.util.spawn("virtualbox")
+		end, "Launch VirtualBox", "Apps/Scripts"),
 
 		-- Common websites script
 		easykey.EzKey("M-c", function()
