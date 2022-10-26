@@ -64,7 +64,6 @@ local bat = lain.widget.bat({
 				else
 					widget:set_markup(markup.font(theme.font, " " .. bat_now.perc .. "% "))
 				end
-				widget:set_markup(markup.font(theme.font, " " .. bat_now.perc .. "% "))
 				return
 			elseif not bat_now.perc and tonumber(bat_now.perc) >= 85 then
 				widget:set_markup(markup.font(theme.font, " " .. bat_now.perc .. "% FULL!!"))
@@ -73,7 +72,6 @@ local bat = lain.widget.bat({
 			else
 				widget:set_markup(markup.font(theme.font, " " .. bat_now.perc .. "% "))
 			end
-			widget:set_markup(markup.font(theme.font, " " .. bat_now.perc .. "% "))
 		else
 			widget:set_markup()
 		end
@@ -88,9 +86,26 @@ local textclock = wibox.widget({
 	refresh = 1,
 })
 
-local pacupdates = awful.widget.watch('bash -c "pacman -Qu | wc -l"', 20, function(widget, stdout)
-	widget:set_markup(markup.fontfg(theme.font, colors["bg"], string.format("  %s Updates", stdout)))
-end)
+local function os_capture(cmd)
+	local f = assert(io.popen(cmd, "r"))
+	local s = assert(f:read("*a"))
+	f:close()
+	s = string.gsub(s, "^%s+", "")
+	s = string.gsub(s, "%s+$", "")
+	s = string.gsub(s, "[\n\r]+", " ")
+	return s
+end
+
+local function update_pkg()
+	return string.format("  %s Updates", os_capture('bash -c "pacman -Qu | wc -l"'))
+end
+
+local pacupdates = wibox.widget({
+	font = theme.font,
+	format = update_pkg(),
+	refresh = 20,
+	widget = wibox.widget.textclock,
+})
 
 -- Separators
 local arrow_left = separators.arrow_left
