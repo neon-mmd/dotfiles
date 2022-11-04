@@ -1,46 +1,57 @@
-*{
-    padding:0;
-    margin: 0;
-    box-sizing: border-box;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-body{
-    display: flex;
-    width:100%;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    font-size: 62.5%;
+body {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 62.5%;
 }
 
-.main{
-    display: flex;
-    width:100%;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    object-fit: cover;
-    filter: blur(8px);
+.main {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  object-fit: cover;
+  filter: blur(8px);
 }
 
-div input{
-    position: absolute;
-    outline: none;
-    border: none;
-    background: transparent;
-    border-bottom: 0.2rem solid rgba(255,255,255,1);
-    padding: 0.2rem 10rem;
-    text-align: center;
-    font-size: 1.5rem;
-    z-index: 2;
-    right: 28%;
-    color: rgba(255,255,255,1);
+main {
+  position: absolute;
+  background-color: black;
 }
 
-div input::placeholder{
-    color: rgba(255,255,255,1);
-    text-align: center;
+.container {
+  background-color: rgba(0, 0, 25, 1);
+  padding: 0.5rem 0.5rem;
 }
 
+.container input {
+  outline: none;
+  border: none;
+  background: transparent;
+  font-size: 1.5rem;
+  text-align: left;
+  z-index: 2;
+  right: 28%;
+  color: rgba(255, 255, 255, 1);
+}
+
+.container input::placeholder {
+  color: rgba(255, 255, 255, 1);
+  text-align: left;
+}
+
+.container i {
+  font-size: 1.5rem;
+  margin-right: 1rem;
+}

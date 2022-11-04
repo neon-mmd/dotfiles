@@ -21,7 +21,7 @@ searchQuery = mySearchEngine + "/?q={}"
 ## search engine list
 c.url.searchengines = {
     "DEFAULT": searchQuery,
-    "yt": "https://www.youtube.com/results?search_query={}",
+    "yt": "https://piped.kavin.rocks/results?search_query={}",
     "aw": "https://wiki.archlinux.org/title/{}",
 }
 
@@ -56,7 +56,7 @@ c.content.headers.user_agent = (
 )
 c.content.headers.accept_language = "en-US,en;q=0.5"
 c.content.headers.do_not_track = True
-# c.content.private_browsing = True
+c.content.private_browsing = False
 
 ## Tor
 # c.content.proxy = "socks://localhost:9050/"

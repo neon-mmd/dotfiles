@@ -1,9 +1,8 @@
-import os
+from os import path
 from numpy import array
 from subprocess import run
 from libqtile.dgroups import simple_key_binder
 from libqtile import hook
-from typing import List
 from libqtile.layout import Floating
 from libqtile.config import Screen
 from libqtile.utils import guess_terminal
@@ -51,7 +50,7 @@ widget_defaults = dict(font=font, fontsize=15, padding=10)
 extension_defaults = widget_defaults.copy()
 screens = array([Screen(top=tuple(widget_creation(colors))[0])])
 mouse = tuple(mouse_behavior(mod))[0]
-dgroups_app_rules = []  # type: List
+dgroups_app_rules = []  # type: list
 follow_mouse_focus = False
 bring_front_click = False
 cursor_warp = False
@@ -66,7 +65,7 @@ auto_minimize = True
 
 @hook.subscribe.startup_once
 def autostart():
-    home = os.path.expanduser(r"~/.config/autostart-apps-wm/autostart.sh")
+    home = path.expanduser(r"~/.config/autostart-apps-wm/autostart.sh")
     run((home))
 
 
