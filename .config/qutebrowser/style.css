@@ -27,7 +27,15 @@ body {
 
 main {
   position: absolute;
-  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.groups {
+  background: black;
+  margin-top: 1rem;
 }
 
 .container {
@@ -54,4 +62,52 @@ main {
 .container i {
   font-size: 1.5rem;
   margin-right: 1rem;
+}
+
+.link-grps {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.link-grps div {
+  background: rgba(20, 20, 20, 1);
+  padding: 1rem;
+  margin-right: 1rem;
+}
+
+.link-grps div:last-child {
+  margin: 0;
+}
+
+.link-grps div h1 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 0.1rem solid rgba(255, 0, 0, 1);
+  letter-spacing: 0.1rem;
+}
+
+.link-grps div ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 1rem;
+}
+
+.link-grps ul li {
+  margin-bottom: 0.1rem;
+}
+
+.link-grps a {
+  text-decoration: none;
+  color: steelblue;
+}
+
+.link-grps a:visited {
+  color: steelblue;
+}
+
+.link-grps a:hover {
+  color: slateblue;
 }
