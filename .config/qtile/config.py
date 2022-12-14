@@ -32,7 +32,7 @@ my_groups = tuple(group_selector("iconic"))[0]
 #   solarized-light
 # ]
 
-colors = tuple(color_picker("nord"))[0]
+colors = tuple(color_picker("oceanic-next"))[0]
 groups = tuple(groups(my_groups))[0]
 mod = "mod4"
 terminal = guess_terminal()

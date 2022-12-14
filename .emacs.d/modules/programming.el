@@ -201,7 +201,10 @@
 
 (use-package lsp-java
   :straight t
-  :hook(java-mode-hook . lsp))
+  :config
+  (setq tab-width 2)
+  :hook(java-mode-hook . lsp)
+  )
 
 ;; extra language modes in emacs
 (use-package rust-mode
@@ -212,6 +215,11 @@
 (use-package lua-mode
   :straight t
   :after dashboard
+  )
+
+(use-package lsp-java
+  :straight t
+  :hook(java-mode-hook . lsp)
   )
 
 ;; indicate incomplete brackets and braces

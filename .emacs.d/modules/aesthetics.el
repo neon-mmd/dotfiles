@@ -4,7 +4,7 @@
   :config
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t)
-  (load-theme 'doom-nord t)
+  (load-theme 'doom-oceanic-next t)
   (doom-themes-visual-bell-config)
   (doom-themes-neotree-config)
   ;; (setq doom-themes-treemacs-theme "doom-nord")
