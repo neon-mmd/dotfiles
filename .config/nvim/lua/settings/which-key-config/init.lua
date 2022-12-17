@@ -99,7 +99,7 @@ wk.register({
 	t = {
 		name = "+Toggle",
 		t = { "<cmd>ToggleTerm<cr>", "Toggle Terminal" },
-        s = { "<cmd>lua require('nvim-tree').toggle(false, true)<cr>", "Toggle Sidebar" },
+		s = { "<cmd>lua require('nvim-tree').toggle(false, true)<cr>", "Toggle Sidebar" },
 		l = { "<cmd>lua require('lsp_lines').toggle()<cr>", "Toggle Lsp Lines" },
 	},
 }, { prefix = "<leader>" })
@@ -120,7 +120,7 @@ wk.register({
 		q = { "<cmd>quit!<cr>", "Quit" },
 		w = { "<cmd>w!<cr>", "Write" },
 		n = { "<cmd>enew<cr>", "New File" },
-		c = { "<cmd>e ~/.config/nvim/init.lua<cr>", "Open config" },
+		o = { "<cmd>e ~/.config/nvim/init.lua<cr>", "Open config" },
 		d = { "<cmd>Alpha<cr>", "Dashboard" },
 		V = { "<cmd>set winbar=%f<cr>", "WinBar On" },
 		v = { "<cmd>set winbar='<cr>", "WinBar Off" },

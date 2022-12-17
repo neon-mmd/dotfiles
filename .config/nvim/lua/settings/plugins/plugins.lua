@@ -118,7 +118,8 @@ return packer.startup(function(use)
 	use("ziontee113/color-picker.nvim")
 	use("rmagatti/auto-session")
 	use("rmagatti/session-lens")
-    -- smjonas/live-command.nvim
+	use("lukas-reineke/indent-blankline.nvim")
+	-- smjonas/live-command.nvim
 
 	-- terminal in neovim
 	use("akinsho/toggleterm.nvim")
