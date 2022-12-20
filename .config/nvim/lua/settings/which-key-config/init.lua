@@ -75,80 +75,71 @@ wk.setup({
 wk.register({
 	f = {
 		name = "+Search",
-		f = { "<cmd>Telescope find_files<cr>", "Find Files" },
-		r = { "<cmd>Telescope oldfiles<cr>", "Open Recent Files" },
-		g = { "<cmd>Telescope live_grep<cr>", "Search Word(s)" },
-		p = { "<cmd>Telescope project<cr>", "Open Projects" },
+		f = { "<cmd>Telescope find_files<cr>", "Find [F]iles" },
+		r = { "<cmd>Telescope oldfiles<cr>", "Open [R]ecent Files" },
+		g = { "<cmd>Telescope live_grep<cr>", "Search Word(s) Like [G]rep" },
+		p = { "<cmd>Telescope project<cr>", "Open [P]rojects" },
+		c = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Search Word in [C]urrent Buffer" },
 	},
 }, { prefix = "<leader>" })
 
 wk.register({
 	l = {
 		name = "+Lsp",
-		d = { "<cmd>Telescope diagnostics<cr>", "Show Diagnostics using Telescope" },
-		f = { "<cmd>Format<cr>", "Format Buffer" },
-		i = { "<cmd>Mason<cr>", "Lsp Install Info" },
-		c = { "<cmd>Lspsaga code_action<cr>", "Lsp Code Actions" },
-		p = { "<cmd>Lspsaga hover_doc<cr>", "Lsp Preview Defination" },
-		s = { "<cmd>Lspsaga show_cursor_diagnostics<cr>", "Lsp Diagnostics" },
-		h = { "<cmd>Telescope lsp_document_symbols<cr>", "Show Document Symbols" },
+		d = { "<cmd>Telescope diagnostics<cr>", "Show [D]iagnostics using Telescope" },
+		f = { "<cmd>Format<cr>", "[F]ormat Buffer" },
+		i = { "<cmd>Mason<cr>", "Lsp [I]nstall Info" },
+		c = { "<cmd>Lspsaga code_action<cr>", "Lsp [C]ode Actions" },
+		p = { "<cmd>Lspsaga hover_doc<cr>", "Lsp [P]review Defination" },
+		s = { "<cmd>Lspsaga show_cursor_diagnostics<cr>", "Lsp [S]how Diagnostics Under Cursor" },
+		h = { "<cmd>Telescope lsp_document_symbols<cr>", "Show Document Symbols/[H]eadings" },
 	},
 }, { prefix = "<leader>" })
 
 wk.register({
 	t = {
 		name = "+Toggle",
-		t = { "<cmd>ToggleTerm<cr>", "Toggle Terminal" },
-		s = { "<cmd>lua require('nvim-tree').toggle(false, true)<cr>", "Toggle Sidebar" },
-		l = { "<cmd>lua require('lsp_lines').toggle()<cr>", "Toggle Lsp Lines" },
+		t = { "<cmd>ToggleTerm<cr>", "Toggle [T]erminal" },
+		s = { "<cmd>lua require('nvim-tree').toggle(false, true)<cr>", "Toggle [S]idebar" },
+		l = { "<cmd>lua require('lsp_lines').toggle()<cr>", "Toggle Lsp [L]ines" },
 	},
 }, { prefix = "<leader>" })
 
 wk.register({
 	a = {
 		name = "+Applications/Utilities",
-		g = { "<cmd>Neogit<cr>", "Open Git" },
-		u = { "<cmd>PackerSync<cr>", "Update/Install Plugins" },
-		t = { "<cmd>TodoTelescope<cr>", "Show All Todos in Telescope View" },
-		c = { "<cmd>PickColorInsert<cr>", "Color Picker" },
+		g = { "<cmd>Neogit<cr>", "Open [G]it" },
+		u = { "<cmd>PackerSync<cr>", "[U]pdate/Install Plugins" },
+		t = { "<cmd>TodoTelescope<cr>", "Show All [T]odos in Telescope View" },
+		c = { "<cmd>PickColorInsert<cr>", "[C]olor Picker" },
 	},
 }, { prefix = "<leader>" })
 
 wk.register({
 	g = {
 		name = "+General",
-		q = { "<cmd>quit!<cr>", "Quit" },
-		w = { "<cmd>w!<cr>", "Write" },
-		n = { "<cmd>enew<cr>", "New File" },
-		o = { "<cmd>e ~/.config/nvim/init.lua<cr>", "Open config" },
-		d = { "<cmd>Alpha<cr>", "Dashboard" },
-		V = { "<cmd>set winbar=%f<cr>", "WinBar On" },
-		v = { "<cmd>set winbar='<cr>", "WinBar Off" },
-		g = { "<cmd>set laststatus=2<cr>", "Laststatus Off" },
-	},
-}, { prefix = "<leader>" })
-
-wk.register({
-	r = {
-		name = "+Replace",
-		s = { "<cmd>lua require('spectre').open()<CR>", "Open Spectre" },
-		w = { "<cmd>lua require('spectre').open_visual({select_word=true})<CR>", "Search Word" },
-		v = { "<cmd>lua require('spectre').open_visual()<CR>", "Open Spectre Visual" },
-		f = { "<cmd>lua require('spectre').open_file_search()<cr>", "Search in File" },
+		q = { "<cmd>quit!<cr>", "[Q]uit" },
+		w = { "<cmd>w!<cr>", "[W]rite" },
+		n = { "<cmd>enew<cr>", "[N]ew File" },
+		o = { "<cmd>e ~/.config/nvim/init.lua<cr>", "[O]pen config" },
+		d = { "<cmd>Alpha<cr>", "[D]ashboard" },
+		V = { "<cmd>set winbar=%f<cr>", "[V]inBar On" },
+		v = { "<cmd>set winbar='<cr>", "[v]inBar Off" },
+		p = { "<cmd>set laststatus=2<cr>", "[P]ut Laststatus Off" },
 	},
 }, { prefix = "<leader>" })
 
 wk.register({
 	b = {
 		name = "+Buffers",
-		b = { "<cmd>Telescope buffers<cr>", "Buffer Management" },
+		b = { "<cmd>Telescope buffers<cr>", "[B]uffer Management" },
 	},
 }, { prefix = "<leader>" })
 
 wk.register({
 	s = {
 		name = "+Sessions",
-		s = { "<cmd>SaveSession<cr>", "Save Current Session" },
-		q = { "<cmd>SearchSession<cr>", "Query all Saved Sessions" },
+		s = { "<cmd>SaveSession<cr>", "[S]ave Current Session" },
+		q = { "<cmd>SearchSession<cr>", "[Q]uery all Saved Sessions" },
 	},
 }, { prefix = "<leader>" })

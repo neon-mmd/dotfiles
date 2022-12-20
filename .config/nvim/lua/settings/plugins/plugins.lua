@@ -77,7 +77,6 @@ return packer.startup(function(use)
 		tag = "release",
 	})
 	use({ "kevinhwang91/nvim-bqf" })
-	use("windwp/nvim-spectre")
 	use("onsails/lspkind.nvim")
 	use("David-Kunz/markid")
 
@@ -119,6 +118,8 @@ return packer.startup(function(use)
 	use("rmagatti/auto-session")
 	use("rmagatti/session-lens")
 	use("lukas-reineke/indent-blankline.nvim")
+	use("j-hui/fidget.nvim")
+	use("RRethy/vim-illuminate")
 	-- smjonas/live-command.nvim
 
 	-- terminal in neovim
