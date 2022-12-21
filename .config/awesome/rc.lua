@@ -145,3 +145,4 @@ end)
 -- autostart programs
 local home = os.getenv("HOME")
 awful.spawn.once(home .. "/.config/autostart-apps-wm/autostart.sh")
+awful.spawn.once(home .. "/.config/awesome/autostart.sh")

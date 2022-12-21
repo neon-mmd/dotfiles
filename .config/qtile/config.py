@@ -65,8 +65,10 @@ auto_minimize = True
 
 @hook.subscribe.startup_once
 def autostart():
-    home = path.expanduser(r"~/.config/autostart-apps-wm/autostart.sh")
-    run((home))
+    global_autostart = path.expanduser(r"~/.config/autostart-apps-wm/autostart.sh")
+    local_autostart = path.expanduser(r"~/.config/qtile/autostart.sh")
+    run((global_autostart))
+    run((local_autostart))
 
 
 wmname = "LG3D"  # ---> compulsory otherwise qtile won't work

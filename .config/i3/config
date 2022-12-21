@@ -34,3 +34,4 @@ for_window [class="^.*"] border pixel 5
 #autostart programs
 exec ~/.config/autostart-apps-wm/autostart.sh
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id $HOME/.config/i3/autostart.sh
