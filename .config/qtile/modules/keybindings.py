@@ -66,13 +66,18 @@ def define_keybindings(terminal, colors, font):
             Key("M-p", lazy.spawn("pcmanfm"), desc="launch file manager"),
             # Launch the office suite application
             Key(
-                "M-o", lazy.spawn("onlyoffice-desktopeditors"), desc="launch office app"
+                "M-o", lazy.spawn("libreoffice"), desc="launch office app"
             ),
             # Launch dmenu
             Key(
                 "M-r",
                 lazy.spawn(tuple(dmenu_select_according_to_theme(colors, font))[0]),
                 desc="run prompt",
+            ),
+            Key(
+                "M-S-k",
+                lazy.spawn("dunstctl close-all"),
+                desc="close all notifications",
             ),
         ]
     )

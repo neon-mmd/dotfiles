@@ -58,7 +58,12 @@ function keybindings.define_global_keybindings(terminal, browser, editor, font)
 			awful.util.spawn("themes-changer")
 		end, "Launch custom script to change themes easily", "Apps/Scripts"),
 
-		-- Flatpak-launcher script
+        -- close all notifications
+		easykey.EzKey("M-S-k", function()
+			awful.util.spawn("dunstctl close-all")
+		end, "close all notifications", "Apps/Scripts"),
+		
+        -- Flatpak-launcher script
 		easykey.EzKey("M-a", function()
 			awful.util.spawn("flatpak-launcher")
 		end, "Launch custom script to launch flatpak applications", "Apps/Scripts"),
@@ -70,8 +75,8 @@ function keybindings.define_global_keybindings(terminal, browser, editor, font)
 
 		-- Onlyoffice
 		easykey.EzKey("M-o", function()
-			awful.util.spawn("onlyoffice-desktopeditors")
-		end, "Launch onlyoffice.", "Apps/Scripts"),
+			awful.util.spawn("libreoffice")
+		end, "Launch libreoffice.", "Apps/Scripts"),
 
 		-- Show help
 		easykey.EzKey("M-s", hotkeys_popup.show_help, "show help", "awesome"),
