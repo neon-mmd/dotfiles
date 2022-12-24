@@ -33,7 +33,7 @@
         erc-keywords '("slenderHacker" "python" "c++" "c" "java" "javascript" "html" "css" "lua" "nodejs" "sqlite" "rust"))
 
   ;; show notifications when someone mentions my name
-  ;; (add-to-list 'erc-modules 'notifications)
+  (add-to-list 'erc-modules 'notifications)
 
   ;; enable keybindings to switch between erc buffers
   (setq erc-track-enable-keybindings t)

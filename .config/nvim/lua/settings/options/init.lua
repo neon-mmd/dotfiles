@@ -42,5 +42,8 @@ set.list = true
 -- set.listchars:append("space:⋅")
 set.listchars:append("eol:↲")
 
+set.foldmethod = "expr"
+set.foldexpr = "nvim_treesitter#foldexpr()"
+
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1

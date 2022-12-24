@@ -82,7 +82,7 @@
   :after dashboard
   :straight t
   :custom
-  (alert-default-style 'mode-line)
+  (alert-default-style 'alert-libnotify-notify)
   )
 
 (provide 'aesthetics)
