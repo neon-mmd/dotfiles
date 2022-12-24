@@ -54,6 +54,8 @@
   (neon/ctrl-q-keys
     "v" 'vterm-other-window
     "s" 'treemacs
+    "f" 'ts-fold-toggle
+    "a" 'ts-fold-close-all
     )
 
   (general-create-definer neon/ctrl-l-keys

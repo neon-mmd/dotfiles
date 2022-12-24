@@ -12,3 +12,4 @@ volumeicon &
 gpg-connect-agent /bye &
 xclip -quiet &
 imwheel &
+update-notifier &

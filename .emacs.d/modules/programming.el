@@ -39,6 +39,7 @@
   (setq lsp-enable-folding nil)
   (setq lsp-enable-imenu nil)
   (setq lsp-enable-snippet t)
+  (setq lsp-enable-file-watchers nil)
   (setq tab-always-indent 'complete)
   (setq read-process-output-max (* 3 (* 1024 1024))) ;; 3MB
   ;; (setq gc-cons-threshold 100000000)
@@ -329,8 +330,6 @@
   :after dashboard
   )
 
-(provide 'programming)
-
 (use-package highlight-indent-guides
   :straight t
   :hook(prog-mode . highlight-indent-guides-mode)
@@ -341,3 +340,17 @@
   (set-face-foreground 'highlight-indent-guides-character-face "dimgray")
   (highlight-indent-guides-responsive 'top)
   )
+
+(use-package ts-fold-indicators
+  :straight (ts-fold-indicators :type git :host github :repo "emacs-tree-sitter/ts-fold")
+  :hook(tree-sitter-after-on-hook . ts-fold-indicators-mode)
+  )
+
+(use-package ts-fold
+  :straight (ts-fold :type git :host github :repo "emacs-tree-sitter/ts-fold")
+  :custom
+  (ts-fold-summary-format " [+] %s ")
+  (ts-fold-summary-exceeded-string "...........................................................")
+  )
+
+(provide 'programming)
