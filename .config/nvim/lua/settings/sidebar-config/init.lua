@@ -36,3 +36,9 @@ tree.setup({
 		dotfiles = false,
 	},
 })
+
+vim.api.nvim_set_hl(0, "VertSplit", {
+	bold = true,
+	fg = "#ffffff",
+	bg = nil,
+})
