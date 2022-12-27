@@ -58,12 +58,17 @@ function keybindings.define_global_keybindings(terminal, browser, editor, font)
 			awful.util.spawn("themes-changer")
 		end, "Launch custom script to change themes easily", "Apps/Scripts"),
 
-        -- close all notifications
-		easykey.EzKey("M-S-k", function()
+		-- close all notifications
+		easykey.EzKey("A-S-k", function()
 			awful.util.spawn("dunstctl close-all")
 		end, "close all notifications", "Apps/Scripts"),
-		
-        -- Flatpak-launcher script
+
+		-- toggle touchpad on or off
+		easykey.EzKey("A-S-t", function()
+			awful.util.spawn("touchpad")
+		end, "toggle touchpad", "Apps/Scripts"),
+
+		-- Flatpak-launcher script
 		easykey.EzKey("M-a", function()
 			awful.util.spawn("flatpak-launcher")
 		end, "Launch custom script to launch flatpak applications", "Apps/Scripts"),

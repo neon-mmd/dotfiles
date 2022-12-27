@@ -65,19 +65,20 @@ def define_keybindings(terminal, colors, font):
             # launch the file manager
             Key("M-p", lazy.spawn("pcmanfm"), desc="launch file manager"),
             # Launch the office suite application
-            Key(
-                "M-o", lazy.spawn("libreoffice"), desc="launch office app"
-            ),
+            Key("M-o", lazy.spawn("libreoffice"), desc="launch office app"),
             # Launch dmenu
             Key(
                 "M-r",
                 lazy.spawn(tuple(dmenu_select_according_to_theme(colors, font))[0]),
                 desc="run prompt",
             ),
+            # close all notifications
             Key(
-                "M-S-k",
+                "A-S-k",
                 lazy.spawn("dunstctl close-all"),
                 desc="close all notifications",
             ),
+            # toggle touchpad on or off
+            Key("A-S-t", lazy.spawn("touchpad"), desc="toggle touchpad"),
         ]
     )
