@@ -8,7 +8,7 @@
   (doom-themes-visual-bell-config)
   (doom-themes-neotree-config)
   ;; (setq doom-themes-treemacs-theme "doom-nord")
-  (doom-themes-treemacs-config)
+  ;; (doom-themes-treemacs-config)
   (doom-themes-org-config)
   )
 

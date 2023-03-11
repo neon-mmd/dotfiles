@@ -65,7 +65,7 @@ def define_keybindings(terminal, colors, font):
             # launch the file manager
             Key("M-p", lazy.spawn("pcmanfm"), desc="launch file manager"),
             # Launch the office suite application
-            Key("M-o", lazy.spawn("libreoffice"), desc="launch office app"),
+            Key("M-o", lazy.spawn("onlyoffice-desktopeditors"), desc="launch office app"),
             # Launch dmenu
             Key(
                 "M-r",

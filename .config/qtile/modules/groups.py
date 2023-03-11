@@ -17,7 +17,9 @@ def groups(my_groups):
                 layout="monadtall",
                 matches=Match(wm_class=array("VirtualBox Manager")),
             ),
-            Group(my_groups[3], layout="monadtall", matches=Match(wm_class=array("mpv"))),
+            Group(
+                my_groups[3], layout="monadtall", matches=Match(wm_class=array("mpv"))
+            ),
             Group(
                 my_groups[4],
                 layout="monadtall",

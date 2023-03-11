@@ -65,6 +65,8 @@ M.on_attach = function(client, bufnr)
 		client.server_capabilities.document_formatting = false
 	elseif client.name == "pylsp" then
 		client.server_capabilities.document_formatting = false
+	elseif client.name == "sqlls" then
+		client.server_capabilities.document_formatting = false
 	end
 	lsp_keymaps(bufnr)
 	lsp_highlight_document(client)

@@ -2,7 +2,7 @@
     origin = top-right
     monitor = 0
     follow = mouse
-    height = 40
+    height = 300
     width = 300
     indicate_hidden = yes
     shrink = no
@@ -17,7 +17,7 @@
     sort = yes
     idle_threshold = 120
     font = FiraCode Nerd Font 10
-    line_height = 1
+    line_height = 5
     markup = full
     format = "<b>%s</b>\n%b"
     alignment = center
@@ -29,12 +29,14 @@
     hide_duplicate_count = false
     show_indicators = yes
     icon_position = left
-    max_icon_size = 25
-    icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
+    min_icon_size = 40
+    max_icon_size = 40
+    icon_theme = Numix
+    enable_recursive_icon_lookup = true
     sticky_history = yes
     history_length = 20
     dmenu = /usr/bin/dmenu -p dunst:
-    browser = /usr/bin/brave
+    browser = /usr/bin/xdg-open
     always_run_script = true
     title = Dunst
     class = Dunst
@@ -70,3 +72,13 @@
 [play_sound]
     summary = "*"
     script = ~/.config/dunst/alert
+
+[qutebrowser]
+    appname="qutebrowser"
+    icon=/usr/share/icons/hicolor/24x24/apps/qutebrowser.png
+    urgency = low
+
+[librewolf]
+    appname="librewolf"
+    icon=/usr/share/icons/hicolor/16x16/apps/librewolf.png
+    urgency = low

@@ -1,7 +1,7 @@
 ;;;defining font-size and frame-transparency variables
 (defvar neon/def-font-size 120)
 (defvar neon/variable-pitch-font-size 120)
-(defvar neon/frame-transparency '(90 . 90))
+(defvar neon/frame-transparency '(100 . 100))
 
 ;; check whether daemon is running
 (if (daemonp)

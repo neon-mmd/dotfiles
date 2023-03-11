@@ -80,8 +80,8 @@ function keybindings.define_global_keybindings(terminal, browser, editor, font)
 
 		-- Onlyoffice
 		easykey.EzKey("M-o", function()
-			awful.util.spawn("libreoffice")
-		end, "Launch libreoffice.", "Apps/Scripts"),
+			awful.util.spawn("onlyoffice-desktopeditors")
+		end, "Launch Office App.", "Apps/Scripts"),
 
 		-- Show help
 		easykey.EzKey("M-s", hotkeys_popup.show_help, "show help", "awesome"),

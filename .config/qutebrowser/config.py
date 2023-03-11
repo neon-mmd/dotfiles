@@ -65,7 +65,8 @@ c.content.private_browsing = False
 c.content.blocking.method = "both"
 c.content.blocking.enabled = True
 c.content.blocking.hosts.lists = [
-    "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/gambling-porn/hosts"
+    "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/gambling-porn/hosts",
+    "https://big.oisd.nl/",
 ]
 
 # Fixes

@@ -5,7 +5,8 @@
 		term-mode-hook
                 treemacs-mode-hook
 		vterm-mode-hook
-		eww-mode-hook))
+		eww-mode-hook
+		neotree-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 (add-hook 'emacs-startup-hook #'neon/display-startup-time-n-garbage)

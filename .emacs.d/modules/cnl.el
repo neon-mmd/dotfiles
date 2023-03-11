@@ -27,6 +27,7 @@
   :custom(
 	  (setq gcmh-high-cons-threshold 100000000)
 	  (setq gcmh-idle-delay 0.3)
+	  
 	  )
   :init(gcmh-mode 1)
   )

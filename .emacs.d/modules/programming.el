@@ -1,183 +1,46 @@
-;; lsp
-(use-package lsp-mode
-  :hook ((c-mode          ; clangd
-          c++-mode        ; clangd
-          c-or-c++-mode   ; clangd
-          java-mode       ; eclipse-jdtls
-          js-mode         ; ts-ls (tsserver wrapper)
-	  js2-mode        ; js    (tsserver wrapper)
-          js-jsx-mode     ; ts-ls (tsserver wrapper)
-          typescript-mode ; ts-ls (tsserver wrapper)
-          python-mode     ; pyright
-          css-mode        ; ts-ls/HTML/CSS
-	  html-mode       ; hbs/html+
-	  sh-mode         ; shell
-	  lua-mode        ; lua-lang-server
-	  rust-mode       ; rls
-          ) . lsp-deferred)
-  :commands lsp
-  :config
-  (setq lsp-auto-guess-root t)
-  (setq lsp-log-io nil)
-  (setq lsp-restart 'auto-restart)
-  (setq lsp-enable-symbol-highlighting nil)
-  (setq lsp-enable-on-type-formatting nil)
-  (setq lsp-signature-auto-activate nil)
-  (setq lsp-signature-render-documentation nil)
-  (setq lsp-eldoc-hook nil)
-  (setq lsp-eldoc-enable-hover nil)
-  (setq lsp-ui-sideline-enable nil)
-  (setq lsp-ui-doc-show-with-cursor nil)
-  (setq lsp-ui-doc-show-with-mouse nil)
-  (setq lsp-completion-show-kind t)
-  (setq lsp-completion-provider :none)
-  (setq lsp-modeline-code-actions-enable nil)
-  (setq lsp-modeline-diagnostics-enable nil)
-  (setq lsp-headerline-breadcrumb-enable nil)
-  (setq lsp-semantic-tokens-enable nil)
-  (setq lsp-ui-sideline-show-code-actions nil)
-  (setq lsp-enable-folding nil)
-  (setq lsp-enable-imenu nil)
-  (setq lsp-enable-snippet t)
-  (setq lsp-enable-file-watchers nil)
-  (setq tab-always-indent 'complete)
-  (setq read-process-output-max (* 3 (* 1024 1024))) ;; 3MB
-  ;; (setq gc-cons-threshold 100000000)
-  (setq lsp-idle-delay 0.500)
+(use-package posframe
+  :straight t
+  :after dashboard
   )
 
-;; lsp-ui
-(use-package lsp-ui
+(use-package markdown-mode
   :straight t
-  :hook(lsp-mode . lsp-ui-mode)
-  :config
-  (setq lsp-ui-doc-mode 0)
-  (setq lsp-ui-doc-enable nil)
-  (setq lsp-ui-sideline-mode 1)
-  (setq lsp-ui-sideline-show-hover nil)
-  (setq lsp-ui-sideline-show-diagnostics t)
+  :after dashboard
   )
 
-;;treemacs
-(use-package lsp-treemacs
-  :straight t
-  :config
-  (setq treemacs-width 30)
-  (setq treemacs--width-is-locked nil)
-  (setq treemacs-width-is-initially-locked nil)
-  :hook(lsp-mode . lsp-treemacs-sync-mode)
-  )
-
-;;lsp ivy integration
-(use-package consult-lsp
-  :straight t
-  :after lsp
-  )
-
-;; beautify corfu with icons
-(use-package kind-icon
-  :straight t
-  :after corfu
-  :custom
-  (kind-icon-default-face 'corfu-default) ; to compute blended backgrounds correctly
-  (kind-icon-use-icons t)
-  (kind-icon-blend-background nil)
-  (kind-icon-blend-frac 0.08)
-  :config
-  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
-  )
-
-;; add corfu doc to completions
-(use-package corfu-doc
-  :straight t
-  :after corfu
-  :hook(corfu-mode . corfu-doc-mode)
-  :custom
-  (corfu-doc-delay 0.5)
-  (corfu-doc-max-width 70)
-  (corfu-doc-max-height 20)
-  )
-
-;; show completions
-(use-package corfu
-  :straight t
-  :custom
-  (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
-  (corfu-auto t)                 ;; Enable auto completion
-  ;; (corfu-separator ?\s)          ;; Orderless field separator
-  (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
-  (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
-  ;; (corfu-preview-current nil)    ;; Disable current candidate preview
-  (corfu-preselect-first t)    ;; enable candidate preselection
-  ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
-  (corfu-echo-documentation nil) ;; Disable documentation in the echo area
-  (corfu-scroll-margin 4)        ;; Use scroll margin
-  (corfu-auto-prefix 1)
-  (corfu-min-width 80)
-  (corfu-max-width corfu-min-width)
-  (corfu-count 14)
-  (corfu-echo-documentation nil)
-  (corfu-auto-delay 0.25)
-
-
-  ;; Enable Corfu only for certain modes.
-  :hook (prog-mode . corfu-mode)
-  )
-
-;; Use Dabbrev with Corfu!
-(use-package dabbrev
-  :straight t
-  ;; Swap M-/ and C-M-/
-  ;; Other useful Dabbrev configurations.
-  :custom
-  (dabbrev-ignored-buffer-regexps '("\\.\\(?:pdf\\|jpe?g\\|png\\)\\'"))
-  )
-
-;; use the `orderless' completion style.
-(use-package orderless
-  :straight t
+;; lsp-bridge: faster lsp server
+(use-package lsp-bridge
+  :straight (lsp-bridge :type git :host github :repo "manateelazycat/lsp-bridge"
+			:files ("*.el" "*.py" "acm" "core" "langserver" "multiserver" "resources"))
+  :after dashboard
   :init
-  ;; Configure a custom style dispatcher (see the Consult wiki)
-  ;; (setq orderless-style-dispatchers '(+orderless-dispatch)
-  ;;       orderless-component-separator #'orderless-escapable-split-on-space)
-  (setq completion-styles '(orderless basic file)
-        completion-category-defaults nil
-        completion-category-overrides '((file (styles . (partial-completion)))))
+  (lsp-bridge-mode t)
   )
 
-;; A few more useful configurations...
-(use-package emacs
-  :straight nil
-  :init
-  ;; TAB cycle if there are only few candidates
-  (setq completion-cycle-threshold nil)
-
-  ;; Emacs 28: Hide commands in M-x which do not apply to the current mode.
-  ;; Corfu commands are hidden, since they are not supposed to be used via M-x.
-  (setq read-extended-command-predicate
-        #'command-completion-default-include-p)
-
-  ;; Enable indentation+completion using the TAB key.
-  ;; `completion-at-point' is often bound to M-TAB.
-  (setq tab-always-indent 'complete)
+;; emacs-neotree
+(use-package emacs-neotree
+  :straight t
+  :after lsp-bridge-mode
+  :config
+  (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
   )
 
 ;; on the flychecking for errors
 (use-package flycheck
   :straight t
-  :after lsp-mode
-  :hook(lsp-mode . flycheck-mode)
+  :after lsp-bridge-mode
+  :hook(lsp-bridge-mode . flycheck-mode)
   )
 
 ;; yasnippet-snippets
 (use-package yasnippet-snippets
-  :after lsp
+  :after lsp-bridge-mode
   :straight t
   )
 
 ;; yasnippet code completion
 (use-package yasnippet
-  :hook(lsp-mode . yas-minor-mode)
+  :hook(lsp-bridge-mode . yas-minor-mode)
   :straight t
   :config
   (yas-reload-all)
@@ -204,7 +67,7 @@
   :straight t
   :config
   (setq tab-width 2)
-  :hook(java-mode-hook . lsp)
+  :hook(java-mode-hook . lsp-bridge-mode)
   )
 
 ;; extra language modes in emacs
@@ -220,12 +83,12 @@
 
 (use-package lsp-java
   :straight t
-  :hook(java-mode-hook . lsp)
+  :hook(java-mode-hook . lsp-bridge-mode)
   )
 
 ;; indicate incomplete brackets and braces
 (use-package rainbow-delimiters
-  :hook((lsp-mode
+  :hook((lsp-bridge-mode
 	 emacs-lisp-mode)
 	. rainbow-delimiters-mode)
   :after dashboard
@@ -240,7 +103,7 @@
 
 ;; visulise color with rainbow-mode
 (use-package rainbow-mode
-  :hook((lsp-mode
+  :hook((lsp-bridge-mode
 	 emacs-lisp-mode)
 	. rainbow-mode)
   :straight t
@@ -277,7 +140,7 @@
 	)
 
   :hook (format-all-mode-hook . format-all-ensure-formatter)
-  :after lsp
+  :after lsp-bridge-mode
   )
 
 ;; ligature support for emacs
@@ -298,7 +161,7 @@
 ;; hl-todo to highlight todos
 (use-package hl-todo
   :straight t
-  :hook ((emacs-lisp-mode lsp-mode) . hl-todo-mode)
+  :hook ((emacs-lisp-mode lsp-bridge-mode) . hl-todo-mode)
   :config
   (setq hl-todo-highlight-punctuation ":"
         hl-todo-keyword-faces

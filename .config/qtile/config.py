@@ -19,7 +19,7 @@ from modules.keybindings import define_keybindings
 #    named
 # ]
 
-my_groups = tuple(group_selector("iconic"))[0]
+my_groups = next(group_selector("iconic"))
 
 # [
 #   dracula
@@ -32,29 +32,29 @@ my_groups = tuple(group_selector("iconic"))[0]
 #   solarized-light
 # ]
 
-colors = tuple(color_picker("oceanic-next"))[0]
-groups = tuple(groups(my_groups))[0]
+colors = next(color_picker("oceanic-next"))
+groups = next(groups(my_groups))
 mod = "mod4"
 terminal = guess_terminal()
 font = "Iosevka Nerd Font"
 
 # ---------------------------------------------keybindings--------------------------------------------
-keys = tuple(define_keybindings(terminal, colors, font))[0]
+keys = next(define_keybindings(terminal, colors, font))
 dgroups_key_binder = simple_key_binder(mod)
 
 # --------------------------------------------layouts-----------------------------------------
-layouts = tuple(layout_creation(colors))[0]
+layouts = next(layout_creation(colors))
 
 # -----------------------------------------------------widgets-------------------------------------
 widget_defaults = dict(font=font, fontsize=15, padding=10)
 extension_defaults = widget_defaults.copy()
-screens = array([Screen(top=tuple(widget_creation(colors))[0])])
+screens = array([Screen(top=next(widget_creation(colors)))])
 mouse = tuple(mouse_behavior(mod))[0]
 dgroups_app_rules = []  # type: list
 follow_mouse_focus = False
 bring_front_click = False
 cursor_warp = False
-floating_layout = Floating(float_rules=tuple(program_behaviour())[0])
+floating_layout = Floating(float_rules=next(program_behaviour()))
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True
