@@ -6,3 +6,5 @@ idlwave
 plugin
 autoconfig.yml
 bookmarks
+*.elc
+bg-saved.cfg
