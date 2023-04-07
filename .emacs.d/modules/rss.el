@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 ;; elfeed to read rss feeds
 (use-package elfeed
   :commands elfeed

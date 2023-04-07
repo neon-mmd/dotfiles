@@ -46,6 +46,7 @@ return packer.startup(function(use)
 	-- general
 	use("wbthomason/packer.nvim") -- package manager for neovim
 	use("GustavoPrietoP/doom-themes.nvim") -- doom themes for neovim
+	use({ "catppuccin/nvim", as = "catppuccin" }) -- catppuccin theme for neovim
 	use("nvim-lua/popup.nvim") -- popup api for neovim to improve popups
 	use("nvim-lua/plenary.nvim") -- plenary to provide vim apis
 	use("kyazdani42/nvim-web-devicons") -- for icons
@@ -83,7 +84,7 @@ return packer.startup(function(use)
 	-- beautify code
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 	use("nvim-treesitter/nvim-treesitter-refactor")
-	use("p00f/nvim-ts-rainbow")
+	use("HiPhish/nvim-ts-rainbow2")
 
 	-- comment toggler
 	use("terrortylor/nvim-comment")
@@ -96,7 +97,7 @@ return packer.startup(function(use)
 	use("folke/which-key.nvim")
 
 	-- fancy dashboard for neovim
-	use("glepnir/dashboard-nvim")
+	use("goolord/alpha-nvim")
 
 	-- automatically close brackets
 	use("windwp/nvim-autopairs")

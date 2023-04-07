@@ -107,6 +107,17 @@ function keybindings.define_global_keybindings(terminal, browser, editor, font)
 			awful.client.focus.byidx(-1)
 		end, "focus previous by index", "client"),
 
+		-- Resize client focus
+		easykey.EzKey("M-C-j", function(c)
+			awful.tag.incmwfact(0.01)
+		end),
+		easykey.EzKey("M-C-k", function()
+			awful.tag.incmwfact(-0.01)
+		end),
+		easykey.EzKey("M-C-h", function()
+			awful.client.incwfact(-0.01)
+		end),
+
 		-- Layout manipulation
 		easykey.EzKey("M-S-j", function()
 			awful.client.swap.byidx(1)

@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 ;; password management with pass
 (use-package pass
   :straight t

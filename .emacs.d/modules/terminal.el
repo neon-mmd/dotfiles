@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 ;; vterm
 (setq shell-file-name "/bin/fish")
 (use-package vterm

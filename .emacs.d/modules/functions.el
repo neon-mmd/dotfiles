@@ -1,4 +1,6 @@
-; function to connect to erc automatically on keybinding.
+;;; -*- lexical-binding: t; -*-
+
+;; function to connect to erc automatically on keybinding.
 (defun neon/connect-irc ()
   "function to connect to erc automatically on keybinding."
   (interactive)
@@ -32,19 +34,6 @@
   (auto-package-update-now-async)
   )
 
-(defun neon/frame-n-fonts ()
-  ;; Set frame transparency
-  (message "setting font-faces and frame")
-  (set-frame-parameter (selected-frame) 'alpha neon/frame-transparency)
-  (add-to-list 'default-frame-alist `(alpha . ,neon/frame-transparency))
-
-  ;; setting font and sizes
-  (set-face-attribute 'default nil :font "Source Code Pro" :height neon/def-font-size)
-  (set-face-attribute 'variable-pitch nil :font "Iosevka" :height neon/variable-pitch-font-size :weight 'regular)
-  (set-face-attribute 'fixed-pitch nil :font "Source Code Pro" :height neon/def-font-size)
-
-  )
-
 ;; org-configuration
 (defun neon/org-config ()
   ;; replacing org-list symbol '.' with arrows
@@ -61,14 +50,14 @@
   (dolist
       (face
        '(
-	 (org-level-1 1.7 "#707183" ultra-bold)
-         (org-level-2 1.6 "#7388d6" extra-bold)
-         (org-level-3 1.5 "#909183" bold)
-         (org-level-4 1.4 "#709870" semi-bold)
-         (org-level-5 1.3 "#907373" normal)
-         (org-level-6 1.2 "#6276ba" normal)
-         (org-level-7 1.1 "#858580" normal)
-         (org-level-8 1.0 "#80a880" normal)
+	 (org-level-1 1.7 "#707183" extra-bold)
+         (org-level-2 1.6 "#7388d6" bold)
+         (org-level-3 1.5 "#909183" normal)
+         (org-level-4 1.4 "#709870" light)
+         (org-level-5 1.3 "#907373" light)
+         (org-level-6 1.2 "#6276ba" light)
+         (org-level-7 1.1 "#858580" light)
+         (org-level-8 1.0 "#80a880" light)
 	 ))
     (set-face-attribute (nth 0 face) nil :font "Ubuntu" :weight (nth 3 face) :height (nth 1 face) :foreground (nth 2 face))
     )

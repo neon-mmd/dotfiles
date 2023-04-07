@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 ;; org
 (use-package org
   :after dashboard
@@ -23,14 +25,13 @@
   )
 
 ;; making org content centered to give document style look.
-(use-package visual-fill-column
+(use-package olivetti
   :straight t
-  :hook (org-mode . visual-fill-column-mode)
+  :hook (org-mode . olivetti-mode)
   :custom
-  (visual-fill-column-width 100)
-  (visual-fill-column-center-text t)
-  :init
-  (visual-fill-column-mode 1)
+  (olivetti-style 'fancy)
+  (olivetti-minimum-body-width 10)
+  (olivetti-body-width  (- (frame-width) 25))
   )
 
 ;; adding completion templates in org for productivity

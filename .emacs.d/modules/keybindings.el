@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 ;; keybindings
 (use-package general
   :straight t
@@ -89,7 +91,7 @@
    )
 
   (general-nmap
-    :prefix "gc"
+    :prefix "g"
     "c" 'evilnc-comment-or-uncomment-lines
     )
 

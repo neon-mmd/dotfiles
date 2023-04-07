@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 ;; Erc to chat on irc
 (use-package erc
   :straight nil

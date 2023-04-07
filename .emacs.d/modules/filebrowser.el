@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 ;; improving dired
 (use-package dired
   :after dashboard

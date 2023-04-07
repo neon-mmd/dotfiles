@@ -1,4 +1,4 @@
-local status_ok, db = pcall(require, "dashboard")
+local status_ok, alpha = pcall(require, "alpha")
 if not status_ok then
 	vim.notify("ERROR: alpha not found!!")
 	return
@@ -7,69 +7,35 @@ end
 -- needed to get random footer text
 math.randomseed(os.time())
 
-db.default_banner = {
-	"",
-	"",
-	"███████╗ █████╗ ████████╗██╗   ██╗██╗███╗   ███╗",
-	"██╔════╝██╔══██╗╚══██╔══╝██║   ██║██║████╗ ████║",
-	"███████╗███████║   ██║   ██║   ██║██║██╔████╔██║",
-	"╚════██║██╔══██║   ██║   ╚██╗ ██╔╝██║██║╚██╔╝██║",
-	"███████║██║  ██║   ██║    ╚████╔╝ ██║██║ ╚═╝ ██║",
-	"╚══════╝╚═╝  ╚═╝   ╚═╝     ╚═══╝  ╚═╝╚═╝     ╚═╝",
-	"",
-	"                 A PDE for Aliens 👽!!!                ",
-	"",
+local db = require("alpha.themes.dashboard")
+
+db.section.header.val = {
+	[[                                                        ]],
+	[[                                                        ]],
+	[[    ███████╗ █████╗ ████████╗██╗   ██╗██╗███╗   ███╗    ]],
+	[[    ██╔════╝██╔══██╗╚══██╔══╝██║   ██║██║████╗ ████║    ]],
+	[[    ███████╗███████║   ██║   ██║   ██║██║██╔████╔██║    ]],
+	[[    ╚════██║██╔══██║   ██║   ╚██╗ ██╔╝██║██║╚██╔╝██║    ]],
+	[[    ███████║██║  ██║   ██║    ╚████╔╝ ██║██║ ╚═╝ ██║    ]],
+	[[    ╚══════╝╚═╝  ╚═╝   ╚═╝     ╚═══╝  ╚═╝╚═╝     ╚═╝    ]],
+	[[                                                        ]],
+	[[                  A PDE for Aliens 👽!!!                ]],
+	[[                                                        ]],
 }
 
-db.custom_center = {
-	{
-		icon = "  ",
-		desc = "Query Saved Session                     ",
-		shortcut = ";sq",
-		action = "SearchSession",
-	},
-	{
-		icon = "  ",
-		desc = "New file                                ",
-		shortcut = ";gn",
-		action = "enew",
-	},
-	{
-		icon = "  ",
-		desc = "Recently used files                     ",
-		action = "Telescope oldfiles",
-		shortcut = ";fr",
-	},
-	{
-		icon = "  ",
-		desc = "Find  File                              ",
-		action = "Telescope find_files find_command=rg,--hidden,--files",
-		shortcut = ";ff",
-	},
-	{
-		icon = "  ",
-		desc = "Find project                            ",
-		action = "Telescope project find_command=rg, --hidden, --files",
-		shortcut = ";gp",
-	},
-	{
-		icon = "  ",
-		desc = "Find text                               ",
-		action = ":Telescope live_grep ",
-		shortcut = ";fg",
-	},
-	{
-		icon = "  ",
-		desc = "Configuration                           ",
-		action = "e ~/.config/nvim/init.lua",
-		shortcut = ";go",
-	},
-	{
-		icon = "  ",
-		desc = "Quit Neovim                             ",
-		action = "qa",
-		shortcut = ";gq",
-	},
+db.section.buttons.val = {
+	db.button(";sq", string.format("  %s", "Query Saved Session"), ":SearchSession <CR>"),
+	db.button(";gn", string.format("  %s", "New file"), ":enew <BAR> startinsert <CR>"),
+	db.button(";fr", string.format("  %s", "Recently used files"), ":Telescope oldfiles <CR>"),
+	db.button(
+		";ff",
+		string.format("  %s", "Find  File"),
+		":Telescope find_files find_command=rg,--hidden,--files <CR>"
+	),
+	db.button(";fp", string.format("  %s", "Find project"), ":Telescope project <CR>"),
+	db.button(";fg", string.format("  %s", "Find text"), ":Telescope live_grep <CR>"),
+	db.button(";go", string.format("  %s", "Configuration"), ":e ~/.config/nvim/init.lua <CR>"),
+	db.button(";gq", string.format("  %s", "Quit Neovim"), ":qa <CR>"),
 }
 
 local function footer()
@@ -91,6 +57,9 @@ local function footer()
 	return { "🪐 " .. randomFooterText[math.random(1, #randomFooterText)] }
 end
 
-db.custom_footer = footer()
-db.hide_statusline = false
-db.hide_tabline = false
+db.section.footer.val = footer()
+db.section.header.opts.hl = "Include"
+db.section.buttons.opts.hl = "Keyword"
+
+db.opts.opts.noautocmd = true
+alpha.setup(db.opts)

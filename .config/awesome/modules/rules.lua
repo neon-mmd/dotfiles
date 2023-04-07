@@ -62,31 +62,19 @@ function rules.program_behaviour(clientkeys, clientbuttons)
 		{ rule_any = { type = { "normal", "dialog" } }, properties = { titlebars_enabled = true } },
 
 		-- Set Firefox to always map on the tag named "2" on screen 1.
-		{ rule = { class = "qutebrowser" }, properties = { screen = 1, tag = awful.util.tagnames[0] } },
+		{ rule = { class = "qutebrowser" }, properties = { screen = 1, tag = awful.util.tagnames[2] } },
 
-		{ rule = { class = "virt-manager" }, properties = { screen = 1, tag = tagnames } },
+		{ rule = { class = "VirtualBox Manager" }, properties = { screen = 1, tag = awful.util.tagnames[3] } },
 
-		{ rule = { class = "vlc" }, properties = { screen = 1, tag = "vlc" } },
+		{ rule = { class = "mpv" }, properties = { screen = 1, tag = awful.util.tagnames[4] } },
 
-		{ rule = { class = "Alacritty" }, properties = { screen = 1, tag = "term" } },
+		{ rule = { class = "Emacs" }, properties = { screen = 1, tag = awful.util.tagnames[6] } },
 
-		{ rule = { class = "Emacs" }, properties = { screen = 1, tag = "code" } },
+		{ rule = { class = "WhatSie: WhatsApp" }, properties = { screen = 1, tag = awful.util.tagnames[7] } },
 
-		{ rule = { class = "idea" }, properties = { screen = 1, tag = "code" } },
+		{ rule = { class = "Nextcloud" }, properties = { screen = 1, tag = awful.util.tagnames[5] } },
 
-		{ rule = { class = "stacer" }, properties = { screen = 1, tag = "stacer" } },
-
-		{ rule = { class = "Teams" }, properties = { screen = 1, tag = "vcapps" } },
-
-		{ rule = { class = "Nextcloud" }, properties = { screen = 1, tag = "nextcloud" } },
-
-		{ rule = { class = "whatsapp" }, properties = { screen = 1, tag = "whatsapp" } },
-
-		{ rule = { class = "vncviewer" }, properties = { screen = 1, tag = "vbox" } },
-
-		{ rule = { class = "QtCreator" }, properties = { screen = 1, tag = "code" } },
-
-		{ rule = { class = "Mailspring" }, properties = { screen = 1, tag = "mail" } },
+		{ rule = { class = "thunderbird" }, properties = { screen = 1, tag = awful.util.tagnames[8] } },
 	}
 end
 

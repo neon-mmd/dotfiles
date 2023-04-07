@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 ;; excluding following modes from showing line numbers
 (dolist (mode '(org-mode-hook
                 shell-mode-hook

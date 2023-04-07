@@ -1,35 +1,33 @@
 -------------------------imports-----------------------------
-local tagnames = {};
+local tagnames = {}
 
 -------------------------tagnames----------------------------
 function tagnames.pick_a_tagnames_style(style)
-    local tagStyle = {
-        named =
-        {
-            "term",
-            "web",
-            "vbox",
-            "mpv",
-            "nextcloud",
-            "code",
-            "whatsapp",
-            "mail",
-            "vcapps"
-        },
-        iconic =
-        {
-            "",
-            "",
-            "",
-            "",
-	    "",
-            "",
-	    "",
-            "",
-	    ""
+	local tagStyle = {
+		named = {
+			"term",
+			"web",
+			"vbox",
+			"media",
+			"cloud",
+			"code",
+			"chat",
+			"mail",
+			"conf",
+		},
+		iconic = {
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+		},
 	}
-    }
-    return tagStyle[style]
+	return tagStyle[style]
 end
 
 return tagnames

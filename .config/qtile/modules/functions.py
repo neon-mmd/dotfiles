@@ -1,12 +1,13 @@
 # ------------------------------------------imports-------------------------------------------
+from typing import Dict, Tuple
 from libqtile.widget import TextBox, Battery
 from subprocess import getoutput
 
 # -----------------------------------------Custom-functions----------------------------------
 
 
-def color_picker(colorscheme_name):
-    color_collection = {
+def color_picker(colorscheme_name: str) -> Dict[str, str]:
+    color_collection: Dict[str, Dict[str, str]] = {
         "tomorrow-night": {
             "bg": "#1d1f21",
             "fg": "#c5c8c6",
@@ -95,85 +96,77 @@ def color_picker(colorscheme_name):
             "6": "#d33682",
             "7": "#ffffff",
         },
+        "catppuccin-mocha": {
+            "bg": "#1e1e2e",
+            "fg": "#cdd6f4",
+            "1": "#45475a",
+            "2": "#f38ba8",
+            "3": "#a6e3a1",
+            "4": "#f9e2af",
+            "5": "#89b4fa",
+            "6": "#f5c2e7",
+            "7": "#ffffff",
+        },
     }
 
-    yield color_collection[colorscheme_name]
+    return color_collection[colorscheme_name]
 
 
-def dmenu_select_according_to_theme(colors, font):
-    yield (
-        "dmenu_run -i -fn '"
-        + font
-        + ":pixelsize=17' -nb "
-        + colors["bg"]
-        + " -nf "
-        + colors["fg"]
-        + " -sb "
-        + colors["2"]
-        + " -sf "
-        + colors["4"]
-    )
+def dmenu_select_according_to_theme(colors: Dict[str, str], font: str) -> str:
+    return f"dmenu_run -i -fn '{font}:pixelsize=17' -nb {colors['bg']} -nf {colors['fg']} -sb {colors['2']} -sf {colors['4']}"
 
 
-def group_selector(group_type):
-    my_groups = {
-        "named": ["term", "web", "virt", "mpv", "cloud", "code", "chat", "mail", "vc"],
-        "iconic": ["", "", "", "", "", "", "", "", ""],
+def group_selector(
+    group_type: str,
+) -> Tuple[str, str, str, str, str, str, str, str, str]:
+    my_groups: Dict[str, Tuple[str, str, str, str, str, str, str, str, str]] = {
+        "named": ("term", "web", "vbox", "media", "cloud", "code", "chat", "mail", "conf"),
+        "iconic": ("", "", "", "", "", "", "", "", ""),
     }
-    yield my_groups[group_type]
+    return my_groups[group_type]
 
 
-def theme_style(direction, Type):
-    face_direction = {"left": 0, "right": 1}
-    styles = {
-        "arrow": ["\uE0B2", "\uE0B0"],
-        "semi-circle": ["\ue0b6", "\ue0b4"],
-        "bottom-right-triangle": ["\ue0ba", "\ue0b8"],
-        "top-right-triangle": ["\ue0be", "\ue0bc"],
-        "vertical": [" ", ""],
+def theme_style(direction: str, Type: str) -> str:
+    face_direction: Dict[str, int] = {"left": 0, "right": 1}
+    styles: Dict[str, Tuple[str, str]] = {
+        "arrow": ("\uE0B2", "\uE0B0"),
+        "semi-circle": ("\ue0b6", "\ue0b4"),
+        "bottom-right-triangle": ("\ue0ba", "\ue0b8"),
+        "top-right-triangle": ("\ue0be", "\ue0bc"),
+        "vertical": (" ", ""),
     }
 
-    if Type == "arrow":
-        yield styles["arrow"][face_direction[direction]]
-    elif Type == "semi-circle":
-        yield styles["semi-circle"][face_direction[direction]]
-    elif Type == "bottom-right-triangle":
-        yield styles["bottom-right-triangle"][face_direction[direction]]
-    elif Type == "top-right-triangle":
-        yield styles["top-right-triangle"][face_direction[direction]]
-    else:
-        yield styles["vertical"][face_direction[direction]]
+    return styles[Type][face_direction[direction]]
 
 
-def unicode(color1, color2, direction, Type):
-
-    padding_amount = 0
+def unicode(color1: str, color2: str, direction: str, Type: str) -> TextBox:
+    padding_amount: int = 0
 
     if direction == "left":
         if Type == "arrow":
-            padding_amount = 0
+            padding_amount: int = 0
         elif Type == "semi-circle":
-            padding_amount = 0
+            padding_amount: int = 0
         elif Type == "bottom-right-triangle":
-            padding_amount = 0
+            padding_amount: int = 0
         elif Type == "top-right-triangle":
-            padding_amount = 0
+            padding_amount: int = 0
         else:
-            padding_amount = 0
+            padding_amount: int = 0
     else:
         if Type == "arrow":
-            padding_amount = 0
+            padding_amount: int = 0
         elif Type == "semi-circle":
-            padding_amount = 0
+            padding_amount: int = 0
         elif Type == "bottom-right-triangle":
-            padding_amount = 0
+            padding_amount: int = 0
         elif Type == "top-right-triangle":
-            padding_amount = 0
+            padding_amount: int = 0
         else:
-            padding_amount = 0
+            padding_amount: int = 0
 
-    yield TextBox(
-        text=tuple(theme_style(direction, Type))[0],
+    return TextBox(
+        text=theme_style(direction, Type),
         padding=padding_amount,
         fontsize=23,
         background=color1,
@@ -181,9 +174,9 @@ def unicode(color1, color2, direction, Type):
     )
 
 
-def check_battery(colorbg, color2):
+def check_battery(colorbg: str, color2: str) -> Battery | TextBox:
     if getoutput("acpi | grep 'Battery'") != "":
-        yield Battery(
+        return Battery(
             charge_char="",
             discharge_char="",
             notify_below=86,
@@ -193,4 +186,4 @@ def check_battery(colorbg, color2):
             format="{char} {percent:2.0%}",
         )
     else:
-        yield TextBox(text="  ", fontsize=20, background=color2, foreground=colorbg)
+        return TextBox(text="  ", fontsize=20, background=color2, foreground=colorbg)

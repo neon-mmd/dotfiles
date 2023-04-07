@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 (use-package posframe
   :straight t
   :after dashboard
@@ -12,9 +14,7 @@
 (use-package lsp-bridge
   :straight (lsp-bridge :type git :host github :repo "manateelazycat/lsp-bridge"
 			:files ("*.el" "*.py" "acm" "core" "langserver" "multiserver" "resources"))
-  :after dashboard
-  :init
-  (lsp-bridge-mode t)
+  :hook(prog-mode . lsp-bridge-mode)
   )
 
 ;; emacs-neotree
@@ -40,7 +40,7 @@
 
 ;; yasnippet code completion
 (use-package yasnippet
-  :hook(lsp-bridge-mode . yas-minor-mode)
+  :hook(prog-mode . yas-minor-mode)
   :straight t
   :config
   (yas-reload-all)

@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 ;; straight.el configuration
 (defvar bootstrap-version)
 (let ((bootstrap-file

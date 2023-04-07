@@ -47,7 +47,7 @@ telescope.setup({
 		project = {
 			fuzzy = true, -- false will only do exact matching
 			base_dirs = {
-				"/run/media/destruct/39568688-b38c-43ac-a7de-c0f9888ec0c0/git-repos/",
+				"/run/media/destruct/projects/git-repos/",
 			},
 			hidden_files = true, -- default: false
 			theme = "ivy",

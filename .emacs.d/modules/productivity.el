@@ -1,4 +1,6 @@
-;;auto-package-update configuration
+;;; -*- lexical-binding: t; -*-
+
+;; auto-package-update configuration
 (use-package auto-package-update
   :after dashboard
   :straight t
@@ -41,8 +43,8 @@
   ;; :bind-keymap
   ;; ("C-c p" . projectile-command-map)
   :init
-  (when (file-directory-p "/run/media/destruct/39568688-b38c-43ac-a7de-c0f9888ec0c0/git-repos/")
-    (setq projectile-project-search-path '("/run/media/destruct/39568688-b38c-43ac-a7de-c0f9888ec0c0/git-repos/")))
+  (when (file-directory-p "/run/media/destruct/projects/git-repos/")
+    (setq projectile-project-search-path '("/run/media/destruct/projects/git-repos/")))
   (setq projectile-switch-project-action #'projectile-dired)
   )
 

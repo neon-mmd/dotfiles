@@ -12,7 +12,7 @@ if not status then
 end
 
 local servers =
-	{ "pyright", "sumneko_lua", "clangd", "rust_analyzer", "tsserver", "jdtls", "cssls", "html", "bashls"}
+	{ "pyright", "lua_ls", "clangd", "rust_analyzer", "tsserver", "jdtls", "cssls", "html", "bashls"}
 
 mason_installer.setup({
 	ensure_installed = servers,

@@ -1,16 +1,23 @@
+;;; -*- lexical-binding: t; -*-
+
 ;; doom-themes
 (use-package doom-themes
   :straight t
   :config
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t)
-  (load-theme 'doom-oceanic-next t)
   (doom-themes-visual-bell-config)
   (doom-themes-neotree-config)
   ;; (setq doom-themes-treemacs-theme "doom-nord")
   ;; (doom-themes-treemacs-config)
   (doom-themes-org-config)
   )
+
+(use-package catppuccin-theme
+  :straight t
+  )
+
+(load-theme 'catppuccin t)
 
 ;; custom dashboard for emacs
 (use-package dashboard

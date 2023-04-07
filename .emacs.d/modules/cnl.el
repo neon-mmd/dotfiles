@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 ;; no-littering configuration
 (defvar no-littering-etc-directory
   (expand-file-name "~/.config/emacs/"))
@@ -22,14 +24,12 @@
   )
 
 ;; do garbage collection automatically in minor mode
-(use-package gcmh
-  :straight t
-  :custom(
-	  (setq gcmh-high-cons-threshold 100000000)
-	  (setq gcmh-idle-delay 0.3)
-	  
-	  )
-  :init(gcmh-mode 1)
-  )
+;; (use-package gcmh
+;;   :straight t
+;;   :custom(
+;; 	  (setq gcmh-high-cons-threshold (* 50 1000 1000))
+;;       )
+;;   :init(gcmh-mode 1)
+;;   )
 
 (provide 'cnl)

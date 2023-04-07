@@ -7,10 +7,13 @@ end
 treesitter.setup({
 	ensure_installed = { "lua", "rust", "html", "cpp", "c", "css", "python", "java", "javascript", "bash" },
 	sync_install = false,
+	auto_install = false,
 	highlight = {
 		enable = true,
 		additional_vim_regex_highlighting = true,
-		indent = true,
+	},
+	indent = {
+		enable = true,
 	},
 	refactor = {
 		highlight_definitions = {
@@ -28,6 +31,8 @@ treesitter.setup({
 		enable = true,
 		extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
 		max_file_lines = nil, -- Do not enable for files with more than n lines, int
+		-- query = 'rainbow-parens',
+		-- strategy = require("ts-rainbow").strategy.global,
 	},
 	autotag = {
 		enable = true,
