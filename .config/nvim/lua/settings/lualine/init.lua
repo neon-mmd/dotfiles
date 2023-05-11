@@ -53,7 +53,7 @@ lualine.setup({
 				},
 			},
 		},
-		lualine_x = { require("auto-session-library").current_session_name },
+		lualine_x = { require("auto-session").current_session_name },
 		lualine_y = { "branch" },
 		lualine_z = { "diagnostics" },
 	},

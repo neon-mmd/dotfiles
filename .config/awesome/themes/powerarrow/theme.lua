@@ -68,17 +68,17 @@ local bat = lain.widget.bat({
 		if bat_now.status and bat_now.status ~= "N/A" then
 			if bat_now.ac_status == 1 then
 				if not bat_now.perc and tonumber(bat_now.perc) >= 85 then
-					widget:set_markup(markup.font(theme.font, " " .. bat_now.perc .. "% FULL!!"))
+					widget:set_markup(markup.font(theme.font, string.format(" %s% FULL!! ", bat_now.perc)))
 				else
-					widget:set_markup(markup.font(theme.font, " " .. bat_now.perc .. "% "))
+					widget:set_markup(markup.font(theme.font, string.format(" %s% ", bat_now.perc)))
 				end
 				return
 			elseif not bat_now.perc and tonumber(bat_now.perc) >= 85 then
-				widget:set_markup(markup.font(theme.font, " " .. bat_now.perc .. "% FULL!!"))
+				widget:set_markup(markup.font(theme.font, string.format("󰁹 %s% FULL!! ", bat_now.perc)))
 			elseif not bat_now.perc and tonumber(bat_now.perc) <= 30 then
-				widget:set_markup(markup.font(theme.font, " " .. bat_now.perc .. "% LOW!!"))
+				widget:set_markup(markup.font(theme.font, string.format("󱊡 %s% LOW!! ", bat_now.perc)))
 			else
-				widget:set_markup(markup.font(theme.font, " " .. bat_now.perc .. "% "))
+				widget:set_markup(markup.font(theme.font, string.format("󰁹 %s% ", bat_now.perc)))
 			end
 		else
 			widget:set_markup()

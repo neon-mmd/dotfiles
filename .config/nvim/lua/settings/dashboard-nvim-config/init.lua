@@ -26,16 +26,16 @@ db.section.header.val = {
 db.section.buttons.val = {
 	db.button(";sq", string.format("  %s", "Query Saved Session"), ":SearchSession <CR>"),
 	db.button(";gn", string.format("  %s", "New file"), ":enew <BAR> startinsert <CR>"),
-	db.button(";fr", string.format("  %s", "Recently used files"), ":Telescope oldfiles <CR>"),
+	db.button(";fr", string.format("󰾆  %s", "Recently used files"), ":Telescope oldfiles <CR>"),
 	db.button(
 		";ff",
-		string.format("  %s", "Find  File"),
+		string.format("󰍉  %s", "Find  File"),
 		":Telescope find_files find_command=rg,--hidden,--files <CR>"
 	),
 	db.button(";fp", string.format("  %s", "Find project"), ":Telescope project <CR>"),
-	db.button(";fg", string.format("  %s", "Find text"), ":Telescope live_grep <CR>"),
+	db.button(";fg", string.format("󰊄  %s", "Find text"), ":Telescope live_grep <CR>"),
 	db.button(";go", string.format("  %s", "Configuration"), ":e ~/.config/nvim/init.lua <CR>"),
-	db.button(";gq", string.format("  %s", "Quit Neovim"), ":qa <CR>"),
+	db.button(";gq", string.format("󰿅  %s", "Quit Neovim"), ":qa <CR>"),
 }
 
 local function footer()

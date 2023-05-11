@@ -28,7 +28,7 @@ alias find=fd
 alias ls="exa -alh --group-directories-first --icons --git"
 alias grep=rg
 alias cat=bat
-# alias sudo="doas --"
+alias sudo="doas --"
 alias vim="nvim"
 alias tree="exa -a --tree --icons --group-directories-first"
 

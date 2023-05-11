@@ -54,7 +54,7 @@ def widget_creation(colors: Dict[str, str]) -> Bar:
             CurrentLayout(
                 foreground=colors["bg"],
                 background=colors["6"],
-                fmt="",
+                fmt="󰍜",
                 fontsize=20,
             ),
         ),

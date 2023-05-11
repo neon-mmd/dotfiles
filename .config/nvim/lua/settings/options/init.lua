@@ -40,7 +40,7 @@ set.laststatus = 3
 
 set.list = true
 -- set.listchars:append("space:⋅")
-set.listchars:append("eol:↲")
+set.listchars:append("eol:⤶")
 
 set.foldmethod = "expr"
 set.foldexpr = "nvim_treesitter#foldexpr()"

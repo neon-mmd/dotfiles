@@ -178,7 +178,7 @@ def check_battery(colorbg: str, color2: str) -> Battery | TextBox:
     if getoutput("acpi | grep 'Battery'") != "":
         return Battery(
             charge_char="",
-            discharge_char="",
+            discharge_char="󰁹",
             notify_below=86,
             update_interval=60,
             background=color2,

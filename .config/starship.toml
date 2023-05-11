@@ -15,12 +15,12 @@ min_time = 2_000
 format = "task completed in [$duration](bold yellow)"
 
 [git_status]
-conflicted = "ﲅ"
-ahead = "ﰲ"
-behind = "ﰯ"
-diverged = ""
+conflicted = "󰞇"
+ahead = ""
+behind = ""
+diverged = "󱡷"
 up_to_date = "✓"
-untracked = "鈴"
+untracked = "⤲"
 stashed = ""
 modified = ""
 staged = ''
@@ -32,7 +32,7 @@ format = "via [🎁 $version](208 bold) "
 
 [time]
 disabled = false
-format = '[]($style) [$time]($style) []($style) '
+format = '[]($style) [$time]($style) [🐠]($style) '
 style = "Bold Blue"
 time_format = "%T"
 utc_time_offset = "3"

@@ -5,7 +5,6 @@ set $mod Mod4
 # is used in the bar {} block below.
 
 font pango:Iosevka Nerd Font 12
-font pango:FiraCode Nerd Font Mono 12
 font pango:Material Icons 12
 font pango:fontawesome 12
 font pango:all-the-icons 12
