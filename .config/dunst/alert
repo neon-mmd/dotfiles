@@ -1,0 +1,3 @@
+#!/bin/sh
+
+mpv  ~/.config/dunst/long-pop.wav --no-video --quiet &
