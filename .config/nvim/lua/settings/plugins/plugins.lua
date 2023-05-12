@@ -57,9 +57,10 @@ return packer.startup(function(use)
 		"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
 	})
 	use("neovim/nvim-lspconfig")
-	use{"williamboman/mason.nvim",
-        run = ":MasonUpdate" -- :MasonUpdate updates registry contents
-    }
+	use({
+		"williamboman/mason.nvim",
+		run = ":MasonUpdate", -- :MasonUpdate updates registry contents
+	})
 	use("williamboman/mason-lspconfig.nvim")
 	use("WhoIsSethDaniel/mason-tool-installer.nvim")
 
@@ -123,6 +124,14 @@ return packer.startup(function(use)
 	use("lukas-reineke/indent-blankline.nvim")
 	use("j-hui/fidget.nvim")
 	use("RRethy/vim-illuminate")
+	use({
+		"iamcco/markdown-preview.nvim",
+		run = "cd app && npm install",
+		setup = function()
+			vim.g.mkdp_filetypes = { "markdown" }
+		end,
+		ft = { "markdown" },
+	})
 	-- smjonas/live-command.nvim
 
 	-- terminal in neovim
