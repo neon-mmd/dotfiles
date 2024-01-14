@@ -5,7 +5,20 @@ if not status then
 end
 
 treesitter.setup({
-	ensure_installed = { "lua", "rust", "html", "cpp", "c", "css", "python", "java", "javascript", "bash" },
+	ensure_installed = {
+		"lua",
+		"rust",
+		"html",
+		"cpp",
+		"c",
+		"css",
+		"python",
+		"java",
+		"javascript",
+		"bash",
+		"markdown",
+		"markdown_inline",
+	},
 	sync_install = false,
 	auto_install = false,
 	highlight = {

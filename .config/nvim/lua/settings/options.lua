@@ -45,5 +45,7 @@ set.listchars:append("eol:⤶")
 set.foldmethod = "expr"
 set.foldexpr = "nvim_treesitter#foldexpr()"
 
+set.signcolumn = "yes"
+
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
