@@ -1,10 +1,10 @@
 -- run PackerSync when plugins.lua changes
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | lazy sync
-  augroup end
-]])
+-- vim.cmd([[
+--   augroup packer_user_config
+--     autocmd!
+--     autocmd BufWritePost plugins.lua source <afile> | lazy sync
+--   augroup end
+-- ]])
 
 -- reload my config on changes
 vim.cmd([[

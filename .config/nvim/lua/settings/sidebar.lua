@@ -17,6 +17,9 @@ tree.setup({
 	},
 	renderer = {
 		group_empty = true,
+		indent_markers = {
+			enable = true,
+		},
 		highlight_opened_files = "name",
 		special_files = {
 			"Cargo.toml",

@@ -1,7 +1,7 @@
 # ---------------------------------------------imports-----------------------------------------------
 from typing import Tuple
 from libqtile.lazy import lazy
-from libqtile.config import EzKey as Key
+from libqtile.config import EzKey as Key, Group
 from modules.functions import dmenu_select_according_to_theme
 
 
@@ -15,8 +15,13 @@ from modules.functions import dmenu_select_according_to_theme
 # }
 
 
-def define_keybindings(terminal: str, colors: str, font: str) -> Tuple:
-    return (
+def define_keybindings(
+    terminal: str,
+    colors: str,
+    font: str,
+    my_groups: Tuple[Group, Group, Group, Group, Group, Group, Group, Group, Group],
+) -> Tuple:
+    key_bindings_set_1 = [
         # resize windows
         Key("M-C-j", lazy.layout.grow(), desc="Grow from left"),
         Key("M-C-k", lazy.layout.shrink(), desc="Grow from right"),
@@ -80,4 +85,26 @@ def define_keybindings(terminal: str, colors: str, font: str) -> Tuple:
         ),
         # toggle touchpad on or off
         Key("A-S-t", lazy.spawn("touchpad"), desc="toggle touchpad"),
-    )
+    ]
+    for idx, my_group in enumerate(my_groups, 1):
+        key_bindings_set_1.extend(
+            [
+                # mod1 + letter of group = switch to group
+                Key(
+                    f"M-{idx}",
+                    lazy.group[my_group.name].toscreen(),
+                    desc=f"Switch to group {my_group}",
+                ),
+                # mod1 + shift + letter of group = switch to & move focused window to group
+                Key(
+                    f"M-S-{idx}",
+                    lazy.window.togroup(my_group.name, switch_group=True),
+                    desc=f"Switch to & move focused window to group {my_group}",
+                ),
+                # Or, use below if you prefer not to switch to that group.
+                # # mod1 + shift + letter of group = move focused window to group
+                # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
+                #     desc="move focused window to group {}".format(i.name)),
+            ]
+        )
+    return tuple(key_bindings_set_1)

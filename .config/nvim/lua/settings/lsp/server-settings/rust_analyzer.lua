@@ -6,5 +6,10 @@ return {
 	},
 	checkOnSave = {
 		command = "clippy",
+		features = "all",
+	},
+	check = {
+		features = "all",
+        allTargets = true
 	},
 }

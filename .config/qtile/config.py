@@ -48,8 +48,8 @@ terminal: str | None = guess_terminal()
 font: str = "Iosevka Nerd Font"
 
 # ---------------------------------------------keybindings--------------------------------------------
-keys: Tuple = define_keybindings(terminal, colors, font)
 dgroups_key_binder = simple_key_binder(mod)
+keys: Tuple = define_keybindings(terminal, colors, font, groups)
 
 # --------------------------------------------layouts-----------------------------------------
 layouts: Tuple[MonadTall, Max] = layout_creation(colors)
@@ -68,6 +68,7 @@ auto_fullscreen: bool = True
 focus_on_window_activation: str = "smart"
 reconfigure_screens: bool = True
 auto_minimize: bool = True
+wl_input_rules = None
 
 # -------------------------------------------autostart---------------------------------------
 

@@ -216,8 +216,31 @@ telescope.setup({
 			show_line = false,
 		},
 	},
+	undo = {
+		fuzzy = true, -- false will only do exact matching
+		theme = "ivy",
+		sorting_strategy = "ascending",
+		layout_strategy = "bottom_pane",
+		layout_config = {
+			height = 8,
+		},
+		borderchars = {
+			prompt = { "─", " ", " ", " ", "─", "─", " ", " " },
+			results = { " " },
+			preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+		},
+		-- width = 0.8,
+		previewer = false,
+		prompt_prefix = "Symbols> ",
+		prompt_title = false,
+		results_title = false,
+		-- border = false,
+		winblend = 20,
+		show_line = false,
+	},
 })
 
 telescope.load_extension("session-lens")
 telescope.load_extension("fzf")
 telescope.load_extension("project")
+telescope.load_extension("undo")

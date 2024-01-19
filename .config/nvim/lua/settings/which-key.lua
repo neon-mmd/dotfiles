@@ -112,6 +112,8 @@ wk.register({
 		u = { "<cmd>PackerSync<cr>", "[U]pdate/Install Plugins" },
 		t = { "<cmd>TodoTelescope<cr>", "Show All [T]odos in Telescope View" },
 		c = { "<cmd>PickColorInsert<cr>", "[C]olor Picker" },
+		i = { "<cmd>IconPickerInsert<cr>", "[I]con Picker" },
+		a = { "<cmd>CoAuthor<cr>", "[C]o author picker for git commits" },
 	},
 }, { prefix = "<leader>" })
 

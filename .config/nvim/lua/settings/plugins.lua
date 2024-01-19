@@ -1,12 +1,12 @@
-local function os_capture(cmd)
-	local f = assert(io.popen(cmd, "r"))
-	local s = assert(f:read("*a"))
-	f:close()
-	s = string.gsub(s, "^%s+", "")
-	s = string.gsub(s, "%s+$", "")
-	s = string.gsub(s, "[\n\r]+", " ")
-	return s
-end
+-- local function os_capture(cmd)
+-- 	local f = assert(io.popen(cmd, "r"))
+-- 	local s = assert(f:read("*a"))
+-- 	f:close()
+-- 	s = string.gsub(s, "^%s+", "")
+-- 	s = string.gsub(s, "%s+$", "")
+-- 	s = string.gsub(s, "[\n\r]+", " ")
+-- 	return s
+-- end
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -34,13 +34,13 @@ local opts = {
 		lazy = false, -- should plugins be lazy-loaded?
 		version = nil,
 		-- default `cond` you can use to globally disable a lot of plugins
-		-- when running inside vscode for example
+		-- when buildning inside vscode for example
 		cond = nil, ---@type boolean|fun(self:LazyPlugin):boolean|nil
 		-- version = "*", -- enable this to try installing the latest stable versions of plugins
 	},
 	-- leave nil when passing the spec as the first argument to setup()
 	spec = nil, ---@type LazySpec
-	lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json", -- lockfile generated after running update.
+	lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json", -- lockfile generated after buildning update.
 	concurrency = jit.os:find("Windows") and (vim.loop.available_parallelism() * 2) or nil, ---@type number limit the maximum amount of concurrent tasks
 	git = {
 		-- defaults for the `Lazy log` command
@@ -64,7 +64,7 @@ local opts = {
 		-- install missing plugins on startup. This doesn't increase startup time.
 		missing = true,
 		-- try to load one of these colorschemes when starting an installation during startup
-		colorscheme = { "habamax" },
+		colorscheme = { "catppuccin" },
 	},
 	ui = {
 		-- a number <1 is a percentage., >1 is a fixed size
@@ -88,7 +88,7 @@ local opts = {
 			loaded = "●",
 			not_loaded = "○",
 			plugin = " ",
-			runtime = " ",
+			buildtime = " ",
 			require = "󰢱 ",
 			source = " ",
 			start = "",
@@ -132,7 +132,7 @@ local opts = {
 		-- diff command <d> can be one of:
 		-- * browser: opens the github compare view. Note that this is always mapped to <K> as well,
 		--   so you can have a different command for diff <d>
-		-- * git: will run git diff and open a buffer with filetype git
+		-- * git: will build git diff and open a buffer with filetype git
 		-- * terminal_git: will open a pseudo terminal with git diff
 		-- * diffview.nvim: will open Diffview to show the diff
 		cmd = "git",
@@ -156,7 +156,7 @@ local opts = {
 		},
 		reset_packpath = true, -- reset the package path to improve startup time
 		rtp = {
-			reset = true, -- reset the runtime path to $VIMRUNTIME and your config directory
+			reset = true, -- reset the buildtime path to $VIMbuildTIME and your config directory
 			---@type string[]
 			paths = {}, -- add any custom paths here that you want to includes in the rtp
 			---@type string[] list any plugins you want to disable here
@@ -202,9 +202,8 @@ local opts = {
 
 local plugins = {
 	-- general
-	{ "wbthomason/packer.nvim" }, -- package manager for neovim
 	{ "GustavoPrietoP/doom-themes.nvim" }, -- doom themes for neovim
-	{ "catppuccin/nvim", as = "catppuccin" }, -- catppuccin theme for neovim
+	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 }, -- catppuccin theme for neovim
 	{ "nvim-lua/popup.nvim" }, -- popup api for neovim to improve popups
 	{ "nvim-lua/plenary.nvim" }, -- plenary to provide vim apis
 	{ "kyazdani42/nvim-web-devicons" }, -- for icons
@@ -214,10 +213,7 @@ local plugins = {
 		"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
 	},
 	{ "neovim/nvim-lspconfig" },
-	{
-		"williamboman/mason.nvim",
-		run = ":MasonUpdate", -- :MasonUpdate updates registry contents
-	},
+	{ "williamboman/mason.nvim" },
 	{ "williamboman/mason-lspconfig.nvim" },
 	{ "WhoIsSethDaniel/mason-tool-installer.nvim" },
 	-- autocompletions
@@ -235,10 +231,17 @@ local plugins = {
 	{ "kevinhwang91/nvim-bqf" },
 	{ "onsails/lspkind.nvim" },
 	{ "David-Kunz/markid" },
+	{ "gelguy/wilder.nvim" },
 	-- beautify code
-	{ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
+	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 	{ "nvim-treesitter/nvim-treesitter-refactor" },
 	{ "HiPhish/nvim-ts-rainbow2" },
+	{
+		"folke/noice.nvim",
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+		},
+	},
 	-- comment toggler
 	{ "terrortylor/nvim-comment" },
 	-- snippets for autocompletions
@@ -252,33 +255,56 @@ local plugins = {
 	{ "windwp/nvim-autopairs" },
 	-- productivity
 	{ "levouh/tint.nvim" },
+	{
+		"kylechui/nvim-surround",
+		version = "*", -- Use for stability; omit to use `main` branch for the latest features
+		event = "VeryLazy",
+	},
+	{ "danymat/neogen", config = true },
+	{ "subnut/nvim-ghost.nvim" },
+	{
+		"2kabhishek/co-author.nvim",
+		dependencies = { "stevearc/dressing.nvim" },
+		cmd = { "CoAuthor" },
+	},
+	{ "ziontee113/icon-picker.nvim" },
+	{ "vladdoster/remember.nvim" },
 	{ "nvim-telescope/telescope.nvim" },
 	{ "nvim-telescope/telescope-project.nvim" },
 	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-	{ "jose-elias-alvarez/null-ls.nvim" },
+	{ "axieax/urlview.nvim" },
+	{
+		"zbirenbaum/neodim",
+		event = "LspAttach",
+	},
+	{
+		"shellRaining/hlchunk.nvim",
+		event = { "UIEnter" },
+	},
+	{ "debugloop/telescope-undo.nvim" },
+	{ "akinsho/git-conflict.nvim", version = "*", config = true },
+	{ "nvimtools/none-ls.nvim" },
 	{ "NeogitOrg/neogit" },
-	{ "lewis6991/impatient.nvim" },
 	{ "folke/todo-comments.nvim" },
 	{ "windwp/nvim-ts-autotag" },
 	{ "Pocco81/auto-save.nvim" },
 	{ "nvimdev/lspsaga.nvim" },
-	{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
 	{ "nvim-orgmode/orgmode" },
 	{ "ziontee113/color-picker.nvim" },
 	{ "rmagatti/auto-session" },
 	{ "rmagatti/session-lens" },
-	{ "lukas-reineke/indent-blankline.nvim" },
 	{ "j-hui/fidget.nvim" },
 	{ "RRethy/vim-illuminate" },
+	-- install with yarn or npm
 	{
 		"iamcco/markdown-preview.nvim",
-		run = "cd app && npm install",
-		setup = function()
+		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+		build = "rm yarn.lock && cd app && npm install",
+		init = function()
 			vim.g.mkdp_filetypes = { "markdown" }
 		end,
 		ft = { "markdown" },
 	},
-	-- smjonas/live-command.nvim
 	-- terminal in neovim
 	{ "akinsho/toggleterm.nvim" },
 	{ "saecki/crates.nvim" },

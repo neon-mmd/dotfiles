@@ -66,6 +66,12 @@ fidget.setup({
 		override_vim_notify = false, -- Automatically override vim.notify() with Fidget
 		-- How to configure notification groups when instantiated
 		configs = { default = require("fidget.notification").default_config },
+		-- Conditionally redirect notifications to another backend
+		redirect = function(msg, level, opts)
+			if opts and opts.on_open then
+				return require("fidget.integration.nvim-notify").delegate(msg, level, opts)
+			end
+		end,
 
 		-- Options related to how notifications are rendered as text
 		view = {
@@ -74,6 +80,10 @@ fidget.setup({
 			group_separator = "---", -- Separator between notification groups
 			-- Highlight group used for group separator
 			group_separator_hl = "Comment",
+			-- How to render notification messages
+			render_message = function(msg, cnt)
+				return cnt == 1 and msg or string.format("(%dx) %s", cnt, msg)
+			end,
 		},
 
 		-- Options related to the notification window and buffer
