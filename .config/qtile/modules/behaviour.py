@@ -1,13 +1,12 @@
 # -----------------------------------------------------imports-------------------------------------
-from typing import Tuple
 from libqtile.layout import Floating
 from libqtile.config import Click, Drag, Match
 from libqtile.lazy import lazy
 
 
 # -----------------------------------------------------widgets-------------------------------------
-def mouse_behavior(mod: str) -> Tuple[Drag, Drag, Click]:
-    return (
+def mouse_behavior(mod):
+    return [
         Drag(
             [mod],
             "Button1",
@@ -21,11 +20,11 @@ def mouse_behavior(mod: str) -> Tuple[Drag, Drag, Click]:
             start=lazy.window.get_size(),
         ),
         Click([mod], "Button2", lazy.window.bring_to_front()),
-    )
+    ]
 
 
-def program_behaviour() -> Tuple:
-    return (
+def program_behaviour():
+    return [
         *Floating.default_float_rules,
         Match(wm_class="confirmreset"),  # gitk
         Match(wm_class="makebranch"),  # gitk
@@ -36,4 +35,4 @@ def program_behaviour() -> Tuple:
         Match(title="brave"),  # web browser
         Match(title="pinentry-gtk-2"),
         Match(title="Pinentry-gtk-2"),
-    )
+    ]

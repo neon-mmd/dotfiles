@@ -1,11 +1,11 @@
 return {
-    css = {
-        validate = true,
-    },
-    less = {
-        validate = false,
-    },
-    scss = {
-        validate = false,
-    },
+	css = {
+		validate = true,
+	},
+	less = {
+		validate = false,
+	},
+	scss = {
+		validate = false,
+	},
 }

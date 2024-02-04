@@ -1,13 +1,12 @@
 # ------------------------------------------imports-------------------------------------------
-from typing import Dict, Tuple
 from libqtile.widget import TextBox, Battery
 from subprocess import getoutput
 
 # -----------------------------------------Custom-functions----------------------------------
 
 
-def color_picker(colorscheme_name: str) -> Dict[str, str]:
-    color_collection: Dict[str, Dict[str, str]] = {
+def color_picker(colorscheme_name):
+    color_collection = {
         "tomorrow-night": {
             "bg": "#1d1f21",
             "fg": "#c5c8c6",
@@ -112,58 +111,68 @@ def color_picker(colorscheme_name: str) -> Dict[str, str]:
     return color_collection[colorscheme_name]
 
 
-def dmenu_select_according_to_theme(colors: Dict[str, str], font: str) -> str:
+def dmenu_select_according_to_theme(colors, font):
     return f"dmenu_run -i -fn '{font}:pixelsize=17' -nb {colors['bg']} -nf {colors['fg']} -sb {colors['2']} -sf {colors['4']}"
 
 
 def group_selector(
-    group_type: str,
-) -> Tuple[str, str, str, str, str, str, str, str, str]:
-    my_groups: Dict[str, Tuple[str, str, str, str, str, str, str, str, str]] = {
-        "named": ("term", "web", "vbox", "media", "cloud", "code", "chat", "mail", "conf"),
-        "iconic": ("", "", "", "", "", "", "", "", ""),
+    group_type,
+):
+    my_groups = {
+        "named": [
+            "term",
+            "web",
+            "vbox",
+            "media",
+            "cloud",
+            "code",
+            "chat",
+            "mail",
+            "conf",
+        ],
+        "iconic": ["", "", "", "", "", "", "", "", ""],
     }
     return my_groups[group_type]
 
 
-def theme_style(direction: str, Type: str) -> str:
-    face_direction: Dict[str, int] = {"left": 0, "right": 1}
-    styles: Dict[str, Tuple[str, str]] = {
-        "arrow": ("\uE0B2", "\uE0B0"),
-        "semi-circle": ("\ue0b6", "\ue0b4"),
-        "bottom-right-triangle": ("\ue0ba", "\ue0b8"),
-        "top-right-triangle": ("\ue0be", "\ue0bc"),
-        "vertical": (" ", ""),
+def theme_style(direction, Type):
+    face_direction = {"left": 0, "right": 1}
+    styles = {
+        "arrow": ["\uE0B2", "\uE0B0"],
+        "semi-circle": ["\ue0b6", "\ue0b4"],
+        "bottom-right-triangle": ["\ue0ba", "\ue0b8"],
+        "top-right-triangle": ["\ue0be", "\ue0bc"],
+        "vertical": [" ", ""],
     }
 
     return styles[Type][face_direction[direction]]
 
 
-def unicode(color1: str, color2: str, direction: str, Type: str) -> TextBox:
-    padding_amount: int = 0
+def unicode(color1, color2, direction, Type) -> TextBox:
+    padding_amount = 0
 
     if direction == "left":
         if Type == "arrow":
-            padding_amount: int = 0
+            padding_amount = 0
         elif Type == "semi-circle":
-            padding_amount: int = 0
+            padding_amount = 0
         elif Type == "bottom-right-triangle":
-            padding_amount: int = 0
+            padding_amount = 0
         elif Type == "top-right-triangle":
-            padding_amount: int = 0
+            padding_amount = 0
         else:
-            padding_amount: int = 0
+            padding_amount = 0
     else:
         if Type == "arrow":
-            padding_amount: int = 0
+            padding_amount = 0
         elif Type == "semi-circle":
-            padding_amount: int = 0
+            padding_amount = 0
         elif Type == "bottom-right-triangle":
-            padding_amount: int = 0
+            padding_amount = 0
         elif Type == "top-right-triangle":
-            padding_amount: int = 0
+            padding_amount = 0
         else:
-            padding_amount: int = 0
+            padding_amount = 0
 
     return TextBox(
         text=theme_style(direction, Type),
@@ -174,7 +183,7 @@ def unicode(color1: str, color2: str, direction: str, Type: str) -> TextBox:
     )
 
 
-def check_battery(colorbg: str, color2: str) -> Battery | TextBox:
+def check_battery(colorbg, color2):
     if getoutput("acpi | grep 'Battery'") != "":
         return Battery(
             charge_char="",

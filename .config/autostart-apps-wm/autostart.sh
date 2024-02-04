@@ -4,7 +4,7 @@ nitrogen --restore --set-scaled ~/Pictures/wallpapers/ &
 picom -b &
 nm-applet &
 gnome-keyring-daemon &
-polkit-dumb-agent &
+lxsession &
 optimus-manager-qt &
 pcmanfm -d &
 battery-notifier &

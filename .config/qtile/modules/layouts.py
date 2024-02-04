@@ -1,11 +1,10 @@
 # --------------------------------------------layouts-----------------------------------------
-from typing import Dict, Tuple
 from libqtile.layout import MonadTall, Max
 
 
 # --------------------------------------------layouts-----------------------------------------
-def layout_creation(colors: Dict[str, str]) -> Tuple[MonadTall, Max]:
-    return (
+def layout_creation(colors):
+    return [
         # layout.Columns(border_focus_stack=['#d75f5f', '#8f3d3d'], border_width=4),
         MonadTall(
             margin=5,
@@ -23,4 +22,4 @@ def layout_creation(colors: Dict[str, str]) -> Tuple[MonadTall, Max]:
         # layout.TreeTab(),
         # layout.VerticalTile(),
         # layout.Zoomy(),
-    )
+    ]

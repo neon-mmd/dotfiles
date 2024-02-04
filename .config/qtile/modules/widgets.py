@@ -1,5 +1,4 @@
 # -----------------------------------------------------imports-------------------------------------
-from typing import Dict, Generator
 from libqtile.bar import Bar
 from libqtile.widget import (
     GroupBox,
@@ -13,12 +12,12 @@ from modules.functions import unicode, check_battery
 
 # -----------------------------------------------------widgets-------------------------------------
 
-face_style: str = "arrow"
+face_style = "arrow"
 
 
-def widget_creation(colors: Dict[str, str]) -> Bar:
+def widget_creation(colors):
     return Bar(
-        (
+        [
             GroupBox(
                 active=colors["4"],
                 background=colors["2"],
@@ -57,7 +56,7 @@ def widget_creation(colors: Dict[str, str]) -> Bar:
                 fmt="󰍜",
                 fontsize=20,
             ),
-        ),
+        ],
         24,
         opacity=1.0,
     )

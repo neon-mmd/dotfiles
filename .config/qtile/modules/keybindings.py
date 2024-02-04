@@ -1,5 +1,4 @@
 # ---------------------------------------------imports-----------------------------------------------
-from typing import Tuple
 from libqtile.lazy import lazy
 from libqtile.config import EzKey as Key, Group
 from modules.functions import dmenu_select_according_to_theme
@@ -15,12 +14,7 @@ from modules.functions import dmenu_select_according_to_theme
 # }
 
 
-def define_keybindings(
-    terminal: str,
-    colors: str,
-    font: str,
-    my_groups: Tuple[Group, Group, Group, Group, Group, Group, Group, Group, Group],
-) -> Tuple:
+def define_keybindings(terminal, colors, font, my_groups):
     key_bindings_set_1 = [
         # resize windows
         Key("M-C-j", lazy.layout.grow(), desc="Grow from left"),
@@ -107,4 +101,4 @@ def define_keybindings(
                 #     desc="move focused window to group {}".format(i.name)),
             ]
         )
-    return tuple(key_bindings_set_1)
+    return key_bindings_set_1

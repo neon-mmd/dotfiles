@@ -11,8 +11,7 @@ if not status then
 	return
 end
 
-local servers =
-	{ "pyright", "lua_ls", "clangd", "rust_analyzer", "tsserver", "jdtls", "cssls", "html", "bashls"}
+local servers = { "pyright", "lua_ls", "clangd", "rust_analyzer", "tsserver", "jdtls", "cssls", "html", "bashls" }
 
 mason_installer.setup({
 	ensure_installed = servers,

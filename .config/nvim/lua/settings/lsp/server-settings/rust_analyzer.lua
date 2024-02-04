@@ -10,6 +10,6 @@ return {
 	},
 	check = {
 		features = "all",
-        allTargets = true
+		allTargets = true,
 	},
 }
