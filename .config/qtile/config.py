@@ -3,9 +3,7 @@ from subprocess import run
 from libqtile.dgroups import simple_key_binder
 from libqtile import hook
 from libqtile.layout.floating import Floating
-from libqtile.config import Click, Drag, Group, Screen
-from libqtile.layout.max import Max
-from libqtile.layout.xmonad import MonadTall
+from libqtile.config import Screen
 from libqtile.utils import guess_terminal
 from modules import (
     color_picker,
@@ -38,7 +36,7 @@ my_groups = group_selector("named")
 #   catppuccin-mocha
 # ]
 
-colors = color_picker("catppuccin-mocha")
+colors = color_picker("tomorrow-night")
 groups = groups(my_groups)
 mod = "mod4"
 terminal = guess_terminal()

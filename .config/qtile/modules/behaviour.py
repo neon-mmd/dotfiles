@@ -1,5 +1,5 @@
 # -----------------------------------------------------imports-------------------------------------
-from libqtile.layout import Floating
+from libqtile.layout.floating import Floating
 from libqtile.config import Click, Drag, Match
 from libqtile.lazy import lazy
 

@@ -12,7 +12,7 @@ from modules.functions import unicode, check_battery
 
 # -----------------------------------------------------widgets-------------------------------------
 
-face_style = "arrow"
+face_style = "top-right-triangle"
 
 
 def widget_creation(colors):

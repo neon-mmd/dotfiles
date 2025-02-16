@@ -109,7 +109,7 @@ alias mirrorup "sudo reflector --save /etc/pacman.d/mirrorlist -a 48 -l 20 -f 5 
 
 ###--dotfiles-management-aliases--###
 alias config '/usr/bin/git --git-dir=/home/destruct/.cfg/ --work-tree=/home/destruct'
-alias config '/usr/bin/git --git-dir=/run/media/destruct/projects/git-repos/dotfiles.git/ --work-tree=/home/destruct'
+alias config '/usr/bin/git --git-dir=/run/media/destruct/projects/git-repos/mine/dotfiles.git/ --work-tree=/home/destruct'
 
 ###--kitty-kittens-aliases--###
 alias img="kitty +kitten icat"
@@ -117,6 +117,10 @@ alias img="kitty +kitten icat"
 ###--flatpak-aliases--###
 alias fupd="flatpak update"
 alias uninstall="flatpak uninstall"
+
+#-------------------------------Environment Variables---------------------------------------
+
+set -x CARGO_TARGET_DIR $HOME/.cache/target/
 
 #--------------------------------------FUNCTIONS--------------------------------------------
 
