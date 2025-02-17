@@ -23,12 +23,12 @@ set fish_greeting ''
 ###--term-cmd-apps--###
 
 alias find fd
-alias ls "exa -alh --group-directories-first --icons --git"
+alias ls "eza -alh --group-directories-first --icons --git"
 alias grep rg
 alias cat bat
 alias sudo "doas --"
 alias vim "nvim"
-alias tree "exa -a --tree --icons --group-directories-first"
+alias tree "eza -a --tree --icons --group-directories-first"
 
 ###--system-update-aliases--###
 
