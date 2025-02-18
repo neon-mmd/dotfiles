@@ -79,6 +79,16 @@ def define_keybindings(terminal, colors, font, my_groups):
         ),
         # toggle touchpad on or off
         Key("A-S-t", lazy.spawn("touchpad"), desc="toggle touchpad"),
+        Key(
+            "XF86MonBrightnessUp",
+            lazy.spawn("xbacklight -inc 10"),
+            desc="Increase screen brightness by 10 units",
+        ),
+        Key(
+            "XF86MonBrightnessDown",
+            lazy.spawn("xbacklight -dec 10"),
+            desc="Decrease screen brightness by 10 units",
+        )
     ]
     for idx, my_group in enumerate(my_groups, 1):
         key_bindings_set_1.extend(
