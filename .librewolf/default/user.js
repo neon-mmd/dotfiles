@@ -10,7 +10,6 @@ user_pref("geo.provider.use_gpsd", false); // [LINUX DISTROS]
 /****************************************************************************
  * SECTION: QUIETER FOX                                                     *
 ****************************************************************************/
-user_pref("_user.js.parrot", "0300 syntax error: the parrot's not pinin' for the fjords!");
 /** RECOMMENDATIONS ***/
 /* 0320: disable recommendation pane in about:addons (uses Google Analytics) ***/
 user_pref("extensions.getAddons.showPane", false); // [HIDDEN PREF]
@@ -29,14 +28,19 @@ user_pref("browser.shopping.experience2023.enabled", false); // [DEFAULT: false]
  * SECTION: SAFE BROWSING                                                   *
 ****************************************************************************/
 user_pref("browser.safebrowsing.downloads.remote.enabled", true); // Arkenfox user.js
+user_pref("browser.safebrowsing.blockedURIs.enabled", true);
+user_pref("browser.safebrowsing.downloads.enabled", true);
+user_pref("browser.safebrowsing.downloads.remote.block_potentially_unwanted", false);
+user_pref("browser.safebrowsing.downloads.remote.block_uncommon", false);
+user_pref("browser.safebrowsing.downloads.remote.enabled", false);
+user_pref("browser.safebrowsing.downloads.remote.url", "");
 user_pref("browser.safebrowsing.malware.enabled", true);
 user_pref("browser.safebrowsing.phishing.enabled", true);
-user_pref("browser.safebrowsing.blockedURIs.enabled", true);
-usef_pref("browser.safebrowsing.provider.google4.gethashURL", true);
-usef_pref("browser.safebrowsing.provider.google4.updateURL", true);
-usef_pref("browser.safebrowsing.provider.google.gethashURL", true);
-usef_pref("browser.safebrowsing.provider.google.updateURL", true);
-user_pref("browser.safebrowsing.downloads.enabled", true);
+user_pref("browser.safebrowsing.provider.google.gethashURL", "https://safebrowsing.google.com/safebrowsing/gethash?client=SAFEBROWSING_ID&appver=%MAJOR_VERSION%&pver=2.2");
+user_pref("browser.safebrowsing.provider.google.updateURL", "https://safebrowsing.google.com/safebrowsing/downloads?client=SAFEBROWSING_ID&appver=%MAJOR_VERSION%&pver=2.2&key=%GOOGLE_SAFEBROWSING_API_KEY%");
+user_pref("browser.safebrowsing.provider.google4.dataSharingURL", "");
+user_pref("browser.safebrowsing.provider.google4.gethashURL", "https://safebrowsing.googleapis.com/v4/fullHashes:find?$ct=application/x-protobuf&key=%GOOGLE_SAFEBROWSING_API_KEY%&$httpMethod=POST");
+user_pref("browser.safebrowsing.provider.google4.updateURL", "https://safebrowsing.googleapis.com/v4/threatListUpdates:fetch?$ct=application/x-protobuf&key=%GOOGLE_SAFEBROWSING_API_KEY%&$httpMethod=POST");
 
 /****************************************************************************
  * SECTION: PREFECHING AND HUERISTICS                                       *
@@ -174,6 +178,7 @@ user_pref("browser.xul.error_pages.expert_bad_cert", true);
 /* 1602: control the amount of cross-origin information to send [FF52+]
  * 0=send full URI (default), 1=scheme+host+port+path, 2=scheme+host+port ***/
 user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
+user_pref("network.http.referer.XOriginPolicy", 2);
 
 /****************************************************************************
  * SECTION: CONTAINER TABS                                                  *
@@ -202,6 +207,7 @@ user_pref("browser.contentblocking.category", "strict"); // [HIDDEN PREF]
 user_pref("privacy.clearOnShutdown.cache", true);     // [DEFAULT: true]
 user_pref("privacy.clearOnShutdown_v2.cache", true);  // [FF128+] [DEFAULT: true]
 user_pref("privacy.clearSiteData.cache" true);
+user_pref("privacy.sanitize.sanitizeOnShutdown", false);
 
 /****************************************************************************
  * SECTION: FINGERPRINT RESISTING AND APPEARANCE                            *
@@ -233,6 +239,7 @@ user_pref("webgl.disabled", true);
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 user_pref("privacy.resistFingerprinting", true);
 user_pref("privacy.resistFingerprinting.autoDeclineNoUserInputCanvasPrompts", true);
+user_pref("security.sandbox.warn_unprivileged_namespaces", false);
 
 /****************************************************************************
  * SECTION: SECURITY ENFORCED                                               *
