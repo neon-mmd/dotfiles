@@ -62,6 +62,8 @@ alias gpush "git push"
 alias gstat "git status"
 alias gdiff "git diff"
 alias glog "git log -p"
+alias gpclone "git clone --depth 1 --filter=tree:0 --jobs 8"
+alias gdclone "git clone --depth 1 --filter=blob:none --jobs 8"
 
 ###--general--###
 alias rm "rm -rf"
@@ -105,7 +107,7 @@ alias snaphome "sudo snapper -c home -c"
 alias snaproot "sudo snapper -c root -c"
 
 ###--reflector-aliases--###
-alias mirrorup "sudo reflector --save /etc/pacman.d/mirrorlist -a 48 -l 20 -f 5 --sort rate --protocol https --verbose --download-timeout 60"
+alias mirrorup "sudo reflector --save /etc/pacman.d/mirrorlist -a 48 -l 20 -f 5 --sort rate --protocol https,rsync --verbose --download-timeout=60"
 
 ###--dotfiles-management-aliases--###
 alias config '/usr/bin/git --git-dir=/home/destruct/.cfg/ --work-tree=/home/destruct'

@@ -100,7 +100,7 @@ wk.register({
 	t = {
 		name = "+Toggle",
 		t = { "<cmd>ToggleTerm<cr>", "Toggle [T]erminal" },
-		s = { "<cmd>lua require('nvim-tree').toggle(false, true)<cr>", "Toggle [S]idebar" },
+		s = { "<cmd>NvimTreeToggle<cr>", "Toggle [S]idebar" },
 		l = { "<cmd>lua require('lsp_lines').toggle()<cr>", "Toggle Lsp [L]ines" },
 	},
 }, { prefix = "<leader>" })
