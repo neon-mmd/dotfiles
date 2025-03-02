@@ -8,3 +8,6 @@ autoconfig.yml
 bookmarks
 *.elc
 bg-saved.cfg
+lazy-lock.json
+vifminfo.json
+times.json
