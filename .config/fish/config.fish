@@ -37,9 +37,9 @@ alias onlyupd "aupd && pupd"
 
 ###--pacman-aliases--###
 
-alias pupd "sudo pacman -Syu --overwrite=\* --ask 4"
+alias pupd "sudo pacman -Syu --needed --overwrite=\* --ask 4"
 alias psync "sudo pacman -Sy"
-alias pinstall "sudo pacman -Sy --overwrite=\*"
+alias pinstall "sudo pacman -Sy --needed --overwrite=\*"
 alias pinfo "pacman -Si"
 alias psearch "pacman -Ss"
 alias pkgls "pacman -Qq"
@@ -47,8 +47,8 @@ alias pkgcnt "pacman -Qq | wc -l"
 alias cache "sudo paccache -rf"
 
 ###--paru-aliases--###
-alias aupd "paru -Su --overwrite=\* --ask 4"
-alias ainstall "paru -S --overwrite=\*" 
+alias aupd "paru -Su --needed --overwrite=\* --ask 4"
+alias ainstall "paru -S --needed --overwrite=\*" 
 alias ainfo "paru -Si"
 alias asearch "paru -Ss"
 alias remove "paru -Qtdq | paru -Rns -"
@@ -107,7 +107,7 @@ alias snaphome "sudo snapper -c home -c"
 alias snaproot "sudo snapper -c root -c"
 
 ###--reflector-aliases--###
-alias mirrorup "sudo reflector --save /etc/pacman.d/mirrorlist -a 48 -l 20 -f 5 --sort rate --protocol https,rsync --verbose --download-timeout=60"
+alias mirrorup "sudo reflector --save /etc/pacman.d/mirrorlist -a 48 -l 20 -f 5 --sort rate --protocol https --verbose --download-timeout=60"
 
 ###--dotfiles-management-aliases--###
 alias config '/usr/bin/git --git-dir=/home/destruct/.cfg/ --work-tree=/home/destruct'
