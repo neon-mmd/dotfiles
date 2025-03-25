@@ -107,7 +107,7 @@ alias snaphome "sudo snapper -c home -c"
 alias snaproot "sudo snapper -c root -c"
 
 ###--reflector-aliases--###
-alias mirrorup "sudo reflector --save /etc/pacman.d/mirrorlist -a 48 -l 20 -f 5 --sort rate --protocol https --verbose --download-timeout=60"
+alias mirrorup "sudo reflector --save /etc/pacman.d/mirrorlist -a 48 -l 20 -f 5 --sort rate --verbose --download-timeout=60"
 
 ###--dotfiles-management-aliases--###
 alias config '/usr/bin/git --git-dir=/home/destruct/.cfg/ --work-tree=/home/destruct'
@@ -119,6 +119,9 @@ alias img="kitty +kitten icat"
 ###--flatpak-aliases--###
 alias fupd="flatpak update"
 alias uninstall="flatpak uninstall"
+
+###--aria2c-aliases--###
+alias fwf=" aria2c -x 16 -j 16 -s 16 -c -P -Z --enable-color --human-readable"
 
 #-------------------------------Environment Variables---------------------------------------
 

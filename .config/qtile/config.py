@@ -8,8 +8,8 @@ from libqtile.utils import guess_terminal
 from modules import (
     color_picker,
     group_selector,
-    widget_creation,
     groups,
+    widget_creation,
     layout_creation,
     mouse_behavior,
     program_behaviour,
@@ -34,9 +34,10 @@ my_groups = group_selector("named")
 #   solarized-dark
 #   solarized-light
 #   catppuccin-mocha
+#   tokyonight-night
 # ]
 
-colors = color_picker("tomorrow-night")
+colors = color_picker("tokyonight-night")
 groups = groups(my_groups)
 mod = "mod4"
 terminal = guess_terminal()
@@ -64,6 +65,8 @@ focus_on_window_activation = "smart"
 reconfigure_screens = True
 auto_minimize = True
 wl_input_rules = None
+wl_xcursor_theme = None
+wl_xcursor_size = 24
 
 # -------------------------------------------autostart---------------------------------------
 

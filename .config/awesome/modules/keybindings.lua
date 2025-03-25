@@ -229,10 +229,12 @@ function keybindings.define_global_keybindings(terminal, browser, editor, font)
 				)
 			)
 		end, "show dmenu", "launcher"),
-        easykey.EzKey("XF86MonBrightnessDown", function ()
-            awful.util.spawn("xbacklight -dec 10") end),
-        easykey.EzKey("XF86MonBrightnessUp", function ()
-            awful.util.spawn("xbacklight -inc 10") end)
+		easykey.EzKey("XF86MonBrightnessDown", function()
+			awful.util.spawn("brightnessctl s 1000-")
+		end),
+		easykey.EzKey("XF86MonBrightnessUp", function()
+			awful.util.spawn("brightnessctl s 1000+")
+		end)
 	)
 end
 

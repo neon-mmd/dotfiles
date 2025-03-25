@@ -106,6 +106,17 @@ def color_picker(colorscheme_name):
             "6": "#f5c2e7",
             "7": "#ffffff",
         },
+        "tokyonight-night": {
+            "bg": "#1a1b26",
+            "fg": "#c0caf5",
+            "1": "#f7768e",
+            "2": "#9ece6a",
+            "3": "#e0af68",
+            "4": "#7aa2f7",
+            "5": "#bb9af7",
+            "6": "#7dcfff",
+            "7": "#a9b1d6",
+        },
     }
 
     return color_collection[colorscheme_name]
@@ -138,7 +149,7 @@ def group_selector(
 def theme_style(direction, Type):
     face_direction = {"left": 0, "right": 1}
     styles = {
-        "arrow": ["\uE0B2", "\uE0B0"],
+        "arrow": ["\ue0b2", "\ue0b0"],
         "semi-circle": ["\ue0b6", "\ue0b4"],
         "bottom-right-triangle": ["\ue0ba", "\ue0b8"],
         "top-right-triangle": ["\ue0be", "\ue0bc"],

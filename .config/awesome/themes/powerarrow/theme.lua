@@ -18,9 +18,10 @@ local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 --  solarized-dark
 --  solarized-light
 --  catppuccin-mocha
+--  tokyonight-night
 -- }
 
-local colors = themes.pick_a_theme("catppuccin-mocha")
+local colors = themes.pick_a_theme("tokyonight-night")
 
 local theme = {}
 theme.dir = os.getenv("HOME") .. "/.config/awesome/themes/powerarrow"

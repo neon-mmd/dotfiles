@@ -103,6 +103,17 @@ function themes.pick_a_theme(colorscheme_name)
 			["6"] = "#f5c2e7",
 			["7"] = "#ffffff",
 		},
+		["tokyonight-night"] = {
+			["bg"] = "#1a1b26",
+			["fg"] = "#c0caf5",
+			["1"] = "#f7768e",
+			["2"] = "#9ece6a",
+			["3"] = "#e0af68",
+			["4"] = "#7aa2f7",
+			["5"] = "#bb9af7",
+			["6"] = "#7dcfff",
+			["7"] = "#a9b1d6",
+		},
 	}
 	return colorscheme[colorscheme_name]
 end
