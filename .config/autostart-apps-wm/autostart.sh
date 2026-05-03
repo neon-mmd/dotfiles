@@ -1,15 +1,13 @@
 #!/bin/sh
 
-nitrogen --restore --set-scaled ~/Pictures/wallpapers/ &
-picom -b &
+waypaper --random --folder /usr/share/wallpapers/VVallpapers/ --fill stretch --backend swaybg --monitor All &
 nm-applet &
 gnome-keyring-daemon &
 lxsession &
-optimus-manager-qt &
 pcmanfm -d &
 battery-notifier &
 gpg-connect-agent /bye &
-xclip -quiet &
 imwheel &
 update-notifier &
-volumeicon &
+waybar &
+wl-paste --watch cliphist store &

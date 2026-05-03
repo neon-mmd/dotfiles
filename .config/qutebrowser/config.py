@@ -2,7 +2,7 @@
 
 # Change the argument to True to still load settings configured via autoconfig.yml
 from os.path import expanduser
-
+from catppuccin import setup
 
 config.load_autoconfig(False)
 
@@ -29,6 +29,10 @@ c.url.searchengines = {
 }
 
 # aesthetics
+# set the flavor you'd like to use
+# valid options are 'mocha', 'macchiato', 'frappe', and 'latte'
+# last argument (optional, default is False): enable the plain look for the menu rows
+setup(c, "mocha", True)
 c.window.hide_decoration = False
 c.statusbar.show = "never"
 c.fonts.default_family = "VictorMono Nerd Font Mono"

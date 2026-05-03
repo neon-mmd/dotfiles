@@ -46,12 +46,12 @@ alias pkgls "pacman -Qq"
 alias pkgcnt "pacman -Qq | wc -l"
 alias cache "sudo paccache -rf"
 
-###--paru-aliases--###
-alias aupd "paru -Su --needed --overwrite=\* --ask 4"
-alias ainstall "paru -S --needed --overwrite=\*" 
-alias ainfo "paru -Si"
-alias asearch "paru -Ss"
-alias remove "paru -Qtdq | paru -Rns -"
+###--yay-aliases--###
+alias aupd "yay -Su --needed --overwrite=\* --ask 4"
+alias ainstall "yay -S --needed --overwrite=\*" 
+alias ainfo "yay -Si"
+alias asearch "yay -Ss"
+alias remove "yay -Qtdq | yay -Rns -"
 
 ###--git-aliases--###
 alias ginit "git init"
