@@ -5,9 +5,10 @@ nm-applet &
 gnome-keyring-daemon &
 lxsession &
 pcmanfm -d &
-battery-notifier &
+# battery-notifier &
 gpg-connect-agent /bye &
 imwheel &
 update-notifier &
 waybar &
 wl-paste --watch cliphist store &
+kitty --single-instance --start-as="hidden" &

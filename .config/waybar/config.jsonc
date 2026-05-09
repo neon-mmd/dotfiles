@@ -5,9 +5,6 @@
     "height": 32,
     "modules-left": [
         "custom/spacer",
-        "image",
-        "custom/spacer",
-        "hyprland/workspaces",
         "niri/workspaces",
         "niri/window",
     ],
@@ -15,44 +12,16 @@
     ],
     "modules-right": [
         "tray",
-	"custom/kernel",
-	"cpu",
-        "memory",
-	"custom/diskfree",
         "clock",
-        "custom/power"
+	"battery",
+	"wireplumber",
     ],
-    "wlr/taskbar": {
-        "format": "{name}",
-        "on-click": "activate",
-        "on-click-right": "fullscreen",
-        "icon-theme": "WhiteSur",
-        "icon-size": 25,
-        "tooltip-format": "{title}"
-    },
     "niri/window": {
 	    "format": "{}",
 	    "rewrite": {
 		    "(.*) - Mozilla Firefox": "🌎 $1",
 		    "(.*) - zsh": "> [$1]"
 	    }
-    },
-    "hyprland/workspaces": {
-        "on-click": "activate",
-        "disable-scroll": true,
-        "all-outputs": true,
-        "warp-on-scroll": false,
-        "format": "{name}: {icon}",
-        "format-icons": {
-            "default": "",
-            "1": "",
-            "2": "",
-            "3": "",
-            "4": "",
-            "5": "",
-            //"active": "󱓻",
-            //"urgent": "󱓻"
-        },
     },
     "niri/workspaces": {
         "on-click": "activate",
@@ -72,15 +41,6 @@
             "8": [],
             "9": []
     },
-    "cpu": {
-        "format": "⧯ Cpu: {usage}%" ,
-        "tooltip": false
-    },
-    "memory": {
-        "interval": 5,
-        "format": "󰍛  Mem: {}%",
-        "max-length": 15
-    },
     "tray": {
         "spacing": 10
     },
@@ -89,22 +49,8 @@
         "format-alt": "  {:%a, %b %d %Y}",
         "format": "⏱  {:%a, %b %d - %H:%M}"
     },
-    "network": {
-        "format-wifi" : "{icon}",
-        "format-icons": ["󰤯","󰤟","󰤢","󰤥","󰤨"],
-        "format-ethernet": "󰀂",
-	"format-alt" : "󱛇",
-        "format-disconnected" : "󰖪",
-	"tooltip-format-wifi": "{icon} {essid}\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
-        "tooltip-format-ethernet": "󰀂  {ifname}\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
-	"tooltip-format-disconnected": "Disconnected",
-	"on-click": "~/.config/rofi/wifi/wifi.sh &",
-        "on-click-right": "~/.config/rofi/wifi/wifinew.sh &",
-	"interval": 5,
-	"nospacing": 1,
-    },
     "wireplumber": {
-        "format": "{icon}",
+        "format": "{icon} {volume}%",
         "format-bluetooth": "󰂰",
         "nospacing": 1,
         "tooltip-format": "Volume : {volume}%",
@@ -115,16 +61,6 @@
         },
         "on-click": "pamixer -t",
         "scroll-step": 1
-    },
-    "custom/logo": {
-        "format": "  ",
-        "tooltip": false,
-        "on-click": "rofi -show drun"
-    },
-    "image": {
-        "path": "/home/dt/.config/qtile/icons/cachyos.svg",
-        "size": 26,
-        "on-click": "rofi -show drun"
     },
     "custom/spacer": {
         "format": "  " /* Two spaces ensures it has some width */
@@ -165,29 +101,5 @@
         },
         "tooltip": false
     },
-    "custom/pacman": {
-	"format": "{}  ",
-	"interval": "once",
-	"exec": "pacman_packages",
-	"on-click": "update-system",
-	"signal": 8
-    },
-    "custom/kernel": {
-        "format": "❤ {}",
-	"interval": 3600,
-        "max-length": 20,
-         "exec": "uname -r"
-    },
-    "custom/diskfree": {
-        "format": "🖴 Disk: {} used",
-	"interval": 300,
-        "max-length": 20,
-         "exec": "df --total -hl | grep 'sda1' | awk '{print $5}'"
-    },
-    "custom/power": {
-        "format": "󰤆",
-        "tooltip": false,
-        "on-click": "dm-logout -r &"
-    }
 }
 
